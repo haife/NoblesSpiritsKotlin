@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NoblesSpirits-Kotlin</string>
+    <string name="main_boottom_menu_home_desc">首页</string>
+    <string name="main_boottom_menu_sort_desc">分类</string>
+    <string name="main_boottom_menu_shop_cart_desc">购物车</string>
+    <string name="main_boottom_menu_mine_desc">我的</string>
 </resources>

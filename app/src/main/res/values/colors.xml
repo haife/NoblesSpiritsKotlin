@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="window_bg_color">#f9f9f9</color>
+    <color name="common_pressed_bg_color">#BEBEBE</color>
+    <color name="main_bottom_nagivation_menu_nomal_color">#909090</color>
+    <color name="main_bottom_nagivation_menu_checked_color">#BF9377</color>
+    <color name="app_color_primary_color">#CEB173</color>
 </resources>

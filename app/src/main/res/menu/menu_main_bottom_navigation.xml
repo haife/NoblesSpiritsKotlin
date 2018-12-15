@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home_home_pager"
+        android:checked="true"
+        android:icon="@drawable/ic_main_bottom_menu_home_nomal"
+        android:title="@string/main_boottom_menu_home_desc" />
+    <item
+        android:id="@+id/home_class_page"
+        android:checked="false"
+        android:icon="@drawable/ic_main_bottom_menu_sort_nomal"
+        android:title="@string/main_boottom_menu_sort_desc" />
+
+    <item
+        android:id="@+id/home_shopping_cart"
+        android:checked="false"
+        android:icon="@drawable/ic_main_bottom_menu_cart_nomal"
+        android:title="@string/main_boottom_menu_shop_cart_desc" />
+    <item
+        android:id="@+id/home_peson_centre"
+        android:checked="false"
+        android:icon="@drawable/ic_main_bottom_menu_home_nomal"
+        android:title="@string/main_boottom_menu_mine_desc" />
+</menu>
