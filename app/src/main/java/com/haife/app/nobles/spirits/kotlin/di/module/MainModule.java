@@ -4,6 +4,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.MainContract;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.restaurant.RestaurantUnionBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.model.MainModel;
 import com.jess.arms.di.scope.ActivityScope;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -48,6 +49,13 @@ public class MainModule {
     RecyclerView.LayoutManager provideLayoutManager() {
         return new GridLayoutManager(view.getActivity(), 2);
     }
+
+    @ActivityScope
+    @Provides
+    RestaurantUnionBean provideRestaurantUnionBean() {
+        return new RestaurantUnionBean();
+    }
+
 
 
 }

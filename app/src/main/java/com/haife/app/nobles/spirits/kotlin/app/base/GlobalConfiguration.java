@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 
-import com.haife.mvparms.BuildConfig;
-import com.haife.mvparms.mvp.http.api.Api;
+import com.haife.app.nobles.spirits.kotlin.BuildConfig;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.api.Api;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.di.module.GlobalConfigModule;
 import com.jess.arms.http.log.RequestInterceptor;
@@ -35,6 +35,7 @@ public class GlobalConfiguration implements ConfigModule {
                     //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl. 详细使用请方法查看 https://github.com/JessYanCoding/RetrofitUrlManager
                     //RetrofitUrlManager.getInstance().with(okhttpBuilder);
                 })
+                .responseErrorListener(new ResponseErrorListenerImpl())
                 .rxCacheConfiguration((context1, rxCacheBulider) -> {
                     rxCacheBulider.useExpiredDataIfLoaderNotAvailable(true);
                     // 想自定义 RxCache 的缓存文件夹或者解析方式, 如改成 fastjson, 请 return rxCacheBuilder.persistence(cacheDirectory, new FastJsonSpeaker());
