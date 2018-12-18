@@ -4,7 +4,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.MainContract;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.restaurant.RestaurantUnionBean;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommandData;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.model.MainModel;
 import com.jess.arms.di.scope.ActivityScope;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -42,18 +43,6 @@ public class MainModule {
     @Provides
     RxPermissions provideRxPermission() {
         return new RxPermissions(view.getActivity());
-    }
-
-    @ActivityScope
-    @Provides
-    RecyclerView.LayoutManager provideLayoutManager() {
-        return new GridLayoutManager(view.getActivity(), 2);
-    }
-
-    @ActivityScope
-    @Provides
-    RestaurantUnionBean provideRestaurantUnionBean() {
-        return new RestaurantUnionBean();
     }
 
 

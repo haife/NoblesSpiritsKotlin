@@ -4,4 +4,7 @@
     <string name="main_boottom_menu_sort_desc">分类</string>
     <string name="main_boottom_menu_shop_cart_desc">购物车</string>
     <string name="main_boottom_menu_mine_desc">我的</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

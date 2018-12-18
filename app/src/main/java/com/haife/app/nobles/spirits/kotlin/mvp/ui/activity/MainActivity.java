@@ -14,19 +14,22 @@ import com.haife.app.nobles.spirits.kotlin.app.base.BaseSupportActivity;
 import com.haife.app.nobles.spirits.kotlin.di.component.DaggerMainComponent;
 import com.haife.app.nobles.spirits.kotlin.di.module.MainModule;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.MainContract;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.MainPresenter;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import timber.log.Timber;
 
 import static kotlin.jvm.internal.Intrinsics.checkNotNull;
 
 public class MainActivity extends BaseSupportActivity<MainPresenter> implements MainContract.View {
+    @BindView(R.id.bnve_main_bottom_navigation)
+    BottomNavigationViewEx mMainBottomBnve;
     @Inject
     RxPermissions mRxPermissions;
     @Inject
@@ -50,11 +53,19 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
+        initWidget();
         requestPermissions();
-        mPresenter.requestProcess(new Token());
 
     }
 
+    /**
+     * 初始化任务
+     */
+    @Override
+    public void initWidget() {
+        mMainBottomBnve.enableShiftingMode(false);
+        mMainBottomBnve.enableItemShiftingMode(false);
+    }
 
     @Override
     public void showLoading() {
@@ -120,4 +131,6 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     public Activity getActivity() {
         return this;
     }
+
+
 }

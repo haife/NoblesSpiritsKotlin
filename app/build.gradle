@@ -25,11 +25,15 @@ android {
     buildTypes {
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
-            buildConfigField "boolean" ,"USE_CANARY","true"
+            buildConfigField "boolean", "USE_CANARY", "true"
+            buildConfigField("String", "App_CODE", "\"098F6BCD4621D373CADE4E832627B4F6\"")
+            buildConfigField("String", "API_HOST", "\"http://nstest.noble-spirits.com\"")
         }
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
-            buildConfigField "boolean" ,"USE_CANARY","false"
+            buildConfigField "boolean", "USE_CANARY", "false"
+            buildConfigField("String", "App_CODE", "\"098F6BCD4621D373CADE4E832627B4F6\"")
+            buildConfigField("String", "API_HOST", "\"http://nstest.noble-spirits.com\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -58,6 +62,7 @@ dependencies {
     /*kapt rootProject.ext.dependencies["arouter-api"]
     kapt rootProject.ext.dependencies["arouter-compiler"]*/
     implementation rootProject.ext.dependencies["butterknife"]
+    implementation 'com.android.support:support-v4:27.1.1'
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     //Butterknife 插件,很多人因为没加这个而报错,切记!!!
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]

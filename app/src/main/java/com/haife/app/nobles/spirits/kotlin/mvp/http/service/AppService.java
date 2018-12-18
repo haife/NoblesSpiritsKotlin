@@ -1,18 +1,29 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.http.service;
 
+
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.restaurant.RestaurantUnionBean;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommandData;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface AppService {
-    /**
-     * 获取联盟餐厅
+    /*
+     * 首页推荐
      */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("api.php?s=/index/app_index")
+    Observable<BaseResponse<HomeRecommandData>> getHomeRecommandData(@Body RequestBody requestBody);
 
+
+    /**
+     * 首页联盟餐厅
+     */
     @POST("api.php?s=/shop/index")
-    Observable<BaseResponse<RestaurantUnionBean>> getUnionRestaurant(@Body RequestBody requestBody);
+    Observable<BaseResponse<RestaurantUnionBean>> getHomeUnionRestaurant(@Body RequestBody requestBody);
+
 }

@@ -1,4 +1,4 @@
-package com.haife.app.nobles.spirits.kotlin.mvp.http.entity.restaurant;
+package com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result;
 
 import java.util.List;
 
