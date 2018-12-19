@@ -9,6 +9,8 @@ import com.jess.arms.utils.ArmsUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
+import me.jessyan.autosize.AutoSizeConfig;
+import me.jessyan.autosize.unit.Subunits;
 import timber.log.Timber;
 
 public class AppLifecyclesImpl implements AppLifecycles {
@@ -24,6 +26,9 @@ public class AppLifecyclesImpl implements AppLifecycles {
     public void onCreate(Application application) {
         initTimber();
         initLeakCanary(application);
+        AutoSizeConfig.getInstance().getUnitsManager()
+                .setSupportDP(true)
+                .setSupportSubunits(Subunits.PT);
     }
 
 

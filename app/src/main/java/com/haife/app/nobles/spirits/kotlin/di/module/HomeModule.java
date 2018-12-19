@@ -4,7 +4,6 @@ import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommandData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.model.HomeModel;
-import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.di.scope.FragmentScope;
 
 import dagger.Module;
@@ -17,6 +16,7 @@ import dagger.Provides;
  */
 @Module
 public class HomeModule {
+
     private HomeContract.View view;
 
     public HomeModule(HomeContract.View view) {
@@ -28,6 +28,7 @@ public class HomeModule {
     public HomeContract.View provideHomeView() {
         return this.view;
     }
+
     @FragmentScope
     @Provides
     public HomeContract.Model provideHomeModel(HomeModel model) {
@@ -35,14 +36,13 @@ public class HomeModule {
     }
 
 
-
-    @ActivityScope
+    @FragmentScope
     @Provides
     RestaurantUnionBean provideRestaurantUnionBean() {
         return new RestaurantUnionBean();
     }
 
-    @ActivityScope
+    @FragmentScope
     @Provides
     HomeRecommandData provideHomeRecommandData() {
         return new HomeRecommandData();

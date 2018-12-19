@@ -62,7 +62,6 @@ dependencies {
     /*kapt rootProject.ext.dependencies["arouter-api"]
     kapt rootProject.ext.dependencies["arouter-compiler"]*/
     implementation rootProject.ext.dependencies["butterknife"]
-    implementation 'com.android.support:support-v4:27.1.1'
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     //Butterknife 插件,很多人因为没加这个而报错,切记!!!
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
@@ -71,6 +70,7 @@ dependencies {
     implementation rootProject.ext.dependencies["fragmentation-swipeback"]
     implementation rootProject.ext.dependencies["bottomnavigationviewex"]
     implementation rootProject.ext.dependencies["glide"]
+    implementation rootProject.ext.dependencies["autosize"]
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
     //test
     testImplementation rootProject.ext.dependencies["junit"]

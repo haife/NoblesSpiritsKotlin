@@ -43,6 +43,7 @@ ext {
             "picasso"                  : "com.squareup.picasso:picasso:2.5.2",
 
             //view
+            "autosize"                 : "me.jessyan:autosize:1.1.1",
             "autolayout"               : "com.zhy:autolayout:1.4.5",
             "butterknife"              : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
             "butterknife-compiler"     : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",

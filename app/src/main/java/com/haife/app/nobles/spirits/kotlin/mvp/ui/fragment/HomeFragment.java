@@ -26,6 +26,14 @@ import com.jess.arms.di.component.AppComponent;
 public class HomeFragment extends BaseSupportFragment<HomePresenter> implements HomeContract.View {
 
 
+    public static HomeFragment newInstance() {
+        Bundle args = new Bundle();
+        HomeFragment fragment = new HomeFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
     @Override
     public void initWidget() {
 
