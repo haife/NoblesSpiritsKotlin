@@ -14,6 +14,7 @@ import com.haife.app.nobles.spirits.kotlin.di.component.DaggerMainComponent;
 import com.haife.app.nobles.spirits.kotlin.di.module.MainModule;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.MainContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.MainPresenter;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HomeFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -22,6 +23,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import me.yokeyword.fragmentation.ISupportFragment;
 import timber.log.Timber;
 
 import static kotlin.jvm.internal.Intrinsics.checkNotNull;
@@ -29,10 +31,12 @@ import static kotlin.jvm.internal.Intrinsics.checkNotNull;
 public class MainActivity extends BaseSupportActivity<MainPresenter> implements MainContract.View {
     @BindView(R.id.bnve_main_bottom_navigation)
     BottomNavigationViewEx mMainBottomBnve;
+
+
     @Inject
     RxPermissions mRxPermissions;
 
-
+    private ISupportFragment[] mFragments = new ISupportFragment[4];
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -54,6 +58,7 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
         initWidget();
         requestPermissions();
 
+
     }
 
     /**
@@ -63,6 +68,7 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     public void initWidget() {
         mMainBottomBnve.enableShiftingMode(false);
         mMainBottomBnve.enableItemShiftingMode(false);
+        addFragment();
     }
 
     @Override
@@ -91,6 +97,22 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     @Override
     public void killMyself() {
         finish();
+    }
+
+    private void addFragment() {
+        ISupportFragment recommendFragment = findFragment(HomeFragment.class);
+        if (recommendFragment == null) {
+            mFragments[0] = new HomeFragment();
+            mFragments[1] = new HomeFragment();
+            mFragments[2] = new HomeFragment();
+            mFragments[3] = new HomeFragment();
+            loadMultipleRootFragment(R.id.fl_main_container, 0, mFragments);
+        } else {
+            mFragments[0] = findFragment(HomeFragment.class);
+            mFragments[1] = findFragment(HomeFragment.class);
+            mFragments[2] = findFragment(HomeFragment.class);
+            mFragments[3] = findFragment(HomeFragment.class);
+        }
     }
 
 
@@ -131,4 +153,8 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     }
 
 
+    @Override
+    public void post(Runnable runnable) {
+
+    }
 }

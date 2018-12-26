@@ -58,6 +58,8 @@ dependencies {
     implementation rootProject.ext.dependencies["cardview-v7"]
     implementation rootProject.ext.dependencies["autolayout"]
     implementation rootProject.ext.dependencies["constraint-layout"]
+    implementation rootProject.ext.dependencies["rippleeffect"]
+    implementation rootProject.ext.dependencies["magicindicator"]
     //tool
     /*kapt rootProject.ext.dependencies["arouter-api"]
     kapt rootProject.ext.dependencies["arouter-compiler"]*/
@@ -67,6 +69,7 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     //依赖插件, annotationProcessor 是 AndroidStudio 自带并用来替换 APT
     implementation rootProject.ext.dependencies["fragmentation"]
+    implementation rootProject.ext.dependencies["fragmentation-code"]
     implementation rootProject.ext.dependencies["fragmentation-swipeback"]
     implementation rootProject.ext.dependencies["bottomnavigationviewex"]
     implementation rootProject.ext.dependencies["glide"]

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="base_horizontal_line_height">1dp</dimen>
+    <dimen name="base_tool_bar_height">49dp</dimen>
+    <dimen name="home_magic_indicator_height">52dp</dimen>
+    <dimen name="home_tool_bar_elevation_height">4dp</dimen>
+    <dimen name="home_tool_search_btn_padding">16dp</dimen>
+</resources>

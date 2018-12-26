@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +19,21 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter;
 import com.jess.arms.di.component.AppComponent;
 
+import net.lucode.hackware.magicindicator.MagicIndicator;
+
+import butterknife.BindView;
+
 /**
  * @author haife
  * @since 2018/12/18
  * TODO: HomeFragmentUI
  */
 public class HomeFragment extends BaseSupportFragment<HomePresenter> implements HomeContract.View {
+    @BindView(R.id.magic_indicator_home)
+    MagicIndicator mHomeMagicIndicator;
 
+    @BindView(R.id.view_pager_home_container)
+    ViewPager mHomeViewPager;
 
     public static HomeFragment newInstance() {
         Bundle args = new Bundle();
@@ -86,6 +95,12 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     @Override
     public void killMyself() {
+
+    }
+
+
+    @Override
+    public void post(Runnable runnable) {
 
     }
 }

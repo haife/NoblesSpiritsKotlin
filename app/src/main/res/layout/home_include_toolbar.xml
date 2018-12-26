@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ToolBar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base_tool_bar_height"
+    app:layout_scrollFlags="scroll|enterAlways">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_home_ab_logo" />
+
+    <com.andexert.library.RippleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        app:rv_centered="true"
+        app:rv_color="@color/ripple_status_color"
+        app:rv_zoom="true">
+
+        <ImageView
+            android:id="@+id/ivbtn_home_ab_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="@dimen/home_tool_search_btn_padding"
+            android:scaleType="center"
+            android:src="@drawable/ic_home_ab_search" />
+    </com.andexert.library.RippleView>
+
+</android.support.v7.widget.Toolbar>

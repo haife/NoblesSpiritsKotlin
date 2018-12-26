@@ -12,7 +12,6 @@ import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportActivityDelegate;
-import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.SupportHelper;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
@@ -24,7 +23,8 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * 框架 Fragmentation
  */
 public abstract class BaseSupportActivity<p extends IPresenter> extends BaseActivity<p> implements ISupportActivity {
-    final SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
+    final  SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
+    public BaseSupportActivity mContext;
 
     @Override
     public SupportActivityDelegate getSupportDelegate() {
@@ -42,10 +42,10 @@ public abstract class BaseSupportActivity<p extends IPresenter> extends BaseActi
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        mContext = this;
         mDelegate.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
     }
-
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
@@ -117,23 +117,15 @@ public abstract class BaseSupportActivity<p extends IPresenter> extends BaseActi
         return mDelegate.onCreateFragmentAnimator();
     }
 
-    /**
-     * Causes the Runnable r to be added to the action queue.
-     * <p>
-     * The runnable will be run after all the previous action has been run.
-     * <p>
-     * 前面的事务全部执行后 执行该Action
-     */
-    @Override
-    public void post(Runnable runnable) {
-        mDelegate.post(runnable);
-    }
-
     /****************************************以下为可选方法(Optional methods)******************************************************/
 
     // 选择性拓展其他方法
     public void loadRootFragment(int containerId, @NonNull ISupportFragment toFragment) {
         mDelegate.loadRootFragment(containerId, toFragment);
+    }
+
+    public void loadMultipleRootFragment(int containerId, int showPosition, @NonNull ISupportFragment... toFragments) {
+        mDelegate.loadMultipleRootFragment(containerId, showPosition, toFragments);
     }
 
     public void start(ISupportFragment toFragment) {
@@ -148,17 +140,6 @@ public abstract class BaseSupportActivity<p extends IPresenter> extends BaseActi
     }
 
     /**
-     * It is recommended to use {@link SupportFragment#startWithPopTo(ISupportFragment, Class, boolean)}.
-     *
-     * @see #popTo(Class, boolean)
-     * +
-     * @see #start(ISupportFragment)
-     */
-    public void startWithPopTo(ISupportFragment toFragment, Class<?> targetFragmentClass, boolean includeTargetFragment) {
-        mDelegate.startWithPopTo(toFragment, targetFragmentClass, includeTargetFragment);
-    }
-
-    /**
      * Pop the fragment.
      */
     public void pop() {
@@ -167,10 +148,18 @@ public abstract class BaseSupportActivity<p extends IPresenter> extends BaseActi
 
     /**
      * Pop the last fragment transition from the manager's fragment
-     * back stack.
+     * icon_back stack.
      */
     public void popTo(Class<?> targetFragmentClass, boolean includeTargetFragment) {
         mDelegate.popTo(targetFragmentClass, includeTargetFragment);
+    }
+
+    public void showHideFragment(ISupportFragment showFragment) {
+        mDelegate.showHideFragment(showFragment);
+    }
+
+    public void showHideFragment(ISupportFragment showFragment, ISupportFragment preFragment) {
+        mDelegate.showHideFragment(showFragment, preFragment);
     }
 
     /**
@@ -198,4 +187,5 @@ public abstract class BaseSupportActivity<p extends IPresenter> extends BaseActi
     public <T extends ISupportFragment> T findFragment(Class<T> fragmentClass) {
         return SupportHelper.findFragment(getSupportFragmentManager(), fragmentClass);
     }
+
 }
