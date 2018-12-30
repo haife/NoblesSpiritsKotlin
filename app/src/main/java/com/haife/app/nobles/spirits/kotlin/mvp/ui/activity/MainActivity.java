@@ -129,5 +129,8 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     }
 
 
+    @Override
+    public void post(Runnable runnable) {
 
+    }
 }
