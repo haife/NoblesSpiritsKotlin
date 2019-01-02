@@ -115,7 +115,6 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
         }
     }
 
-
     @SuppressLint("CheckResult")
     private void requestPermissions() {
         RxPermissions rxPermission = new RxPermissions(MainActivity.this);
@@ -143,15 +142,12 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
                         Timber.e("%s is denied.", permission.name);
                     }
                 });
-
-
     }
 
     @Override
     public Activity getActivity() {
         return this;
     }
-
 
     @Override
     public void post(Runnable runnable) {

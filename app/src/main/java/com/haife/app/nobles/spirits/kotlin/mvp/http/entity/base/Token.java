@@ -2,7 +2,7 @@ package com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base;
 
 
 import com.haife.app.nobles.spirits.kotlin.BuildConfig;
-import com.haife.app.nobles.spirits.kotlin.app.utlis.MD5;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.utlis.MD5;
 
 public class Token {
 

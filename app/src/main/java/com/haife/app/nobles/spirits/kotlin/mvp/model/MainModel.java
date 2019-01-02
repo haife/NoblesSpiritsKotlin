@@ -10,8 +10,6 @@ import com.jess.arms.mvp.BaseModel;
 
 import javax.inject.Inject;
 
-import okhttp3.RequestBody;
-
 @ActivityScope
 public class MainModel extends BaseModel implements MainContract.Model {
     @Inject
@@ -31,10 +29,4 @@ public class MainModel extends BaseModel implements MainContract.Model {
         this.mApplication = null;
     }
 
-
-
-    public RequestBody getRequestBody(String postJson) {
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), postJson);
-        return body;
-    }
 }

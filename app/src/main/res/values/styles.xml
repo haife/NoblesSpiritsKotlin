@@ -13,4 +13,12 @@
         <item name="android:height">@dimen/base_tool_bar_height</item>
         <item name="navigationIcon">@drawable/ic_home_ab_rich_scan</item>
     </style>
+
+    <style name="BaseRecycleViewStyle">
+        <item name="android:scrollbars">none</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:overScrollMode">never</item>
+    </style>
+    
+
 </resources>

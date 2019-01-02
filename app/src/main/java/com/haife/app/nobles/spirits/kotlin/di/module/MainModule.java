@@ -1,11 +1,6 @@
 package com.haife.app.nobles.spirits.kotlin.di.module;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.MainContract;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommandData;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.model.MainModel;
 import com.jess.arms.di.scope.ActivityScope;
 import com.tbruyelle.rxpermissions2.RxPermissions;

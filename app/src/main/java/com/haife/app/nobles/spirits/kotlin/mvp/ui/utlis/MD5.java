@@ -1,4 +1,4 @@
-package com.haife.app.nobles.spirits.kotlin.app.utlis;
+package com.haife.app.nobles.spirits.kotlin.mvp.ui.utlis;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
