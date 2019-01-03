@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--text size-->
+    <dimen name="text_sp_20">20sp</dimen>
+    <dimen name="home_magic_indicator_text_size">17sp</dimen>
+    <!--dimens other-->
     <dimen name="base_horizontal_line_height">1dp</dimen>
     <dimen name="base_tool_bar_height">49dp</dimen>
     <dimen name="home_magic_indicator_height">52dp</dimen>
     <dimen name="home_tool_bar_elevation_height">4dp</dimen>
     <dimen name="home_tool_search_btn_padding">16dp</dimen>
-    <dimen name="home_magic_indicator_text_size">17sp</dimen>
+    <dimen name="home_recommend_shop_padding_left">20dp</dimen>
+
 </resources>

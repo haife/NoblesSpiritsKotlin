@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+kapt {
+    generateStubs = true
+}
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion '28.0.3'
@@ -16,11 +20,7 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-            }
-        }
+
     }
     buildTypes {
         debug {
@@ -40,17 +40,15 @@ android {
     }
 }
 
-//kapt {
-//    arguments {
-//        arg("AROUTER_MODULE_NAME", project.getName())
-//    }
-//}
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //support
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'me.jessyan:arms:2.4.1'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:27.1.0'
     implementation rootProject.ext.dependencies["support-v4"]
     implementation rootProject.ext.dependencies["gson"]
     implementation rootProject.ext.dependencies["appcompat-v7"]
@@ -62,14 +60,7 @@ dependencies {
     implementation rootProject.ext.dependencies["magicindicator"]
     implementation rootProject.ext.dependencies["banner"]
     //tool
-    /*kapt rootProject.ext.dependencies["arouter-api"]
-    kapt rootProject.ext.dependencies["arouter-compiler"]*/
-    implementation 'com.android.support:support-v4:27.1.1'
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-
-    //Butterknife 插件,很多人因为没加这个而报错,切记!!!
-    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
-    //依赖插件, annotationProcessor 是 AndroidStudio 自带并用来替换 APT
+    kapt rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["fragmentation"]
     implementation rootProject.ext.dependencies["fragmentation-code"]
     implementation rootProject.ext.dependencies["fragmentation-swipeback"]
@@ -77,7 +68,9 @@ dependencies {
     implementation rootProject.ext.dependencies["glide"]
     implementation rootProject.ext.dependencies["autosize"]
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    //Butterknife 插件,很多人因为没加这个而报错,切记!!!
     implementation rootProject.ext.dependencies["butterknife"]
+    kapt rootProject.ext.dependencies["butterknife-compiler"]
     implementation rootProject.ext.dependencies["base-recyclerview-adapter"]
     //test
     testImplementation rootProject.ext.dependencies["junit"]

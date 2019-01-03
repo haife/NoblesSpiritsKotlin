@@ -1,16 +1,14 @@
 package com.haife.app.nobles.spirits.kotlin.di.module;
 
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommandMultiItemEntity;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommandData;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.model.HomeModel;
-import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommandAdapter;
-import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HRecommandFragment;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommendAdapter;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HRecommendFragment;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.scope.FragmentScope;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,6 @@ import dagger.Provides;
 public class HomeModule {
 
     private HomeContract.View view;
-
     public HomeModule(HomeContract.View view) {
         this.view = view;
     }
@@ -53,27 +50,27 @@ public class HomeModule {
 
     @FragmentScope
     @Provides
-    HomeRecommandData provideHomeRecommandData() {
-        return new HomeRecommandData();
+    HomeRecommendData provideHomeRecommendData() {
+        return new HomeRecommendData();
     }
 
     @FragmentScope
     @Provides
     List<BaseFragment> provideHomeFragmentList() {
         List<BaseFragment> fragmentList = new ArrayList<>();
-        fragmentList.add(HRecommandFragment.Companion.newInstance());
+        fragmentList.add(HRecommendFragment.Companion.newInstance());
         return fragmentList;
     }
 
     @FragmentScope
     @Provides
-    List<HRecommandMultiItemEntity> provideRecommandDataList() {
+    List<HRecommendMultiItemEntity> provideRecommendDataList() {
         return new ArrayList<>();
     }
 
     @FragmentScope
     @Provides
-    HRecommandAdapter provideHRecommandAdapter(@NotNull List<HRecommandMultiItemEntity> list){
-        return new HRecommandAdapter(list);
+    HRecommendAdapter provideHRecommendAdapter(List<HRecommendMultiItemEntity> list){
+        return new HRecommendAdapter(list);
     }
 }

@@ -21,7 +21,6 @@ import com.haife.app.nobles.spirits.kotlin.di.component.DaggerHomeComponent;
 import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommandMultiItemEntity;
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.ScaleTransitionPagerTitleView;
 import com.jess.arms.base.BaseFragment;
@@ -58,6 +57,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     List<BaseFragment> mHomeFragmentList;
     private CommonNavigator mMIndicatorNavigator;
     private HomeViewPagerAdapter homeViewPagerAdapter;
+    private final String simpleName = getClass().getSimpleName();
 
     @Override
     public void setupFragmentComponent(@NonNull AppComponent appComponent) {
@@ -74,8 +74,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         Token token = new Token();
-        mPresenter.getHomeUnionRestaurant(token);
-        mPresenter.getHomeRecommandData(token);
+        mPresenter.getHomeRecommendData(token,simpleName);
     }
 
     @Override
@@ -117,6 +116,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     @Override
     public void initMagicIndicatorView(List<String> magicIndicatorContentList) {
+
         mMIndicatorNavigator = new CommonNavigator(getContext());
         mMIndicatorNavigator.setLeftPadding(16);
         mMIndicatorNavigator.setRightPadding(16);
@@ -153,14 +153,10 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
         mHomeViewPager.setAdapter(homeViewPagerAdapter);
     }
 
-    @Override
-    public void processRecommandUiData(List<HRecommandMultiItemEntity> homeRecommandData) {
-
-    }
 
 
     /**
-     * TODO: ViewPagerDapter
+     * TODO: ViewPagerAdapter
      */
     public class HomeViewPagerAdapter extends FragmentPagerAdapter {
         public HomeViewPagerAdapter(FragmentManager fm) {

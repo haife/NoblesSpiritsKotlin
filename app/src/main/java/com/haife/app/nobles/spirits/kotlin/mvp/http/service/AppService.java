@@ -2,7 +2,7 @@ package com.haife.app.nobles.spirits.kotlin.mvp.http.service;
 
 
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommandData;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 
 import io.reactivex.Observable;
@@ -17,7 +17,7 @@ public interface AppService {
      */
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("api.php?s=/index/app_index")
-    Observable<BaseResponse<HomeRecommandData>> getHomeRecommandData(@Body RequestBody requestBody);
+    Observable<BaseResponse<HomeRecommendData>> getHomeRecommandData(@Body RequestBody requestBody);
 
 
     /**

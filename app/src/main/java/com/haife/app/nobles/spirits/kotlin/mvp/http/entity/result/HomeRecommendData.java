@@ -7,7 +7,7 @@ import java.util.List;
  * @ since 2018/12/18
  * TODO：
  */
-public class HomeRecommandData {
+public class HomeRecommendData {
 
     private List<ArrIndexBannerDataBean> arr_index_banner_data;
     private ArrIndexLifeDataBean arr_index_life_data;

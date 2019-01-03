@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommandData;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.service.AppService;
 import com.jess.arms.di.scope.FragmentScope;
@@ -42,12 +42,11 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
     }
 
     @Override
-    public Observable<BaseResponse<HomeRecommandData>> getHomeRecommandData(Token bean) {
+    public Observable<BaseResponse<HomeRecommendData>> getHomeRecommendData(Token bean) {
         return mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommandData(getRequestBody(mGson.toJson(bean)));
     }
 
     public RequestBody getRequestBody(String postJson) {
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), postJson);
-        return body;
+        return RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), postJson);
     }
 }
