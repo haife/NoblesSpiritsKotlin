@@ -23,6 +23,7 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
 
     private val simpleName = javaClass.simpleName
 
+
     @Inject
     lateinit var mRecommendAdapter: HRecommendAdapter
 
@@ -38,7 +39,6 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
     }
 
     override fun setData(data: Any?) {
-
     }
 
     override fun initView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

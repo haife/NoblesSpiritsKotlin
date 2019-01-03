@@ -10,7 +10,6 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendD
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommendAdapter;
 import com.jess.arms.di.scope.FragmentScope;
-import com.jess.arms.http.imageloader.ImageLoader;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
 import com.jess.arms.utils.RxLifecycleUtils;
@@ -33,8 +32,6 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
     @Inject
     Application mApplication;
     @Inject
-    ImageLoader mImageLoader;
-    @Inject
     AppManager mAppManager;
     @Inject
     RestaurantUnionBean mRestaurantUnionBean;
@@ -45,12 +42,11 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
     @Inject
     HRecommendAdapter mRecommendAdapter;
     private final String HOME_FRAGMENT_SIMPLE_NAME = "HomeFragment";
-    private final String HRECOMMEND_FRAGMENT_SIMPLE_NAME = "HRecommendFragment";
+    private final String HOME_RECOMMEND_FRAGMENT_SIMPLE_NAME = "HRecommendFragment";
 
     @Inject
     public HomePresenter(HomeContract.Model model, HomeContract.View rootView) {
         super(model, rootView);
-
     }
 
     /**
@@ -98,10 +94,9 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
                             mHomeRecommendData = response.getData().getResult();
                             if (fragmentName.equals(HOME_FRAGMENT_SIMPLE_NAME)) {
                                 processHomeData();
-                            }else if (fragmentName.equals(HRECOMMEND_FRAGMENT_SIMPLE_NAME)){
+                            } else if (fragmentName.equals(HOME_RECOMMEND_FRAGMENT_SIMPLE_NAME)) {
                                 processRecommendData();
                             }
-
                         } else {
                             mRootView.showMessage(response.getData().getMsg());
                         }
@@ -122,9 +117,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
 
 
     /**
-     * 处理首页推荐的数据 提供给View层
-     *
-     * @param mHomeRecommendData
+     * TODO 处理首页推荐的数据 提供给View层
      */
     private void processRecommendData() {
 
@@ -135,7 +128,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
             bannerEntity.setTypeItem(HRecommendMultiItemEntity.BANNER_TYPE);
             hRecommendMultiItemList.add(bannerEntity);
         }
-        //判断有无推荐餐厅
+        // 判断有无推荐餐厅
         if (mHomeRecommendData.getArr_index_recommend_shop() != null && mHomeRecommendData.getArr_index_recommend_shop().getArr_data() != null
                 && mHomeRecommendData.getArr_index_recommend_shop().getArr_data().size() != 0) {
             HRecommendMultiItemEntity recommendShopEntity = new HRecommendMultiItemEntity();
@@ -146,7 +139,6 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
 
         mRecommendAdapter.notifyDataSetChanged();
 
-
     }
 
 
@@ -155,9 +147,10 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
         super.onDestroy();
         this.mErrorHandler = null;
         this.mAppManager = null;
-        this.mImageLoader = null;
         this.mApplication = null;
         this.hRecommendMultiItemList = null;
+        this.mRecommendAdapter = null;
+        this.mHomeRecommendData = null;
     }
 
 }
