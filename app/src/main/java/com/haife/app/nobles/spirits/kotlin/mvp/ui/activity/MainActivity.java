@@ -32,11 +32,10 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     @BindView(R.id.bnve_main_bottom_navigation)
     BottomNavigationViewEx mMainBottomBnve;
 
-
     @Inject
     RxPermissions mRxPermissions;
 
-    private ISupportFragment[] mFragments = new ISupportFragment[4];
+    private ISupportFragment[] mFragments = new ISupportFragment[1];
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -102,16 +101,11 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     private void addFragment() {
         ISupportFragment recommendFragment = findFragment(HomeFragment.class);
         if (recommendFragment == null) {
-            mFragments[0] = new HomeFragment();
-            mFragments[1] = new HomeFragment();
-            mFragments[2] = new HomeFragment();
-            mFragments[3] = new HomeFragment();
+            mFragments[0] = HomeFragment.newInstance();
             loadMultipleRootFragment(R.id.fl_main_container, 0, mFragments);
         } else {
             mFragments[0] = findFragment(HomeFragment.class);
-            mFragments[1] = findFragment(HomeFragment.class);
-            mFragments[2] = findFragment(HomeFragment.class);
-            mFragments[3] = findFragment(HomeFragment.class);
+
         }
     }
 

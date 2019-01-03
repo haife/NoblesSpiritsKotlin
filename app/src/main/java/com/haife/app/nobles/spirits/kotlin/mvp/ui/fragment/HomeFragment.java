@@ -59,6 +59,11 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     private HomeViewPagerAdapter homeViewPagerAdapter;
     private final String simpleName = getClass().getSimpleName();
 
+
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
+        return fragment;
+    }
     @Override
     public void setupFragmentComponent(@NonNull AppComponent appComponent) {
         DaggerHomeComponent.builder().appComponent(appComponent)

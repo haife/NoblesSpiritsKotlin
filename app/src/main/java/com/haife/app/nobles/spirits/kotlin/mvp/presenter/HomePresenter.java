@@ -26,7 +26,6 @@ import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 
-
 @FragmentScope
 public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContract.View> {
     @Inject
@@ -98,9 +97,9 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
                         if (response.getData().isSuccess()) {
                             mHomeRecommendData = response.getData().getResult();
                             if (fragmentName.equals(HOME_FRAGMENT_SIMPLE_NAME)) {
-                                processHomeData(mHomeRecommendData);
+                                processHomeData();
                             }else if (fragmentName.equals(HRECOMMEND_FRAGMENT_SIMPLE_NAME)){
-                                processRecommendData(mHomeRecommendData);
+                                processRecommendData();
                             }
 
                         } else {
@@ -110,7 +109,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
                 });
     }
 
-    private void processHomeData(HomeRecommendData mHomeRecommendData) {
+    private void processHomeData() {
         List<String> magicList = new ArrayList<>();
         // 指示器数据
         if (mHomeRecommendData.getArr_table_data() != null) {
@@ -127,8 +126,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
      *
      * @param mHomeRecommendData
      */
-    private void processRecommendData(HomeRecommendData mHomeRecommendData) {
-
+    private void processRecommendData() {
 
         //判断banner是否为空
         if (mHomeRecommendData.getArr_index_banner_data() != null && mHomeRecommendData.getArr_index_banner_data().size() != 0) {
@@ -161,4 +159,5 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
         this.mApplication = null;
         this.hRecommendMultiItemList = null;
     }
+
 }

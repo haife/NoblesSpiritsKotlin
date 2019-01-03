@@ -1,10 +1,10 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter
 
+import android.view.View
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity
-import com.youth.banner.Banner
 
 /**
  * @ author haife
@@ -21,7 +21,7 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?) : BaseMul
     override fun convert(helper: BaseViewHolder?, item: HRecommendMultiItemEntity?) {
         when (item?.TypeItem) {
             HRecommendMultiItemEntity.BANNER_TYPE -> {
-                var banner = helper?.getView<Banner>(R.id.banner_home_recommend)
+                var banner = helper?.getView<View>(R.id.banner_home_recommend)
             }
 
             HRecommendMultiItemEntity.RECOMMAND_RESTAURANT -> {
