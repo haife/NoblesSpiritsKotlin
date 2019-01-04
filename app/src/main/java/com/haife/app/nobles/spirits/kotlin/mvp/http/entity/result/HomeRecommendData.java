@@ -5,10 +5,9 @@ import java.util.List;
 /**
  * @ author haife
  * @ since 2018/12/18
- * TODO：
+ * TODO：首页推荐数据
  */
 public class HomeRecommendData {
-
     private List<ArrIndexBannerDataBean> arr_index_banner_data;
     private ArrIndexLifeDataBean arr_index_life_data;
     private ArrIndexWeeklySpecialsDataBean arr_index_weekly_specials_data;
@@ -92,11 +91,6 @@ public class HomeRecommendData {
     }
 
     public static class ArrIndexBannerDataBean {
-        /**
-         * int_id : 42
-         * string_title : 积分商城首页banner
-         * string_pic_url : /Uploads/2018-06-22/5b2ca614732b6.png
-         */
 
         private int int_id;
         private int int_jump_type;
@@ -155,35 +149,28 @@ public class HomeRecommendData {
     }
 
     public static class ArrIndexNewShopBean {
-        /**
-         * arr_title_data : {"string_positive_title":"新入驻餐厅","sting_negative_title":"赶紧来打卡"}
-         * arr_data : [{"int_id":131,"string_title":"大公鸡小酒馆 Le Coq Wine & Meat Shop（威海路)","string_title_en":" Le Coq Wine & Meat Shop（Weihai Road)","string_slogn":"朋友轻松聚餐的最佳场所","string_slogn_en":"","string_city":"上海 静安","string_city_en":"Shanghai Jingan","float_spend":475},{"int_id":130,"string_title":"大公鸡小酒馆 Le Coq Wine &Bistro(黄陂南路)","string_title_en":"Le Coq Wine &Bistro （South Huangpi Road）","string_slogn":"朋友轻松聚餐的最佳场所","string_slogn_en":"","string_city":"上海 黄浦","string_city_en":"Shanghai Huangpu","float_spend":475},{"int_id":132,"string_title":"大公鸡小酒馆 Le Coq wine &Oyster Bar（黄金城道）","string_title_en":"Le Coq wine &Oyster Bar（Golden Hill Road）","string_slogn":"朋友轻松聚餐的最佳场所","string_slogn_en":"","string_city":"上海 长宁","string_city_en":"Shanghai Changning","float_spend":417},{"int_id":189,"string_title":"双立人餐厅","string_title_en":"The Twins","string_slogn":"全球首家落户上海","string_slogn_en":"","string_city":"","string_city_en":"","float_spend":396},{"int_id":174,"string_title":"堡爵仕PRIME概念店(港汇店)","string_title_en":"THE BUTCHERS CLUB PRIME (Ground Gateway)","string_slogn":"干式熟成牛肉专家","string_slogn_en":"Dry-aged Beef Expert","string_city":"上海 徐汇","string_city_en":"Shanghai","float_spend":189},{"int_id":205,"string_title":"囍蔻港式点心火锅","string_title_en":"囍蔻港式点心火锅","string_slogn":"港式火锅里的爱马仕","string_slogn_en":"","string_city":"","string_city_en":"","float_spend":439}]
-         */
 
-        private ArrTitleDataBeanXXXX arr_title_data;
-        private List<ArrDataBeanXXXX> arr_data;
 
-        public ArrTitleDataBeanXXXX getArr_title_data() {
+        private NewEnterRestaurantTitle arr_title_data;
+        private List<NewEnterRestaurantBean> arr_data;
+
+        public NewEnterRestaurantTitle getArr_title_data() {
             return arr_title_data;
         }
 
-        public void setArr_title_data(ArrTitleDataBeanXXXX arr_title_data) {
+        public void setArr_title_data(NewEnterRestaurantTitle arr_title_data) {
             this.arr_title_data = arr_title_data;
         }
 
-        public List<ArrDataBeanXXXX> getArr_data() {
+        public List<NewEnterRestaurantBean> getArr_data() {
             return arr_data;
         }
 
-        public void setArr_data(List<ArrDataBeanXXXX> arr_data) {
+        public void setArr_data(List<NewEnterRestaurantBean> arr_data) {
             this.arr_data = arr_data;
         }
 
-        public static class ArrTitleDataBeanXXXX {
-            /**
-             * string_positive_title : 新入驻餐厅
-             * sting_negative_title : 赶紧来打卡
-             */
+        public static class NewEnterRestaurantTitle {
 
             private String string_positive_title;
             private String sting_negative_title;
@@ -205,17 +192,7 @@ public class HomeRecommendData {
             }
         }
 
-        public static class ArrDataBeanXXXX {
-            /**
-             * int_id : 131
-             * string_title : 大公鸡小酒馆 Le Coq Wine & Meat Shop（威海路)
-             * string_title_en :  Le Coq Wine & Meat Shop（Weihai Road)
-             * string_slogn : 朋友轻松聚餐的最佳场所
-             * string_slogn_en :
-             * string_city : 上海 静安
-             * string_city_en : Shanghai Jingan
-             * float_spend : 475
-             */
+        public static class NewEnterRestaurantBean {
 
             private int int_id;
             private String string_title;
@@ -302,35 +279,28 @@ public class HomeRecommendData {
     }
 
     public static class ArrIndexRecommendShopBean {
-        /**
-         * arr_title_data : {"string_positive_title":"推荐餐厅","sting_negative_title":"福利不停 优惠多多"}
-         * arr_data : [{"int_id":76,"string_title":"寻味巴黎（长宁来福士）","string_brief_index_en":"北京莫尔顿圣诞套餐火热抢购中 en","string_brief_index":"北京莫尔顿圣诞套餐火热抢购中","string_tag_index":"砍价","sting_pic_url":"/Uploads/2018-08-04/5b647dfe11ebd.png"},{"int_id":174,"string_title":"堡爵仕PRIME概念店(港汇店)","string_brief_index_en":"堡爵仕PRIME概念店 圣诞套餐限时抢购 en","string_brief_index":"堡爵仕PRIME概念店 圣诞套餐限时抢购","string_tag_index":"","sting_pic_url":"/Uploads/2018-10-07/5bba06053436d.jpg"}]
-         */
 
-        private ArrTitleDataBeanXXX arr_title_data;
-        private List<ArrDataBeanXXX> arr_data;
+        private RecommendShopTitle arr_title_data;
+        private List<ArrRecommendShopBean> arr_data;
 
-        public ArrTitleDataBeanXXX getArr_title_data() {
+        public RecommendShopTitle getArr_title_data() {
             return arr_title_data;
         }
 
-        public void setArr_title_data(ArrTitleDataBeanXXX arr_title_data) {
+        public void setArr_title_data(RecommendShopTitle arr_title_data) {
             this.arr_title_data = arr_title_data;
         }
 
-        public List<ArrDataBeanXXX> getArr_data() {
+        public List<ArrRecommendShopBean> getArr_data() {
             return arr_data;
         }
 
-        public void setArr_data(List<ArrDataBeanXXX> arr_data) {
+        public void setArr_data(List<ArrRecommendShopBean> arr_data) {
             this.arr_data = arr_data;
         }
 
-        public static class ArrTitleDataBeanXXX {
-            /**
-             * string_positive_title : 推荐餐厅
-             * sting_negative_title : 福利不停 优惠多多
-             */
+        public static class RecommendShopTitle {
+
 
             private String string_positive_title;
             private String sting_negative_title;
@@ -352,15 +322,7 @@ public class HomeRecommendData {
             }
         }
 
-        public static class ArrDataBeanXXX {
-            /**
-             * int_id : 76
-             * string_title : 寻味巴黎（长宁来福士）
-             * string_brief_index_en : 北京莫尔顿圣诞套餐火热抢购中 en
-             * string_brief_index : 北京莫尔顿圣诞套餐火热抢购中
-             * string_tag_index : 砍价
-             * sting_pic_url : /Uploads/2018-08-04/5b647dfe11ebd.png
-             */
+        public static class ArrRecommendShopBean {
 
             private int int_id;
             private String string_title;
@@ -420,10 +382,6 @@ public class HomeRecommendData {
     }
 
     public static class ArrIndexLifeDataBean {
-        /**
-         * arr_title_data : {"string_positive_title":"最新资讯","sting_negative_title":"樽享生活 品味不同"}
-         * arr_data : [{"int_id":126,"string_pic_url":"/Uploads/2018-08-27/5b8390268ca8b.jpg","string_title":"\u201c干式熟成专家\u201d堡爵仕推出钜惠套餐，还有机会同享小樽双倍积分！","string_h5_url":"/home/index/detail/id/126.html&home=1&slide=1"},{"int_id":112,"string_pic_url":"/Uploads/2018-08-16/5b74ef465c87b.png","string_title":"以莫尔顿为代表的入驻餐厅们推出钜惠套餐，小樽粉们有福啦！","string_h5_url":"/home/index/detail/id/112.html&home=1&slide=1"},{"int_id":111,"string_pic_url":"/Uploads/2018-08-16/5b750b2c7654e.jpg","string_title":"【团购】橡果为食、草场健身，100%伊比利亚黑猪猪的精致生活太羡慕！","string_h5_url":"/home/index/detail/id/111.html&home=1&slide=1"},{"int_id":107,"string_pic_url":"/Uploads/2018-08-16/5b750ba6aa4e2.jpg","string_title":"【夏日钜惠】莫尔顿品牌40周年庆回馈！错过你真的会后悔！","string_h5_url":"/home/index/detail/id/107.html&home=1&slide=1"},{"int_id":105,"string_pic_url":"/Uploads/2018-08-16/5b750c81c610b.jpg","string_title":"【新店】碳烤食尚VS洋房法餐，欧陆菜系PK堪比世界杯决赛？","string_h5_url":"/home/index/detail/id/105.html&home=1&slide=1"},{"int_id":102,"string_pic_url":"/Uploads/2018-08-16/5b750bbb850c5.jpg","string_title":"【新店】外滩5号，东海大黄鱼限时特惠！黄鱼馆强势加盟樽尚汇！","string_h5_url":"/home/index/detail/id/102.html&home=1&slide=1"},{"int_id":101,"string_pic_url":"/Uploads/2018-08-16/5b750bdeeb34e.jpg","string_title":"【竞猜】百万积分助阵世界杯！大声说出你心目中的冠军！","string_h5_url":"/home/index/detail/id/101.html&home=1&slide=1"},{"int_id":100,"string_pic_url":"/Uploads/2018-08-16/5b750bf74d0c0.jpg","string_title":"【福利】618惊喜倒计时！堡爵仕会员买一送一","string_h5_url":"/home/index/detail/id/100.html&home=1&slide=1"},{"int_id":99,"string_pic_url":"/Uploads/2018-06-29/5b35de1899068.png","string_title":"激情助战世界杯，一起看球，争当预言帝，赢大礼！","string_h5_url":"/home/index/detail/id/99.html&home=1&slide=1"},{"int_id":98,"string_pic_url":"/Uploads/2018-06-29/5b35db66040d9.png","string_title":"儿童节推荐菜品指南，不容错过！","string_h5_url":"/home/index/detail/id/98.html&home=1&slide=1"}]
-         */
 
         private ArrTitleDataBean arr_title_data;
         private List<ArrDataBean> arr_data;
@@ -445,10 +403,7 @@ public class HomeRecommendData {
         }
 
         public static class ArrTitleDataBean {
-            /**
-             * string_positive_title : 最新资讯
-             * sting_negative_title : 樽享生活 品味不同
-             */
+
 
             private String string_positive_title;
             private String sting_negative_title;
@@ -471,12 +426,7 @@ public class HomeRecommendData {
         }
 
         public static class ArrDataBean {
-            /**
-             * int_id : 126
-             * string_pic_url : /Uploads/2018-08-27/5b8390268ca8b.jpg
-             * string_title : “干式熟成专家”堡爵仕推出钜惠套餐，还有机会同享小樽双倍积分！
-             * string_h5_url : /home/index/detail/id/126.html&home=1&slide=1
-             */
+
 
             private int int_id;
             private String string_pic_url;
@@ -518,35 +468,29 @@ public class HomeRecommendData {
     }
 
     public static class ArrIndexWeeklySpecialsDataBean {
-        /**
-         * arr_title_data : {"string_positive_title":"侍酒师推荐","sting_negative_title":"买就送平台现金红包"}
-         * arr_data : [{"int_id":103,"int_year":2015,"float_price":148,"string_title":"班费酒庄柯莎红葡萄酒","string_title_en":"Banfi Col di Sasso, Italy","string_cover_url":"/Uploads/2016-11-30/583e59b928139.jpg","string_tips_specials":"下单送50"},{"int_id":597,"int_year":0,"float_price":398,"string_title":"御鹿VSOP干邑白兰地 ","string_title_en":"HINE H by Hine VSOP","string_cover_url":"/Uploads/2018-07-25/5b583f18b6448.jpg","string_tips_specials":""},{"int_id":643,"int_year":2004,"float_price":588,"string_title":"洛佩斯埃雷蒂亚酒庄唐园珍藏干红葡萄酒（750ml）","string_title_en":"R.Lopez de Heredia Vina Tondonia Tinto Reserva（750ml）","string_cover_url":"/Uploads/2018-08-22/5b7cdfd3e84ec.jpg","string_tips_specials":"NEW"},{"int_id":489,"int_year":2014,"float_price":1678,"string_title":"蒲昌葡萄酒套装（6瓶）","string_title_en":"Puchang- Wine Package (6 bottles)","string_cover_url":"/Uploads/2018-08-01/5b6105e701fd4.jpg","string_tips_specials":""},{"int_id":625,"int_year":0,"float_price":2080,"string_title":"贵州茅台飞天53度500mL单瓶装酱香型白酒","string_title_en":"Guizhou Maotai Feitian 53°","string_cover_url":"/Uploads/2018-08-10/5b6d586babc6a.jpg","string_tips_specials":""},{"int_id":604,"int_year":0,"float_price":428,"string_title":"5J橡果饲养100%伊比利亚黑猪肩颈肉（≥600g/包）","string_title_en":"5J Cinco Jotas Presa(Shoulder Cut) ≥600g/pack","string_cover_url":"/Uploads/2018-07-27/5b5ac3a7c681b.jpg","string_tips_specials":""},{"int_id":639,"int_year":0,"float_price":298,"string_title":"精品特级阳澄湖大闸蟹礼券","string_title_en":"Yangcheng Lake Crab Coupons","string_cover_url":"/Uploads/2018-08-17/5b766ecd784a5.png","string_tips_specials":"HOT"},{"int_id":636,"int_year":0,"float_price":298,"string_title":"传忆云南普洱茶龙珠熟茶礼盒装(7g*28粒）","string_title_en":"Chuanyi Yunnan Dragon Pu-er Ripe Tea Set（7g*28grain）","string_cover_url":"/Uploads/2018-08-16/5b74d635634c6.jpg","string_tips_specials":"NEW"},{"int_id":275,"int_year":0,"float_price":540,"string_title":"奥地利 扎尔图格莱维特-欧米茄杯 （1支装）","string_title_en":"ZALTO Gravitas Omega Glass per ONE","string_cover_url":"/Uploads/2017-05-03/590943cabfce5.jpg","string_tips_specials":""}]
-         */
 
-        private ArrTitleDataBeanX arr_title_data;
-        private List<ArrDataBeanX> arr_data;
 
-        public ArrTitleDataBeanX getArr_title_data() {
+        private WeeklySpecialsTitle arr_title_data;
+        private List<WeeklySpecialsBean> arr_data;
+
+        public WeeklySpecialsTitle getArr_title_data() {
             return arr_title_data;
         }
 
-        public void setArr_title_data(ArrTitleDataBeanX arr_title_data) {
+        public void setArr_title_data(WeeklySpecialsTitle arr_title_data) {
             this.arr_title_data = arr_title_data;
         }
 
-        public List<ArrDataBeanX> getArr_data() {
+        public List<WeeklySpecialsBean> getArr_data() {
             return arr_data;
         }
 
-        public void setArr_data(List<ArrDataBeanX> arr_data) {
+        public void setArr_data(List<WeeklySpecialsBean> arr_data) {
             this.arr_data = arr_data;
         }
 
-        public static class ArrTitleDataBeanX {
-            /**
-             * string_positive_title : 侍酒师推荐
-             * sting_negative_title : 买就送平台现金红包
-             */
+        public static class WeeklySpecialsTitle {
+
 
             private String string_positive_title;
             private String sting_negative_title;
@@ -568,16 +512,8 @@ public class HomeRecommendData {
             }
         }
 
-        public static class ArrDataBeanX {
-            /**
-             * int_id : 103
-             * int_year : 2015
-             * float_price : 148
-             * string_title : 班费酒庄柯莎红葡萄酒
-             * string_title_en : Banfi Col di Sasso, Italy
-             * string_cover_url : /Uploads/2016-11-30/583e59b928139.jpg
-             * string_tips_specials : 下单送50
-             */
+        public static class WeeklySpecialsBean {
+
 
             private int int_id;
             private int int_year;
@@ -655,35 +591,29 @@ public class HomeRecommendData {
     }
 
     public static class ArrGroupDataBean {
-        /**
-         * arr_title_data : {"string_positive_title":"团购活动","sting_negative_title":"超值精选 参团优惠"}
-         * arr_data : [{"int_id":67,"string_title":"团购微信送礼测试","string_url":"/index.php?s=/shoppingmall/groupbuy/detail/id/67.html","string_create_time":"2018年10月18日","int_group":48,"string_total_people":"3人团","int_bought":0,"int_surplus":3,"int_end_time":1540189083,"int_surplus_time":358269,"int_group_price":305,"int_origin_price":380,"int_status":2,"string_status_name":"去参团","string_pic_url":"/Uploads/2018-08-24/5b7fb86045016.png"}]
-         */
 
-        private ArrTitleDataBeanXX arr_title_data;
-        private List<ArrDataBeanXX> arr_data;
 
-        public ArrTitleDataBeanXX getArr_title_data() {
+        private GroupBuyTitle arr_title_data;
+        private List<ArrGroupBuyTitleBean> arr_data;
+
+        public GroupBuyTitle getArr_title_data() {
             return arr_title_data;
         }
 
-        public void setArr_title_data(ArrTitleDataBeanXX arr_title_data) {
+        public void setArr_title_data(GroupBuyTitle arr_title_data) {
             this.arr_title_data = arr_title_data;
         }
 
-        public List<ArrDataBeanXX> getArr_data() {
+        public List<ArrGroupBuyTitleBean> getArr_data() {
             return arr_data;
         }
 
-        public void setArr_data(List<ArrDataBeanXX> arr_data) {
+        public void setArr_data(List<ArrGroupBuyTitleBean> arr_data) {
             this.arr_data = arr_data;
         }
 
-        public static class ArrTitleDataBeanXX {
-            /**
-             * string_positive_title : 团购活动
-             * sting_negative_title : 超值精选 参团优惠
-             */
+        public static class GroupBuyTitle {
+
 
             private String string_positive_title;
             private String sting_negative_title;
@@ -705,24 +635,7 @@ public class HomeRecommendData {
             }
         }
 
-        public static class ArrDataBeanXX {
-            /**
-             * int_id : 67
-             * string_title : 团购微信送礼测试
-             * string_url : /index.php?s=/shoppingmall/groupbuy/detail/id/67.html
-             * string_create_time : 2018年10月18日
-             * int_group : 48
-             * string_total_people : 3人团
-             * int_bought : 0
-             * int_surplus : 3
-             * int_end_time : 1540189083
-             * int_surplus_time : 358269
-             * int_group_price : 305
-             * int_origin_price : 380
-             * int_status : 2
-             * string_status_name : 去参团
-             * string_pic_url : /Uploads/2018-08-24/5b7fb86045016.png
-             */
+        public static class ArrGroupBuyTitleBean {
 
             private int int_id;
             private String string_title;
@@ -863,11 +776,6 @@ public class HomeRecommendData {
     }
 
     public static class ArrMoreTypeOrUrlDataBean {
-        /**
-         * int_arr_index_mingzhuang_more_data : 31
-         * int_arr_index_weekly_specials_more_data : 41
-         * string_life_list_url : /index.php?s=/home/index/news_list&home=1
-         */
 
         private int int_arr_index_mingzhuang_more_data;
         private int int_arr_index_weekly_specials_more_data;
@@ -899,13 +807,6 @@ public class HomeRecommendData {
     }
 
     public static class ArrCityDataBean {
-        /**
-         * int_id : 1
-         * string_name : 上海市
-         * string_name_short : 上海
-         * string_name_en : Shanghai
-         * string_name_en_short : SH
-         */
 
         private int int_id;
         private String string_name;
@@ -955,12 +856,7 @@ public class HomeRecommendData {
     }
 
     public static class ArrTableDataBean {
-        /**
-         * string_title_cn : 推 荐
-         * string_title_en : HOME
-         * bool_is_new : true
-         * string_api_url : /index/app_index
-         */
+
 
         private String string_title_cn;
         private String string_title_en;

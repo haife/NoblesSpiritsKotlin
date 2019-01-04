@@ -18,7 +18,7 @@
             android:id="@+id/tv_recommend_shop_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="餐厅优惠"
+            android:minWidth="80dp"
             android:textColor="@color/black"
             android:textSize="@dimen/text_sp_20"
             android:textStyle="normal" />
@@ -35,7 +35,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:letterSpacing="0.1"
-            android:text="福利不停 优惠多多"
             android:textColor="@color/home_recommend_subtitle_color"
             android:textSize="14sp" />
     </LinearLayout>

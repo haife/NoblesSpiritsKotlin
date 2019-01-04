@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
@@ -22,6 +20,7 @@ import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HomeFragmentPagerAdapter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.ScaleTransitionPagerTitleView;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
@@ -56,7 +55,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     @Inject
     List<BaseFragment> mHomeFragmentList;
     private CommonNavigator mMIndicatorNavigator;
-    private HomeViewPagerAdapter homeViewPagerAdapter;
+    private HomeFragmentPagerAdapter homeViewPagerAdapter;
     private final String simpleName = getClass().getSimpleName();
 
 
@@ -154,29 +153,11 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
         mHomeMagicIndicator.setNavigator(mMIndicatorNavigator);
         ViewPagerHelper.bind(mHomeMagicIndicator, mHomeViewPager);
-        homeViewPagerAdapter = new HomeViewPagerAdapter(getFragmentManager());
+        homeViewPagerAdapter = new HomeFragmentPagerAdapter(getFragmentManager(),mHomeFragmentList);
         mHomeViewPager.setAdapter(homeViewPagerAdapter);
     }
 
 
 
-    /**
-     * TODO: ViewPagerAdapter
-     */
-    public class HomeViewPagerAdapter extends FragmentPagerAdapter {
-        public HomeViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public android.support.v4.app.Fragment getItem(int position) {
-            return mHomeFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mHomeFragmentList.size();
-        }
-    }
 
 }

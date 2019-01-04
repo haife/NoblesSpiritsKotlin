@@ -9,7 +9,7 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMulti
 /**
  * @ author haife
  * @ since 2019/1/2
- * TODO：
+ * TODO 首页推荐列表适配器
  */
 class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?) : BaseMultiItemQuickAdapter<HRecommendMultiItemEntity, BaseViewHolder>(data) {
 
@@ -25,6 +25,11 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?) : BaseMul
             }
 
             HRecommendMultiItemEntity.RECOMMAND_RESTAURANT -> {
+                val bigTitleStr = item.arr_index_recommend_shop.arr_title_data.string_positive_title
+                val subTittleStr = item.arr_index_recommend_shop.arr_title_data.sting_negative_title
+                helper?.setText(R.id.tv_recommend_shop_name, bigTitleStr)
+                helper?.setText(R.id.tv_recommend_shop_subtitle, subTittleStr)
+
 
             }
         }
