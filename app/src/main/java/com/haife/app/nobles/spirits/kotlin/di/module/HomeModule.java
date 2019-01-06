@@ -1,5 +1,8 @@
 package com.haife.app.nobles.spirits.kotlin.di.module;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
@@ -52,6 +55,12 @@ public class HomeModule {
     @Provides
     HomeRecommendData provideHomeRecommendData() {
         return new HomeRecommendData();
+    }
+
+    @FragmentScope
+    @Provides
+    RecyclerView.LayoutManager provideLayoutManager(){
+        return new LinearLayoutManager(view.getFragment().getContext());
     }
 
     @FragmentScope

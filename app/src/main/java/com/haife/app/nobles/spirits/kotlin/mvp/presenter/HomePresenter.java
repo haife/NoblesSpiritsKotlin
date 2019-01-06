@@ -133,7 +133,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
                 && mHomeRecommendData.getArr_index_recommend_shop().getArr_data().size() != 0) {
             HRecommendMultiItemEntity recommendShopEntity = new HRecommendMultiItemEntity();
             recommendShopEntity.setArr_index_recommend_shop(mHomeRecommendData.getArr_index_recommend_shop());
-            recommendShopEntity.setTypeItem(HRecommendMultiItemEntity.RECOMMAND_RESTAURANT);
+            recommendShopEntity.setTypeItem(HRecommendMultiItemEntity.RECOMMEND_RESTAURANT);
             hRecommendMultiItemList.add(recommendShopEntity);
         }
 

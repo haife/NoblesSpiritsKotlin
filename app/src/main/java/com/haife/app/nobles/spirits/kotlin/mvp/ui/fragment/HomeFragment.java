@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
@@ -54,8 +55,6 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     @Inject
     List<BaseFragment> mHomeFragmentList;
-    private CommonNavigator mMIndicatorNavigator;
-    private HomeFragmentPagerAdapter homeViewPagerAdapter;
     private final String simpleName = getClass().getSimpleName();
 
 
@@ -78,6 +77,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         Token token = new Token();
+        assert mPresenter != null;
         mPresenter.getHomeRecommendData(token,simpleName);
     }
 
@@ -119,9 +119,13 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     }
 
     @Override
-    public void initMagicIndicatorView(List<String> magicIndicatorContentList) {
+    public Fragment getFragment() {
+        return this;
+    }
 
-        mMIndicatorNavigator = new CommonNavigator(getContext());
+    @Override
+    public void initMagicIndicatorView(List<String> magicIndicatorContentList) {
+        CommonNavigator mMIndicatorNavigator = new CommonNavigator(getContext());
         mMIndicatorNavigator.setLeftPadding(16);
         mMIndicatorNavigator.setRightPadding(16);
         mMIndicatorNavigator.setAdapter(new CommonNavigatorAdapter() {
@@ -153,7 +157,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
         mHomeMagicIndicator.setNavigator(mMIndicatorNavigator);
         ViewPagerHelper.bind(mHomeMagicIndicator, mHomeViewPager);
-        homeViewPagerAdapter = new HomeFragmentPagerAdapter(getFragmentManager(),mHomeFragmentList);
+        HomeFragmentPagerAdapter homeViewPagerAdapter = new HomeFragmentPagerAdapter(getFragmentManager(), mHomeFragmentList);
         mHomeViewPager.setAdapter(homeViewPagerAdapter);
     }
 

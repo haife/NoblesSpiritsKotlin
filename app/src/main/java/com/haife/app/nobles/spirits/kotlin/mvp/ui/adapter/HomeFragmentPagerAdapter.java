@@ -8,16 +8,13 @@ import com.jess.arms.base.BaseFragment;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 /**
  * @ author haife
  * @ since 2019/1/4
  * TODO：
  */
 public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
-    @Inject
-    List<BaseFragment> mHomeFragmentList;
+    private List<BaseFragment> mHomeFragmentList;
 
     public HomeFragmentPagerAdapter(FragmentManager fm, List<BaseFragment> homeFragmentList) {
         super(fm);

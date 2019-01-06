@@ -22,11 +22,11 @@ class HRecommendMultiItemEntity : HomeRecommendData(), MultiItemEntity {
         //团购活动
         const val GROUP_BUY_ACTIVITY = 3
         //推荐餐厅
-        const val RECOMMAND_RESTAURANT = 4
+        const val RECOMMEND_RESTAURANT = 4
         //品味生活
         const val TASTE_OF_LIFE = 5
         //新入驻餐厅
-        const val NEW_RECOMMAND_RESTAURANT = 6
+        const val NEW_RECOMMEND_RESTAURANT = 6
     }
 
     override fun getItemType(): Int {

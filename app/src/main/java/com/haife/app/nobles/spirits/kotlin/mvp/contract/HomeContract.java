@@ -1,5 +1,7 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.contract;
 
+import android.support.v4.app.Fragment;
+
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
@@ -19,7 +21,7 @@ import io.reactivex.Observable;
 public interface HomeContract {
 
     interface View extends IView {
-
+        Fragment getFragment();
         //首页指示器初始化
         void initMagicIndicatorView(List<String> magicIndicatorContentList);
 

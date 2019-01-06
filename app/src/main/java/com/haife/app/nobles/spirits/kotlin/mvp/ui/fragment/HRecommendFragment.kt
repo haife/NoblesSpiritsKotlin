@@ -2,7 +2,8 @@ package com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v4.app.Fragment
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,12 +22,13 @@ import javax.inject.Inject
 
 class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
 
-    private val simpleName = javaClass.simpleName
 
+    private val simpleName = javaClass.simpleName
 
     @Inject
     lateinit var mRecommendAdapter: HRecommendAdapter
-
+    @Inject
+    lateinit var layoutManager: RecyclerView.LayoutManager
 
     companion object {
         fun newInstance(): HRecommendFragment {
@@ -49,11 +51,12 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
     override fun initData(savedInstanceState: Bundle?) {
         val token = Token()
         mPresenter?.getHomeRecommendData(token, simpleName)
-        rv_home_recommend.layoutManager = LinearLayoutManager(context)
+        rv_home_recommend.layoutManager = layoutManager
         rv_home_recommend.adapter = mRecommendAdapter
     }
 
     override fun showLoading() {
+
     }
 
     override fun launchActivity(intent: Intent) {
@@ -70,6 +73,10 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
     }
 
     override fun showMessage(message: String) {
+    }
+
+    override fun getFragment(): Fragment {
+        return this
     }
 
 
