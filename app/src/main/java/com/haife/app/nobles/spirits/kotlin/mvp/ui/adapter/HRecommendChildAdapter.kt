@@ -3,22 +3,16 @@ package com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter
 import android.content.Context
 import android.graphics.Typeface
 import android.support.v7.widget.RecyclerView
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import butterknife.BindView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.haife.app.nobles.spirits.kotlin.BuildConfig
 import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.utlis.DiskCacheStrategyType
-import com.jess.arms.http.imageloader.ImageConfig
 import com.jess.arms.http.imageloader.ImageLoader
-import com.jess.arms.http.imageloader.glide.GlideImageLoaderStrategy
 import com.jess.arms.http.imageloader.glide.ImageConfigImpl
 import com.jess.arms.utils.ArmsUtils
 import com.makeramen.roundedimageview.RoundedImageView
@@ -31,14 +25,9 @@ import com.makeramen.roundedimageview.RoundedImageView
 
 class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val mViewType = list.itemType
-    private var imageLoader: ImageLoader
-    private var layoutInflater: LayoutInflater
-    var typeface_medium = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")
-
-    init {
-        imageLoader = ArmsUtils.obtainAppComponentFromContext(context).imageLoader()
-        layoutInflater = LayoutInflater.from(context)
-    }
+    private var imageLoader: ImageLoader = ArmsUtils.obtainAppComponentFromContext(context).imageLoader()
+    private var layoutInflater: LayoutInflater = LayoutInflater.from(context)
+    var typeFaceMedium: Typeface = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
@@ -75,7 +64,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
      */
     private fun bindRecommendRestaurantViewHolder(holder: HRecommendChildAdapter.RecommendRestaurantViewHolder, position: Int) {
         val recommendRestaurantItemEntity: HomeRecommendData.ArrIndexRecommendShopBean.ArrRecommendShopBean = list.arr_index_recommend_shop.arr_data[position]
-        holder.restaurantNameTv.setText(recommendRestaurantItemEntity.string_title)
+        holder.restaurantNameTv.text = recommendRestaurantItemEntity.string_title
         imageLoader.loadImage(context, ImageConfigImpl.builder().url(BuildConfig.API_HOST + recommendRestaurantItemEntity.sting_pic_url).imageRadius(5)
                 .cacheStrategy(DiskCacheStrategyType.All).imageView(holder.restaurantRIV)
                 .isCenterCrop(true)
@@ -95,7 +84,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
         val restaurantNameTv: TextView = itemView!!.findViewById<TextView>(R.id.tv_recommend_restaurant_child_name)
 
         init {
-            restaurantNameTv.typeface = typeface_medium;
+            restaurantNameTv.typeface = typeFaceMedium;
         }
     }
 

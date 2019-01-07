@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Typeface
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -13,9 +12,7 @@ import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.SpacesItemDecoration
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.loader.BannerImageLoader
-import com.jess.arms.utils.Preconditions
 import com.youth.banner.Banner
-import org.w3c.dom.Text
 
 
 /**
@@ -26,13 +23,13 @@ import org.w3c.dom.Text
 
 class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val context: Context) : BaseMultiItemQuickAdapter<HRecommendMultiItemEntity, BaseViewHolder>(data) {
 
-    val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-    val verticalManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-    var typeface_medium = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")
-    var typeface_light = Typeface.createFromAsset(context.assets, "PingFangSC-Light-Face.ttf")
-    var bannerUrls: ArrayList<String>? = null
-    var recommendRestaurantAdapter: HRecommendChildAdapter? = null;
-    var flashSaleAdapter: HRecommendChildAdapter? = null;
+    private val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    private val verticalManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
+    private var typeFaceMedium = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")!!
+    private var typeFaceLight = Typeface.createFromAsset(context.assets, "PingFangSC-Light-Face.ttf")
+    private var bannerUrls: ArrayList<String>? = null
+    private var recommendRestaurantAdapter: HRecommendChildAdapter? = null
+    private var flashSaleAdapter: HRecommendChildAdapter? = null
 
     init {
         addItemType(HRecommendMultiItemEntity.BANNER_TYPE, R.layout.recycle_item_home_recommend_banner)
@@ -54,9 +51,9 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
             HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
                 val bigTitleStr = item.arr_index_recommend_shop.arr_title_data.string_positive_title
                 val subTittleStr = item.arr_index_recommend_shop.arr_title_data.sting_negative_title
-                setItemTitleText(helper!!.getView(R.id.tv_recommend_shop_name), bigTitleStr, helper!!.getView(R.id.tv_recommend_shop_subtitle), subTittleStr)
+                setItemTitleText(helper!!.getView(R.id.tv_recommend_shop_name), bigTitleStr, helper.getView(R.id.tv_recommend_shop_subtitle), subTittleStr)
                 if (recommendRestaurantAdapter == null) {
-                    val recommendRestaurantRv: RecyclerView = helper!!.getView(R.id.rv_recommend_shop_container)
+                    val recommendRestaurantRv: RecyclerView = helper.getView(R.id.rv_recommend_shop_container)
                     recommendRestaurantAdapter = HRecommendChildAdapter(item, mContext)
                     recommendRestaurantRv.layoutManager = mLayoutManager
                     recommendRestaurantRv.addItemDecoration(SpacesItemDecoration(42))
@@ -67,9 +64,9 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
             HRecommendMultiItemEntity.FLASH_SAlE -> {
                 val bigTitleStr = item.arr_index_flash_sale_list.arr_title_data.string_positive_title
                 val subTittleStr = item.arr_index_flash_sale_list.arr_title_data.sting_negative_title
-                setItemTitleText(helper!!.getView(R.id.tv_flash_sale_name), bigTitleStr, helper!!.getView(R.id.tv_flash_sale_subtitle), subTittleStr)
+                setItemTitleText(helper!!.getView(R.id.tv_flash_sale_name), bigTitleStr, helper.getView(R.id.tv_flash_sale_subtitle), subTittleStr)
                 if (flashSaleAdapter == null) {
-                    val flashSaleRv: RecyclerView = helper!!.getView(R.id.rv_flash_sale_container)
+                    val flashSaleRv: RecyclerView = helper.getView(R.id.rv_flash_sale_container)
                     flashSaleAdapter = HRecommendChildAdapter(item, mContext)
                     flashSaleRv.layoutManager = verticalManager
                     flashSaleRv.adapter = flashSaleAdapter
@@ -88,11 +85,11 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
      * @param subTitleTv TextView
      * @param subTittleStr String
      */
-    fun setItemTitleText(bigTitleTv: TextView, bigTitleStr: String, subTitleTv: TextView, subTittleStr: String) {
-        bigTitleTv.setText(bigTitleStr)
-        subTitleTv.setText(subTittleStr)
-        bigTitleTv.setTypeface(typeface_medium)
-        subTitleTv.setTypeface(typeface_light)
+    private fun setItemTitleText(bigTitleTv: TextView, bigTitleStr: String, subTitleTv: TextView, subTittleStr: String) {
+        bigTitleTv.text = bigTitleStr
+        subTitleTv.text = subTittleStr
+        bigTitleTv.typeface = typeFaceMedium
+        subTitleTv.typeface = typeFaceLight
     }
 
 }
