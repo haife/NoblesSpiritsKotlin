@@ -5,6 +5,7 @@
         <item name="colorPrimaryDark">@android:color/white</item>
         <item name="colorAccent">@android:color/white</item>
         <item name="android:windowBackground">@color/window_bg_color</item>
+        <item name="android:typeface">monospace</item>
     </style>
 
     <style name="ToolBar">
@@ -18,6 +19,6 @@
         <item name="android:background">@android:color/white</item>
         <item name="android:overScrollMode">never</item>
     </style>
-    
+
 
 </resources>

@@ -59,6 +59,7 @@ dependencies {
     implementation rootProject.ext.dependencies["rippleeffect"]
     implementation rootProject.ext.dependencies["magicindicator"]
     implementation rootProject.ext.dependencies["banner"]
+    implementation rootProject.ext.dependencies["roundedimageview"]
     //tool
     kapt rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["fragmentation"]

@@ -112,7 +112,10 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     }
 
-
+    /**
+     *
+     * @param runnable
+     */
     @Override
     public void post(Runnable runnable) {
 
@@ -126,8 +129,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     @Override
     public void initMagicIndicatorView(List<String> magicIndicatorContentList) {
         CommonNavigator mMIndicatorNavigator = new CommonNavigator(getContext());
-        mMIndicatorNavigator.setLeftPadding(16);
-        mMIndicatorNavigator.setRightPadding(16);
+        mMIndicatorNavigator.setLeftPadding(10);
         mMIndicatorNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
             public int getCount() {

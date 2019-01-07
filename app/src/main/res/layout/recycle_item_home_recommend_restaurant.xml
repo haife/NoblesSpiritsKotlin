@@ -34,9 +34,10 @@
             android:id="@+id/tv_recommend_shop_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:letterSpacing="0.1"
             android:textColor="@color/home_recommend_subtitle_color"
-            android:textSize="14sp" />
+            android:textSize="@dimen/sp_14" />
+
+
     </LinearLayout>
 
 

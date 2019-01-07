@@ -80,6 +80,6 @@ public class HomeModule {
     @FragmentScope
     @Provides
     HRecommendAdapter provideHRecommendAdapter(List<HRecommendMultiItemEntity> list){
-        return new HRecommendAdapter(list);
+        return new HRecommendAdapter(list,view.getFragment().getActivity());
     }
 }

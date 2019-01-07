@@ -27,6 +27,8 @@ class HRecommendMultiItemEntity : HomeRecommendData(), MultiItemEntity {
         const val TASTE_OF_LIFE = 5
         //新入驻餐厅
         const val NEW_RECOMMEND_RESTAURANT = 6
+        //限时抢购
+        const val FLASH_SAlE = 7
     }
 
     override fun getItemType(): Int {

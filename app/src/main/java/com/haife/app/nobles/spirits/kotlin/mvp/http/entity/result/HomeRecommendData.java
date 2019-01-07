@@ -17,6 +17,7 @@ public class HomeRecommendData {
     private List<ArrTableDataBean> arr_table_data;
     private ArrIndexRecommendShopBean arr_index_recommend_shop;
     private ArrIndexNewShopBean arr_index_new_shop;
+    private ArrIndexFlashSaleListBean arr_index_flash_sale_list;
 
     public List<ArrIndexBannerDataBean> getArr_index_banner_data() {
         return arr_index_banner_data;
@@ -88,6 +89,14 @@ public class HomeRecommendData {
 
     public void setArr_table_data(List<ArrTableDataBean> arr_table_data) {
         this.arr_table_data = arr_table_data;
+    }
+
+    public ArrIndexFlashSaleListBean getArr_index_flash_sale_list() {
+        return arr_index_flash_sale_list;
+    }
+
+    public void setArr_index_flash_sale_list(ArrIndexFlashSaleListBean arr_index_flash_sale_list) {
+        this.arr_index_flash_sale_list = arr_index_flash_sale_list;
     }
 
     public static class ArrIndexBannerDataBean {
@@ -893,6 +902,136 @@ public class HomeRecommendData {
 
         public void setString_api_url(String string_api_url) {
             this.string_api_url = string_api_url;
+        }
+    }
+
+
+    public static class ArrIndexFlashSaleListBean {
+
+        private ArrTitleDataBeanFlash arr_title_data;
+        private List<ArrDataBeanFlash> arr_data;
+
+        public ArrTitleDataBeanFlash getArr_title_data() {
+            return arr_title_data;
+        }
+
+        public void setArr_title_data(ArrTitleDataBeanFlash arr_title_data) {
+            this.arr_title_data = arr_title_data;
+        }
+
+        public List<ArrDataBeanFlash> getArr_data() {
+            return arr_data;
+        }
+
+        public void setArr_data(List<ArrDataBeanFlash> arr_data) {
+            this.arr_data = arr_data;
+        }
+
+        public static class ArrTitleDataBeanFlash {
+
+
+            private String string_positive_title;
+            private String sting_negative_title;
+
+            public String getString_positive_title() {
+                return string_positive_title;
+            }
+
+            public void setString_positive_title(String string_positive_title) {
+                this.string_positive_title = string_positive_title;
+            }
+
+            public String getSting_negative_title() {
+                return sting_negative_title;
+            }
+
+            public void setSting_negative_title(String sting_negative_title) {
+                this.sting_negative_title = sting_negative_title;
+            }
+        }
+
+        public static class ArrDataBeanFlash {
+            private int int_id;
+            private String string_title;
+            private int int_surplus;
+            private int float_price;
+            private int float_origin_price;
+            private int int_status;
+            private String string_pic_url;
+            private int int_surplus_time;
+            private String string_btn_text;
+
+            public int getInt_id() {
+                return int_id;
+            }
+
+            public void setInt_id(int int_id) {
+                this.int_id = int_id;
+            }
+
+            public String getString_title() {
+                return string_title;
+            }
+
+            public void setString_title(String string_title) {
+                this.string_title = string_title;
+            }
+
+            public int getInt_surplus() {
+                return int_surplus;
+            }
+
+            public void setInt_surplus(int int_surplus) {
+                this.int_surplus = int_surplus;
+            }
+
+            public int getFloat_price() {
+                return float_price;
+            }
+
+            public void setFloat_price(int float_price) {
+                this.float_price = float_price;
+            }
+
+            public int getFloat_origin_price() {
+                return float_origin_price;
+            }
+
+            public void setFloat_origin_price(int float_origin_price) {
+                this.float_origin_price = float_origin_price;
+            }
+
+            public int getInt_status() {
+                return int_status;
+            }
+
+            public void setInt_status(int int_status) {
+                this.int_status = int_status;
+            }
+
+            public String getString_pic_url() {
+                return string_pic_url;
+            }
+
+            public void setString_pic_url(String string_pic_url) {
+                this.string_pic_url = string_pic_url;
+            }
+
+            public int getInt_surplus_time() {
+                return int_surplus_time;
+            }
+
+            public void setInt_surplus_time(int int_surplus_time) {
+                this.int_surplus_time = int_surplus_time;
+            }
+
+            public String getString_btn_text() {
+                return string_btn_text;
+            }
+
+            public void setString_btn_text(String string_btn_text) {
+                this.string_btn_text = string_btn_text;
+            }
         }
     }
 

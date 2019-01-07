@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/ll_flash_sale_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/home_tool_search_btn_padding"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_flash_sale_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="80dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_sp_20"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="12dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="5dp"
+            android:background="@color/home_recommend_line_split_color" />
+
+        <TextView
+            android:id="@+id/tv_flash_sale_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/home_recommend_subtitle_color"
+            android:textSize="@dimen/sp_14" />
+
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_flash_sale_container"
+        style="@style/BaseRecycleViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@+id/ll_flash_sale_container">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</android.support.constraint.ConstraintLayout>

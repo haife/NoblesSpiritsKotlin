@@ -5,10 +5,11 @@
         <item name="colorPrimary">@android:color/white</item>
         <item name="colorPrimaryDark">@android:color/white</item>
         <item name="colorAccent">@android:color/white</item>
+        <item name="android:typeface">monospace</item>
         <item name="android:windowBackground">@color/window_bg_color</item>
     </style>
 
-    <style name="ToolBar"  parent="Base.Widget.AppCompat.Button.Borderless">
+    <style name="ToolBar" parent="Base.Widget.AppCompat.Button.Borderless">
         <item name="android:background">@android:color/white</item>
         <item name="height">@dimen/base_tool_bar_height</item>
         <item name="navigationIcon">@drawable/ic_home_ab_rich_scan</item>

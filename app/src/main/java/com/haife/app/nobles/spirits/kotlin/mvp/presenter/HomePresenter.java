@@ -41,6 +41,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
     List<HRecommendMultiItemEntity> hRecommendMultiItemList;
     @Inject
     HRecommendAdapter mRecommendAdapter;
+
     private final String HOME_FRAGMENT_SIMPLE_NAME = "HomeFragment";
     private final String HOME_RECOMMEND_FRAGMENT_SIMPLE_NAME = "HRecommendFragment";
 
@@ -104,13 +105,13 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
                 });
     }
 
+    /**
+     * TODO 初始化RecommendFragmentIndicator
+     */
     private void processHomeData() {
         List<String> magicList = new ArrayList<>();
-        // 指示器数据
-        if (mHomeRecommendData.getArr_table_data() != null) {
-            for (HomeRecommendData.ArrTableDataBean arrTableDataBean : mHomeRecommendData.getArr_table_data()) {
-                magicList.add(arrTableDataBean.getString_title_cn());
-            }
+        for (int i = 0; i < mHomeRecommendData.getArr_table_data().size(); i++) {
+            magicList.add(mHomeRecommendData.getArr_table_data().get(i).getString_title_cn());
         }
         mRootView.initMagicIndicatorView(magicList);
     }
@@ -134,6 +135,14 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
             HRecommendMultiItemEntity recommendShopEntity = new HRecommendMultiItemEntity();
             recommendShopEntity.setArr_index_recommend_shop(mHomeRecommendData.getArr_index_recommend_shop());
             recommendShopEntity.setTypeItem(HRecommendMultiItemEntity.RECOMMEND_RESTAURANT);
+            hRecommendMultiItemList.add(recommendShopEntity);
+        }
+        //判断限时抢购
+        if (mHomeRecommendData.getArr_index_flash_sale_list() != null && mHomeRecommendData.getArr_index_flash_sale_list().getArr_data() != null
+                && mHomeRecommendData.getArr_index_flash_sale_list().getArr_data().size() > 0) {
+            HRecommendMultiItemEntity recommendShopEntity = new HRecommendMultiItemEntity();
+            recommendShopEntity.setArr_index_flash_sale_list(mHomeRecommendData.getArr_index_flash_sale_list());
+            recommendShopEntity.setTypeItem(HRecommendMultiItemEntity.FLASH_SAlE);
             hRecommendMultiItemList.add(recommendShopEntity);
         }
 

@@ -2,12 +2,15 @@ package com.haife.app.nobles.spirits.kotlin.app.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Typeface;
 
 import com.haife.app.nobles.spirits.kotlin.BuildConfig;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.utils.ArmsUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+
+import java.lang.reflect.Field;
 
 import me.jessyan.autosize.AutoSizeConfig;
 import me.jessyan.autosize.unit.Subunits;
@@ -26,7 +29,9 @@ public class AppLifecyclesImpl implements AppLifecycles {
 
     @Override
     public void onCreate(Application application) {
+
         initTimber();
+        initTextFaceType(application);
         initLeakCanary(application);
         AutoSizeConfig.getInstance().getUnitsManager()
                 .setSupportDP(true)
@@ -49,7 +54,6 @@ public class AppLifecyclesImpl implements AppLifecycles {
     }
 
 
-
     private void initLeakCanary(Application application) {
         //leakCanary内存泄露检查
         mRefWatcher = BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED;
@@ -67,5 +71,21 @@ public class AppLifecyclesImpl implements AppLifecycles {
     @Override
     public void onTerminate(Application application) {
         mRefWatcher = null;
+    }
+
+    /**
+     * 配置全局字体
+     */
+    private void initTextFaceType(Application application) {
+        Typeface typeface = Typeface.createFromAsset(application.getAssets(), "PingFangSC-Regular.ttf");
+        try {
+            Field field = Typeface.class.getDeclaredField("MONOSPACE");
+            field.setAccessible(true);
+            field.set(null,typeface);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

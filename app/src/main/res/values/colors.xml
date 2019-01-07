@@ -3,8 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="window_bg_color">#F9F9F9</color>
     <color name="common_pressed_bg_color">#BEBEBE</color>
-    <color name="main_bottom_nagivation_menu_nomal_color">#909090</color>
-    <color name="main_bottom_nagivation_menu_checked_color">#BF9377</color>
+    <color name="main_bottom_navigation_menu_normal_color">#909090</color>
+    <color name="main_bottom_navigation_menu_checked_color">#BF9377</color>
     <color name="app_primary_color">#CEB173</color>
     <color name="ripple_status_color">#DE000000</color>
     <color name="magic_indicator_text_color">#FFB87C51</color>
@@ -12,4 +12,7 @@
     <color name="home_recommend_indicator_select_color">#666666</color>
     <color name="home_recommend_line_split_color">#707070</color>
     <color name="home_recommend_subtitle_color">#898989</color>
+    
+    <!--TextColor-->
+    <color name="home_recommend_restaurant_name_color">#FF060202</color>
 </resources>
