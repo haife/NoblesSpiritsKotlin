@@ -8,6 +8,7 @@ import com.haife.app.nobles.spirits.kotlin.BuildConfig;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.api.Api;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.di.module.GlobalConfigModule;
+import com.jess.arms.http.imageloader.glide.GlideImageLoaderStrategy;
 import com.jess.arms.http.log.RequestInterceptor;
 import com.jess.arms.integration.ConfigModule;
 

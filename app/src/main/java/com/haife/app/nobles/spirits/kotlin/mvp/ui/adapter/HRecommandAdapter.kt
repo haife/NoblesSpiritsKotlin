@@ -32,7 +32,7 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?) : BaseMul
             }
 
             HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
-                var bigTitleStr = item.arr_index_recommend_shop.arr_title_data.string_positive_title
+                val bigTitleStr = item.arr_index_recommend_shop.arr_title_data.string_positive_title
                 val subTittleStr = item.arr_index_recommend_shop.arr_title_data.sting_negative_title
                 helper?.setText(R.id.tv_recommend_shop_name, bigTitleStr)
                 helper?.setText(R.id.tv_recommend_shop_subtitle, subTittleStr)

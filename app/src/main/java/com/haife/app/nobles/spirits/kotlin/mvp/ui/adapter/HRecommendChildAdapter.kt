@@ -2,11 +2,15 @@ package com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity
+import com.jess.arms.http.imageloader.ImageLoader
+import com.jess.arms.http.imageloader.glide.GlideImageLoaderStrategy
+import com.jess.arms.utils.ArmsUtils
 
 /**
  * @ author haife
@@ -15,16 +19,20 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMulti
  */
 
 class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-
     private val mDataList = list
     private val mViewType = list.itemType
+    private var imageLoader: ImageLoader
+    private var layoutInflater:LayoutInflater
+    init {
+        imageLoader = ArmsUtils.obtainAppComponentFromContext(context).imageLoader()
+        layoutInflater = LayoutInflater.from(context)
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-
             when (viewType) {
                 HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
-                    val itemView: View = LayoutInflater.from(context).inflate(R.layout.activity_main, parent,false)
+                    val itemView: View = layoutInflater.inflate(R.layout.activity_main, parent, false)
                     RecommendRestaurantViewHolder(itemView)
                 }
 
