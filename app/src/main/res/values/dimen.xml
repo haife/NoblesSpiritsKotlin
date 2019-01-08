@@ -12,4 +12,7 @@
     <dimen name="home_tool_search_btn_padding">16dp</dimen>
     <dimen name="home_recommend_shop_padding_left">20dp</dimen>
 
+    <!--dp-->
+    <dimen name="dp_80">80dp</dimen>
+
 </resources>

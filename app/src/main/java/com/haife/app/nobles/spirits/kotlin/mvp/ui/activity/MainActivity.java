@@ -123,6 +123,7 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
                         Manifest.permission.RECORD_AUDIO,
                         Manifest.permission.CAMERA,
                         Manifest.permission.CALL_PHONE,
+                        Manifest.permission.ACCESS_NOTIFICATION_POLICY,
                         Manifest.permission.SEND_SMS)
                 .subscribe(permission -> {
                     if (permission.granted) {

@@ -35,11 +35,11 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
         addItemType(HRecommendMultiItemEntity.BANNER_TYPE, R.layout.recycle_item_home_recommend_banner)
         addItemType(HRecommendMultiItemEntity.RECOMMEND_RESTAURANT, R.layout.recycle_item_home_recommend_restaurant)
         addItemType(HRecommendMultiItemEntity.FLASH_SAlE, R.layout.recycle_item_home_flash_sale)
+
     }
 
     override fun convert(helper: BaseViewHolder?, item: HRecommendMultiItemEntity?) {
         when (item?.TypeItem) {
-
             HRecommendMultiItemEntity.BANNER_TYPE -> {
                 item.arr_index_banner_data.forEach { bannerUrls?.add(BuildConfig.API_HOST + it.string_pic_url) }
                 var banner: Banner = helper!!.getView<Banner>(R.id.banner_home_recommend)
@@ -51,7 +51,7 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
             HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
                 val bigTitleStr = item.arr_index_recommend_shop.arr_title_data.string_positive_title
                 val subTittleStr = item.arr_index_recommend_shop.arr_title_data.sting_negative_title
-                setItemTitleText(helper!!.getView(R.id.tv_recommend_shop_name), bigTitleStr, helper.getView(R.id.tv_recommend_shop_subtitle), subTittleStr)
+                setItemTitleText(helper!!.getView(R.id.tv_recommend_shop_name), bigTitleStr, helper!!.getView(R.id.tv_recommend_shop_subtitle), subTittleStr)
                 if (recommendRestaurantAdapter == null) {
                     val recommendRestaurantRv: RecyclerView = helper.getView(R.id.rv_recommend_shop_container)
                     recommendRestaurantAdapter = HRecommendChildAdapter(item, mContext)

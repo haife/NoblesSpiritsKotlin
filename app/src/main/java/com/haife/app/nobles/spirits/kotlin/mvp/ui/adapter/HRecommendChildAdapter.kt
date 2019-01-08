@@ -35,10 +35,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
                 HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
                     val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_recommend_restaurant_child, null)
                     RecommendRestaurantViewHolder(itemView)
-
                 }
-
-
                 else -> throw NullPointerException()
             }
 
@@ -64,7 +61,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
      */
     private fun bindRecommendRestaurantViewHolder(holder: HRecommendChildAdapter.RecommendRestaurantViewHolder, position: Int) {
         val recommendRestaurantItemEntity: HomeRecommendData.ArrIndexRecommendShopBean.ArrRecommendShopBean = list.arr_index_recommend_shop.arr_data[position]
-        holder.restaurantNameTv.text = recommendRestaurantItemEntity.string_title
+        holder.restaurantNameTv.text = recommendRestaurantItemEntity.string_brief_index
         imageLoader.loadImage(context, ImageConfigImpl.builder().url(BuildConfig.API_HOST + recommendRestaurantItemEntity.sting_pic_url).imageRadius(5)
                 .cacheStrategy(DiskCacheStrategyType.All).imageView(holder.restaurantRIV)
                 .isCenterCrop(true)
@@ -77,7 +74,6 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     override fun getItemViewType(position: Int): Int {
         return mViewType
     }
-
 
     inner class RecommendRestaurantViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         val restaurantRIV: RoundedImageView = itemView!!.findViewById<RoundedImageView>(R.id.riv_recommend_restaurant_child)
