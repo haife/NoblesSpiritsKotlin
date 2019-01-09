@@ -22,7 +22,6 @@ import com.youth.banner.Banner
  */
 
 class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val context: Context) : BaseMultiItemQuickAdapter<HRecommendMultiItemEntity, BaseViewHolder>(data) {
-
     private val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     private val verticalManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
     private var typeFaceMedium = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")!!
@@ -49,11 +48,9 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
 
             }
             HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
-                val bigTitleStr = item.arr_index_recommend_shop.arr_title_data.string_positive_title
-                val subTittleStr = item.arr_index_recommend_shop.arr_title_data.sting_negative_title
-                setItemTitleText(helper!!.getView(R.id.tv_recommend_shop_name), bigTitleStr, helper!!.getView(R.id.tv_recommend_shop_subtitle), subTittleStr)
+                setItemTitleText(helper, item)
                 if (recommendRestaurantAdapter == null) {
-                    val recommendRestaurantRv: RecyclerView = helper.getView(R.id.rv_recommend_shop_container)
+                    val recommendRestaurantRv: RecyclerView = helper!!.getView(R.id.rv_recommend_shop_container)
                     recommendRestaurantAdapter = HRecommendChildAdapter(item, mContext)
                     recommendRestaurantRv.layoutManager = mLayoutManager
                     recommendRestaurantRv.addItemDecoration(SpacesItemDecoration(42))
@@ -62,35 +59,59 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
             }
 
             HRecommendMultiItemEntity.FLASH_SAlE -> {
-                val bigTitleStr = item.arr_index_flash_sale_list.arr_title_data.string_positive_title
-                val subTittleStr = item.arr_index_flash_sale_list.arr_title_data.sting_negative_title
-                setItemTitleText(helper!!.getView(R.id.tv_flash_sale_name), bigTitleStr, helper.getView(R.id.tv_flash_sale_subtitle), subTittleStr)
+                setItemTitleText(helper, item)
                 if (flashSaleAdapter == null) {
-                    val flashSaleRv: RecyclerView = helper.getView(R.id.rv_flash_sale_container)
+                    val flashSaleRv: RecyclerView = helper!!.getView(R.id.rv_flash_sale_container)
                     flashSaleAdapter = HRecommendChildAdapter(item, mContext)
                     flashSaleRv.layoutManager = verticalManager
                     flashSaleRv.adapter = flashSaleAdapter
                 }
-
             }
-
-
         }
     }
 
     /**
      * TODO: 设置ItemTitle和TypeFace
-     * @param bigTitleTv TextView
-     * @param bigTitleStr String
-     * @param subTitleTv TextView
-     * @param subTittleStr String
+     * @param helper BaseViewHolder?
+     * @param itemEntity HRecommendMultiItemEntity
      */
-    private fun setItemTitleText(bigTitleTv: TextView, bigTitleStr: String, subTitleTv: TextView, subTittleStr: String) {
-        bigTitleTv.text = bigTitleStr
-        subTitleTv.text = subTittleStr
-        bigTitleTv.typeface = typeFaceMedium
-        subTitleTv.typeface = typeFaceLight
+    private fun setItemTitleText(helper: BaseViewHolder?, itemEntity: HRecommendMultiItemEntity) {
+        var bigTitleStr: String
+        var subTittleStr: String
+        var bigTitleTv: TextView
+        var subTitleTv: TextView
+        var itemSizeTv: TextView
+        when (itemEntity.TypeItem) {
+            HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
+                bigTitleTv = helper!!.getView(R.id.tv_recommend_shop_name)
+                subTitleTv = helper!!.getView(R.id.tv_recommend_shop_subtitle)
+                itemSizeTv = helper!!.getView(R.id.tv_recommend_shop_number)
+                bigTitleStr = itemEntity.arr_index_recommend_shop.arr_title_data.string_positive_title
+                subTittleStr = itemEntity.arr_index_recommend_shop.arr_title_data.sting_negative_title
+                bigTitleTv.text = bigTitleStr
+                subTitleTv.text = subTittleStr
+                itemSizeTv.text = itemEntity.arr_index_recommend_shop.arr_data.size.toString()
+                bigTitleTv.typeface = typeFaceMedium
+                subTitleTv.typeface = typeFaceLight
+            }
+
+            HRecommendMultiItemEntity.FLASH_SAlE -> {
+                bigTitleTv = helper!!.getView(R.id.tv_flash_sale_name)
+                subTitleTv = helper!!.getView(R.id.tv_flash_sale_subtitle)
+                bigTitleStr = itemEntity.arr_index_flash_sale_list.arr_title_data.string_positive_title
+                subTittleStr = itemEntity.arr_index_flash_sale_list.arr_title_data.sting_negative_title
+                bigTitleTv.text = bigTitleStr
+                subTitleTv.text = subTittleStr
+                bigTitleTv.typeface = typeFaceMedium
+                subTitleTv.typeface = typeFaceLight
+            }
+
+
+        }
+
+
     }
+
 
 }
 

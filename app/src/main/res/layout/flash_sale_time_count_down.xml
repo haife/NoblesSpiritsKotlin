@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_4">
+
+        <TextView
+            android:id="@+id/tv_day_decade"
+            style="@style/RushBuyCountDownTimerViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_day_unit"
+            style="@style/RushBuyCountDownTimerViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:gravity="center"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/colon_hour"
+        style="@style/SnapUpViewColon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_4">
+
+        <TextView
+            android:id="@+id/tv_hour_decade"
+            style="@style/RushBuyCountDownTimerViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_hour_unit"
+            style="@style/RushBuyCountDownTimerViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:gravity="center"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+
+    <TextView
+        style="@style/SnapUpViewColon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="时"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_4">
+
+        <TextView
+            android:id="@+id/tv_min_decade"
+            style="@style/RushBuyCountDownTimerViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_min_unit"
+            style="@style/RushBuyCountDownTimerViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:gravity="center"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/colon_minute"
+        style="@style/SnapUpViewColon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="分"
+        android:textSize="11sp" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_4">
+
+        <TextView
+            android:id="@+id/tv_sec_decade"
+            style="@style/RushBuyCountDownTimerViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_sec_unit"
+            style="@style/RushBuyCountDownTimerViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:gravity="center"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/SnapUpViewColon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="秒"
+        android:textSize="11sp" />
+
+</LinearLayout>

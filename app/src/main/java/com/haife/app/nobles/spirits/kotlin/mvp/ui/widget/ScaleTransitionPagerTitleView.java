@@ -7,7 +7,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Simple
 /**
  * @ author haife
  * @ since 2019/1/2
- * TODO：
+ * TODO：HomeFragment Indicator TitleView
  */
 public class ScaleTransitionPagerTitleView extends SimplePagerTitleView {
     private float mMinScale = 0.75f;

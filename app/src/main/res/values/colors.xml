@@ -12,7 +12,8 @@
     <color name="home_recommend_indicator_select_color">#666666</color>
     <color name="home_recommend_line_split_color">#707070</color>
     <color name="home_recommend_subtitle_color">#898989</color>
-    
+    <color name="flash_sale_number_of_people">#C7987B</color>
     <!--TextColor-->
     <color name="home_recommend_restaurant_name_color">#FF060202</color>
+    <color name="flash_sale_product_original_price_color">#B6B6B6</color>
 </resources>

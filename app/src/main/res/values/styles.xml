@@ -20,5 +20,23 @@
         <item name="android:overScrollMode">never</item>
     </style>
 
+    <!--限时抢购倒计时style-->
+    <style name="RushBuyCountDownTimerViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">0</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+
+    <style name="SnapUpViewColon">
+        <item name="android:textSize">@dimen/sp_20</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:text">天</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_margin">3dp</item>
+    </style>
+
 
 </resources>

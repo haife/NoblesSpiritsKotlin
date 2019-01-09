@@ -2,7 +2,7 @@
 <resources>
 
     <!--text size-->
-    <dimen name="text_sp_20">20sp</dimen>
+    <dimen name="sp_20">20sp</dimen>
     <dimen name="home_magic_indicator_text_size">17sp</dimen>
     <!--dimens other-->
     <dimen name="base_horizontal_line_height">1dp</dimen>
@@ -12,7 +12,6 @@
     <dimen name="home_tool_search_btn_padding">16dp</dimen>
     <dimen name="home_recommend_shop_padding_left">20dp</dimen>
 
-    <!--dp-->
-    <dimen name="dp_80">80dp</dimen>
+
 
 </resources>

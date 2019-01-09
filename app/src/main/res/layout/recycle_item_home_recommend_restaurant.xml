@@ -12,22 +12,23 @@
         android:orientation="horizontal"
         android:padding="@dimen/home_tool_search_btn_padding"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_recommend_shop_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="80dp"
+            android:minWidth="@dimen/dp_80"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_sp_20"
+            android:textSize="@dimen/sp_20"
             android:textStyle="normal" />
 
         <View
-            android:layout_width="1dp"
-            android:layout_height="12dp"
+            android:layout_width="@dimen/base_horizontal_line_height"
+            android:layout_height="@dimen/dp_12"
             android:layout_gravity="bottom"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/dp_5"
             android:background="@color/home_recommend_line_split_color" />
 
         <TextView
@@ -36,6 +37,33 @@
             android:layout_height="wrap_content"
             android:textColor="@color/home_recommend_subtitle_color"
             android:textSize="@dimen/sp_14" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp_16">
+
+            <TextView
+                android:id="@+id/tv_recommend_shop_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_10"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold"
+                android:layout_toLeftOf="@+id/tv_ic_home_recommend_add_subtitle"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_ic_home_recommend_add_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:drawableTop="@drawable/ic_home_recommend_add_subtitle"
+                android:textColor="@color/black" />
+
+
+        </RelativeLayout>
 
 
     </LinearLayout>
