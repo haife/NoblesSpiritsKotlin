@@ -86,7 +86,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     private fun bindRecommendRestaurantViewHolder(holder: HRecommendChildAdapter.RecommendRestaurantViewHolder, position: Int) {
         val recommendRestaurantItemEntity: HomeRecommendData.ArrIndexRecommendShopBean.ArrRecommendShopBean = list.arr_index_recommend_shop.arr_data[position]
         holder.restaurantNameTv.text = recommendRestaurantItemEntity.string_brief_index
-        loadImage(holder.restaurantRIV, R.drawable.ic_home_banner_place_holder, imageUrl = BuildConfig.API_HOST + recommendRestaurantItemEntity.sting_pic_url, isRadius = true)
+        loadImage(holder.restaurantRIV, R.drawable.ic_home_banner_place_holder, imageUrl = recommendRestaurantItemEntity.sting_pic_url, isRadius = true)
     }
 
     /**
@@ -111,7 +111,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
         if (isRadius) {
             builder.imageRadius(5)
         }
-        imageLoader.loadImage(context, builder.url(imageUrl)
+        imageLoader.loadImage(context, builder.url(BuildConfig.API_HOST + imageUrl)
                 .cacheStrategy(DiskCacheStrategyType.All).imageView(intoIv)
                 .isCenterCrop(true)
                 .placeholder(drawableRes).build())

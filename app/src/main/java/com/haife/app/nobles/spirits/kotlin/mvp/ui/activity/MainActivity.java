@@ -57,7 +57,6 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
         initWidget();
         requestPermissions();
 
-
     }
 
     /**

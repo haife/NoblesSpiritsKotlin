@@ -55,6 +55,7 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
                     recommendRestaurantRv.layoutManager = mLayoutManager
                     recommendRestaurantRv.addItemDecoration(SpacesItemDecoration(42))
                     recommendRestaurantRv.adapter = recommendRestaurantAdapter
+                    recommendRestaurantRv.isFocusableInTouchMode = false
                 }
             }
 

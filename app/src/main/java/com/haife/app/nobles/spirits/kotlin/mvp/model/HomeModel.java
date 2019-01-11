@@ -16,6 +16,7 @@ import com.jess.arms.mvp.BaseModel;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 
 /**
@@ -49,4 +50,5 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
     public RequestBody getRequestBody(String postJson) {
         return RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), postJson);
     }
+
 }
