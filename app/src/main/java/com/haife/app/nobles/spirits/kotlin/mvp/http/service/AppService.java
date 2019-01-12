@@ -8,16 +8,14 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnio
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface AppService {
     /*
      * 首页推荐
      */
-    @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("api.php?s=/index/app_index")
-    Observable<BaseResponse<HomeRecommendData>> getHomeRecommandData(@Body RequestBody requestBody);
+    Observable<BaseResponse<HomeRecommendData>> getHomeRecommendData(@Body RequestBody requestBody);
 
 
     /**

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="write">#FFFFFF</color>
     <color name="window_bg_color">#F9F9F9</color>
     <color name="common_pressed_bg_color">#BEBEBE</color>
     <color name="main_bottom_navigation_menu_normal_color">#909090</color>
@@ -16,4 +17,6 @@
     <!--TextColor-->
     <color name="home_recommend_restaurant_name_color">#FF060202</color>
     <color name="flash_sale_product_original_price_color">#B6B6B6</color>
+    <!--DivideColor-->
+    <color name="home_recycle_view_divide_color">#FFF0F0F0</color>
 </resources>

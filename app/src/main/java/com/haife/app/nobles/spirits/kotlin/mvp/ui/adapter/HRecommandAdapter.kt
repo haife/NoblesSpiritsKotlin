@@ -2,6 +2,7 @@ package com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter
 
 import android.content.Context
 import android.graphics.Typeface
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.TextView
@@ -10,7 +11,8 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.haife.app.nobles.spirits.kotlin.BuildConfig
 import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity
-import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.SpacesItemDecoration
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.HorizontalSpacesItemDecoration
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.RecycleViewDivide
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.loader.BannerImageLoader
 import com.youth.banner.Banner
 
@@ -34,7 +36,7 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
         addItemType(HRecommendMultiItemEntity.BANNER_TYPE, R.layout.recycle_item_home_recommend_banner)
         addItemType(HRecommendMultiItemEntity.RECOMMEND_RESTAURANT, R.layout.recycle_item_home_recommend_restaurant)
         addItemType(HRecommendMultiItemEntity.FLASH_SAlE, R.layout.recycle_item_home_flash_sale)
-
+        addItemType(HRecommendMultiItemEntity.WEEK_PREFERENTIAL, R.layout.recycle_item_home_week_special)
     }
 
     override fun convert(helper: BaseViewHolder?, item: HRecommendMultiItemEntity?) {
@@ -53,7 +55,7 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
                     val recommendRestaurantRv: RecyclerView = helper!!.getView(R.id.rv_recommend_shop_container)
                     recommendRestaurantAdapter = HRecommendChildAdapter(item, mContext)
                     recommendRestaurantRv.layoutManager = mLayoutManager
-                    recommendRestaurantRv.addItemDecoration(SpacesItemDecoration(42))
+                    recommendRestaurantRv.addItemDecoration(HorizontalSpacesItemDecoration(42))
                     recommendRestaurantRv.adapter = recommendRestaurantAdapter
                     recommendRestaurantRv.isFocusableInTouchMode = false
                 }
@@ -64,9 +66,14 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
                 if (flashSaleAdapter == null) {
                     val flashSaleRv: RecyclerView = helper!!.getView(R.id.rv_flash_sale_container)
                     flashSaleAdapter = HRecommendChildAdapter(item, mContext)
+                    flashSaleRv.addItemDecoration(RecycleViewDivide(mContext, drawableId = null, divideHeight = 20, divideColor = ContextCompat.getColor(mContext, R.color.write)))
                     flashSaleRv.layoutManager = verticalManager
                     flashSaleRv.adapter = flashSaleAdapter
                 }
+            }
+
+            HRecommendMultiItemEntity.WEEK_PREFERENTIAL -> {
+                setItemTitleText(helper, item)
             }
         }
     }
@@ -82,7 +89,9 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
         var bigTitleTv: TextView
         var subTitleTv: TextView
         var itemSizeTv: TextView
+
         when (itemEntity.TypeItem) {
+
             HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
                 bigTitleTv = helper!!.getView(R.id.tv_recommend_shop_name)
                 subTitleTv = helper!!.getView(R.id.tv_recommend_shop_subtitle)
@@ -103,6 +112,19 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
                 subTittleStr = itemEntity.arr_index_flash_sale_list.arr_title_data.sting_negative_title
                 bigTitleTv.text = bigTitleStr
                 subTitleTv.text = subTittleStr
+                bigTitleTv.typeface = typeFaceMedium
+                subTitleTv.typeface = typeFaceLight
+            }
+
+            HRecommendMultiItemEntity.WEEK_PREFERENTIAL -> {
+                bigTitleTv = helper!!.getView(R.id.tv_recommend_week_special_title)
+                subTitleTv = helper!!.getView(R.id.tv_recommend_week_special_subtitle)
+                itemSizeTv = helper!!.getView(R.id.tv_ic_home_recommend_week_special_number)
+                bigTitleStr = itemEntity.arr_index_weekly_specials_data.arr_title_data.string_positive_title
+                subTittleStr = itemEntity.arr_index_weekly_specials_data.arr_title_data.sting_negative_title
+                bigTitleTv.text = bigTitleStr
+                subTitleTv.text = subTittleStr
+                itemSizeTv.text = itemEntity.arr_index_weekly_specials_data.arr_data.size.toString()
                 bigTitleTv.typeface = typeFaceMedium
                 subTitleTv.typeface = typeFaceLight
             }

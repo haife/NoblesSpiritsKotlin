@@ -47,7 +47,7 @@ dependencies {
     //support
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'me.jessyan:arms:2.4.1'
-    //noinspection GradleCompatible
+
     implementation 'com.android.support:support-v4:27.1.0'
     implementation rootProject.ext.dependencies["support-v4"]
     implementation rootProject.ext.dependencies["gson"]

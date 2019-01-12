@@ -6,7 +6,7 @@
     android:background="@android:color/white">
 
     <LinearLayout
-        android:id="@+id/ll_flash_sale_container"
+        android:id="@+id/ll_recommend_week_special_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_flash_sale_name"
+            android:id="@+id/tv_recommend_week_special_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="@dimen/dp_80"
@@ -27,29 +27,57 @@
         <View
             android:layout_width="@dimen/base_horizontal_line_height"
             android:layout_height="@dimen/dp_12"
-            android:layout_gravity="bottom"
-            android:layout_margin="@dimen/dp_5"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
             android:background="@color/home_recommend_line_split_color" />
 
         <TextView
-            android:id="@+id/tv_flash_sale_subtitle"
+            android:id="@+id/tv_recommend_week_special_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/home_recommend_subtitle_color"
             android:textSize="@dimen/sp_14" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dp_16">
+
+            <TextView
+                android:id="@+id/tv_ic_home_recommend_week_special_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_8"
+                android:layout_toLeftOf="@+id/tv_ic_home_recommend_week_special"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_ic_home_recommend_week_special"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:drawableTop="@drawable/ic_home_recommend_add_subtitle"
+                android:textColor="@color/black" />
+
+
+        </RelativeLayout>
 
 
     </LinearLayout>
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_flash_sale_container"
+        android:id="@+id/rv_recommend_week_special_container"
         style="@style/BaseRecycleViewStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/dp_16"
         android:overScrollMode="never"
-        app:layout_constraintTop_toBottomOf="@+id/ll_flash_sale_container">
+        android:paddingBottom="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@+id/ll_recommend_week_special_container">
 
     </android.support.v7.widget.RecyclerView>
 

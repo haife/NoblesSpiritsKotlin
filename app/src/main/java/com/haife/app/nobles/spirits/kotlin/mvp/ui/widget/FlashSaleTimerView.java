@@ -173,4 +173,25 @@ public class FlashSaleTimerView extends LinearLayout {
         }
     }
 
+
+
+    /**
+     * 将时间搓传化
+     * @param mss
+     * @return
+     */
+    public void formatTimerDuring(long mss, FlashSaleTimerView count_down_tv) {
+        long days = (mss / (60 * 60 * 24));
+        long hours = (mss % (60 * 60 * 24)) / (60 * 60);
+        long minutes = (mss % (60 * 60)) / (60);
+        long seconds = (mss % (60));
+        int da = (int) days;
+        int hour = (int) hours;
+        int minute = (int) minutes;
+        int second = (int) seconds;
+        count_down_tv.setTime(da, hour, minute, second);
+        count_down_tv.start();
+
+    }
+
 }

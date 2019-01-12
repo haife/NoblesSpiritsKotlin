@@ -14,6 +14,7 @@ import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommendAdapter
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.RecycleViewDivide
 import com.jess.arms.base.BaseFragment
 import com.jess.arms.di.component.AppComponent
 import kotlinx.android.synthetic.main.fragment_home_recommend.*
@@ -52,6 +53,7 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
         val token = Token()
         mPresenter?.getHomeRecommendData(token, simpleName)
         rv_home_recommend.layoutManager = layoutManager
+        rv_home_recommend.addItemDecoration(RecycleViewDivide(context!!,drawableId = null,divideHeight = 16))
         rv_home_recommend.adapter = mRecommendAdapter
     }
 

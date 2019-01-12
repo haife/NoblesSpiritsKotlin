@@ -8,7 +8,7 @@ import android.view.View
  *
  * TODO：水平方向的RecycleView分割线
  */
-class SpacesItemDecoration(val spaceItem: Int) : RecyclerView.ItemDecoration() {
+class HorizontalSpacesItemDecoration(val spaceItem: Int) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
         super.getItemOffsets(outRect, view, parent, state)

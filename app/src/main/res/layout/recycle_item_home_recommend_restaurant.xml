@@ -6,7 +6,7 @@
     android:background="@android:color/white">
 
     <LinearLayout
-        android:id="@+id/ll_recommend_shop_container"
+        android:id="@+id/ll_recommend_wine_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -27,8 +27,9 @@
         <View
             android:layout_width="@dimen/base_horizontal_line_height"
             android:layout_height="@dimen/dp_12"
-            android:layout_gravity="bottom"
-            android:layout_margin="@dimen/dp_5"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_5"
             android:background="@color/home_recommend_line_split_color" />
 
         <TextView
@@ -48,11 +49,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/dp_10"
-                android:textSize="@dimen/sp_20"
-                android:textStyle="bold"
+                android:layout_marginRight="@dimen/dp_8"
                 android:layout_toLeftOf="@+id/tv_ic_home_recommend_add_subtitle"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_ic_home_recommend_add_subtitle"
@@ -75,7 +76,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
-        app:layout_constraintTop_toBottomOf="@+id/ll_recommend_shop_container">
+        android:paddingBottom="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@+id/ll_recommend_wine_container">
 
     </android.support.v7.widget.RecyclerView>
 

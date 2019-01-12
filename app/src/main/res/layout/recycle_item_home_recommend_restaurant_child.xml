@@ -19,6 +19,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
+        android:maxLines="2"
         android:textColor="@color/home_recommend_restaurant_name_color"
         android:textSize="@dimen/sp_14"
         app:layout_constraintLeft_toLeftOf="@+id/riv_recommend_restaurant_child"

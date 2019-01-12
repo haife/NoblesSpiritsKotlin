@@ -16,7 +16,6 @@ import com.jess.arms.mvp.BaseModel;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import okhttp3.Request;
 import okhttp3.RequestBody;
 
 /**
@@ -44,7 +43,7 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
 
     @Override
     public Observable<BaseResponse<HomeRecommendData>> getHomeRecommendData(Token bean) {
-        return mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommandData(getRequestBody(mGson.toJson(bean)));
+        return mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommendData(getRequestBody(mGson.toJson(bean)));
     }
 
     public RequestBody getRequestBody(String postJson) {

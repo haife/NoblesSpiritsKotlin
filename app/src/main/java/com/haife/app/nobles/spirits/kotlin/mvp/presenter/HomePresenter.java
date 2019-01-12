@@ -146,6 +146,15 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
             hRecommendMultiItemList.add(recommendShopEntity);
         }
 
+        //判断每周特惠
+        if (mHomeRecommendData.getArr_index_weekly_specials_data() != null && mHomeRecommendData.getArr_index_weekly_specials_data().getArr_data() != null
+                && mHomeRecommendData.getArr_index_weekly_specials_data().getArr_data().size() > 0) {
+            HRecommendMultiItemEntity weekSpecialEntity = new HRecommendMultiItemEntity();
+            weekSpecialEntity.setArr_index_weekly_specials_data(mHomeRecommendData.getArr_index_weekly_specials_data());
+            weekSpecialEntity.setTypeItem(HRecommendMultiItemEntity.WEEK_PREFERENTIAL);
+            hRecommendMultiItemList.add(weekSpecialEntity);
+        }
+
         mRecommendAdapter.notifyDataSetChanged();
 
     }

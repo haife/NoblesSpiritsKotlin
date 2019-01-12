@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_15"
         android:maxLines="2"
+        android:lines="2"
         android:textColor="@color/black"
         app:layout_constraintLeft_toRightOf="@+id/iv_flash_sale_child_product_bg"
         app:layout_constraintRight_toRightOf="parent" />
@@ -30,7 +31,7 @@
         android:id="@+id/tv_flash_sale_number_of_people"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_8"
         android:background="@color/flash_sale_number_of_people"
         android:gravity="center"
         android:minWidth="@dimen/dp_50"
@@ -46,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_4"
         android:gravity="center"
-        android:text="￥478.00"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_14"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_flash_sale_number_of_people"
@@ -58,7 +58,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_4"
         android:gravity="center"
-        android:text="￥478.00"
         android:textColor="@color/flash_sale_product_original_price_color"
         android:textSize="@dimen/sp_12"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_flash_sale_number_of_people"
@@ -81,7 +80,6 @@
         android:id="@+id/tv_flash_sale_count_down_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_8"
         app:layout_constraintLeft_toLeftOf="@+id/tv_flash_sale_number_of_people"
         app:layout_constraintTop_toBottomOf="@+id/tv_remaining_time_desc" />
 
