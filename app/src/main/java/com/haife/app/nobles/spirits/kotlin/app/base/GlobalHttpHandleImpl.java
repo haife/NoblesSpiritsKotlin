@@ -52,9 +52,6 @@ public class GlobalHttpHandleImpl implements GlobalHttpHandler {
      */
     @Override
     public Request onHttpRequestBefore(Interceptor.Chain chain, Request request) {
-
-        chain.request().body();
-        /* 如果需要再请求服务器之前做一些操作, 则重新返回一个做过操作的的 Request 如增加 Header, 不做操作则直接返回参数 request */
         return chain.request().newBuilder().addHeader("Content-Type", "application/json").build();
     }
 }

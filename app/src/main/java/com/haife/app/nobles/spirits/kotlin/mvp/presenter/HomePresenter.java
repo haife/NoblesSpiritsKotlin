@@ -129,6 +129,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
             bannerEntity.setTypeItem(HRecommendMultiItemEntity.BANNER_TYPE);
             hRecommendMultiItemList.add(bannerEntity);
         }
+
         // 判断有无推荐餐厅
         if (mHomeRecommendData.getArr_index_recommend_shop() != null && mHomeRecommendData.getArr_index_recommend_shop().getArr_data() != null
                 && mHomeRecommendData.getArr_index_recommend_shop().getArr_data().size() != 0) {
@@ -154,7 +155,14 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
             weekSpecialEntity.setTypeItem(HRecommendMultiItemEntity.WEEK_PREFERENTIAL);
             hRecommendMultiItemList.add(weekSpecialEntity);
         }
-
+        //判断团购数据
+        if (mHomeRecommendData.getArr_group_data() != null && mHomeRecommendData.getArr_group_data().getArr_data() != null
+                && mHomeRecommendData.getArr_group_data().getArr_data().size() > 0) {
+            HRecommendMultiItemEntity groupBuyEntity = new HRecommendMultiItemEntity();
+            groupBuyEntity.setArr_group_data(mHomeRecommendData.getArr_group_data());
+            groupBuyEntity.setTypeItem(HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY);
+            hRecommendMultiItemList.add(groupBuyEntity);
+        }
         mRecommendAdapter.notifyDataSetChanged();
 
     }

@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/dp_16">
 
     <ImageView
-        android:id="@+id/iv_flash_sale_child_product_bg"
+        android:id="@+id/iv_group_buy_child_product_bg"
         android:layout_width="@dimen/dp_150"
         android:layout_height="@dimen/dp_150"
         app:layout_constraintDimensionRatio="1:1"
@@ -16,18 +16,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_flash_sale_child_product_name"
+        android:id="@+id/tv_group_buy_child_product_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_15"
         android:maxLines="2"
         android:textColor="@color/black"
-        app:layout_constraintLeft_toRightOf="@+id/iv_flash_sale_child_product_bg"
+        app:layout_constraintLeft_toRightOf="@+id/iv_group_buy_child_product_bg"
         app:layout_constraintRight_toRightOf="parent" />
 
 
     <TextView
-        android:id="@+id/tv_flash_sale_number_of_people"
+        android:id="@+id/tv_group_buy_number_of_people"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_8"
@@ -37,30 +37,30 @@
         android:minHeight="@dimen/dp_20"
         android:textColor="@android:color/white"
         android:textSize="@dimen/sp_12"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_flash_sale_child_product_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_flash_sale_child_product_name" />
+        app:layout_constraintLeft_toLeftOf="@+id/tv_group_buy_child_product_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_group_buy_child_product_name" />
 
     <TextView
-        android:id="@+id/tv_flash_sale_child_product_price"
+        android:id="@+id/tv_group_buy_child_product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_4"
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_14"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_flash_sale_number_of_people"
-        app:layout_constraintLeft_toRightOf="@+id/tv_flash_sale_number_of_people" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_group_buy_number_of_people"
+        app:layout_constraintLeft_toRightOf="@+id/tv_group_buy_number_of_people" />
 
     <TextView
-        android:id="@+id/tv_flash_sale_child_product_original_price"
+        android:id="@+id/tv_group_buy_child_product_original_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_4"
         android:gravity="center"
         android:textColor="@color/flash_sale_product_original_price_color"
         android:textSize="@dimen/sp_12"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_flash_sale_number_of_people"
-        app:layout_constraintLeft_toRightOf="@+id/tv_flash_sale_child_product_price" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_group_buy_number_of_people"
+        app:layout_constraintLeft_toRightOf="@+id/tv_group_buy_child_product_price" />
 
 
     <TextView
@@ -71,26 +71,26 @@
         android:text="@string/remaining_time_desc"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_12"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_flash_sale_number_of_people"
-        app:layout_constraintTop_toBottomOf="@+id/tv_flash_sale_child_product_original_price" />
+        app:layout_constraintLeft_toLeftOf="@+id/tv_group_buy_number_of_people"
+        app:layout_constraintTop_toBottomOf="@+id/tv_group_buy_child_product_original_price" />
 
 
     <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.FlashSaleTimerView
-        android:id="@+id/tv_flash_sale_count_down_time"
+        android:id="@+id/tv_group_buy_count_down_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_flash_sale_number_of_people"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_group_buy_number_of_people"
         app:layout_constraintTop_toBottomOf="@+id/tv_remaining_time_desc" />
 
     <Button
-        android:id="@+id/btn_sec_kill"
+        android:id="@+id/btn_group_buy"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_30"
         android:background="@drawable/shape_sce_kill_button"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_14"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_flash_sale_child_product_bg"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_flash_sale_number_of_people"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_group_buy_child_product_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_group_buy_number_of_people"
         app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

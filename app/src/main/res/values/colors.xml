@@ -17,6 +17,8 @@
     <!--TextColor-->
     <color name="home_recommend_restaurant_name_color">#FF060202</color>
     <color name="flash_sale_product_original_price_color">#B6B6B6</color>
+    <color name="home_week_special_product_name_en_color">#373737</color>
+
     <!--DivideColor-->
     <color name="home_recycle_view_divide_color">#FFF0F0F0</color>
 </resources>

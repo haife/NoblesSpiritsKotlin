@@ -6,7 +6,7 @@
     android:background="@android:color/white">
 
     <LinearLayout
-        android:id="@+id/ll_flash_sale_container"
+        android:id="@+id/ll_group_buy_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_flash_sale_name"
+            android:id="@+id/tv_group_buy_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="@dimen/dp_80"
@@ -32,7 +32,7 @@
             android:background="@color/home_recommend_line_split_color" />
 
         <TextView
-            android:id="@+id/tv_flash_sale_subtitle"
+            android:id="@+id/tv_group_buy_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/home_recommend_subtitle_color"
@@ -41,16 +41,30 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/btn_previous_group_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_16"
+        android:background="@drawable/shape_sce_kill_button"
+        android:text="@string/previous_group_buy"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_group_buy_container"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_flash_sale_container"
+        android:id="@+id/rv_group_buy_container"
         style="@style/BaseRecycleViewStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:nestedScrollingEnabled="false"
         android:overScrollMode="never"
         android:paddingBottom="@dimen/dp_16"
-        app:layout_constraintTop_toBottomOf="@+id/ll_flash_sale_container">
+        app:layout_constraintTop_toBottomOf="@+id/ll_group_buy_container">
 
     </android.support.v7.widget.RecyclerView>
 

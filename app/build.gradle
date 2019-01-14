@@ -75,6 +75,7 @@ dependencies {
     implementation rootProject.ext.dependencies["base-recyclerview-adapter"]
     //test
     testImplementation rootProject.ext.dependencies["junit"]
+    /*内存泄露检测 AppLifecyclesImpl 中初始化*/
     debugImplementation rootProject.ext.dependencies["canary-debug"]
     releaseImplementation rootProject.ext.dependencies["canary-release"]
     testImplementation rootProject.ext.dependencies["canary-release"]

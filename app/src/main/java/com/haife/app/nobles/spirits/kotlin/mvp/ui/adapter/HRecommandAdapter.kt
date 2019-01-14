@@ -31,12 +31,15 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
     private var bannerUrls: ArrayList<String>? = null
     private var recommendRestaurantAdapter: HRecommendChildAdapter? = null
     private var flashSaleAdapter: HRecommendChildAdapter? = null
+    private var weeklySpecialAdapter: HRecommendChildAdapter? = null
+    private var groupBuyAdapter: HRecommendChildAdapter? = null
 
     init {
         addItemType(HRecommendMultiItemEntity.BANNER_TYPE, R.layout.recycle_item_home_recommend_banner)
         addItemType(HRecommendMultiItemEntity.RECOMMEND_RESTAURANT, R.layout.recycle_item_home_recommend_restaurant)
         addItemType(HRecommendMultiItemEntity.FLASH_SAlE, R.layout.recycle_item_home_flash_sale)
         addItemType(HRecommendMultiItemEntity.WEEK_PREFERENTIAL, R.layout.recycle_item_home_week_special)
+        addItemType(HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY, R.layout.recycle_item_home_group_buy)
     }
 
     override fun convert(helper: BaseViewHolder?, item: HRecommendMultiItemEntity?) {
@@ -57,7 +60,6 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
                     recommendRestaurantRv.layoutManager = mLayoutManager
                     recommendRestaurantRv.addItemDecoration(HorizontalSpacesItemDecoration(42))
                     recommendRestaurantRv.adapter = recommendRestaurantAdapter
-                    recommendRestaurantRv.isFocusableInTouchMode = false
                 }
             }
 
@@ -74,6 +76,24 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
 
             HRecommendMultiItemEntity.WEEK_PREFERENTIAL -> {
                 setItemTitleText(helper, item)
+                if (weeklySpecialAdapter == null) {
+                    val weekSpecialRV = helper!!.getView<RecyclerView>(R.id.rv_recommend_week_special_container)
+                    weekSpecialRV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    weekSpecialRV.addItemDecoration(HorizontalSpacesItemDecoration(42))
+                    weeklySpecialAdapter = HRecommendChildAdapter(item, mContext)
+                    weekSpecialRV.adapter = weeklySpecialAdapter
+
+                }
+            }
+            HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY -> {
+                setItemTitleText(helper, item)
+                if (groupBuyAdapter == null) {
+                    var groupBuyRV = helper!!.getView<RecyclerView>(R.id.rv_group_buy_container)
+                    groupBuyRV.layoutManager = LinearLayoutManager(context)
+                    groupBuyRV.addItemDecoration(RecycleViewDivide(mContext,divideHeight = 20, divideColor = ContextCompat.getColor(mContext, R.color.write)))
+                    groupBuyAdapter = HRecommendChildAdapter(item, mContext)
+                    groupBuyRV.adapter = groupBuyAdapter
+                }
             }
         }
     }
@@ -89,9 +109,7 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
         var bigTitleTv: TextView
         var subTitleTv: TextView
         var itemSizeTv: TextView
-
         when (itemEntity.TypeItem) {
-
             HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
                 bigTitleTv = helper!!.getView(R.id.tv_recommend_shop_name)
                 subTitleTv = helper!!.getView(R.id.tv_recommend_shop_subtitle)
@@ -125,6 +143,16 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
                 bigTitleTv.text = bigTitleStr
                 subTitleTv.text = subTittleStr
                 itemSizeTv.text = itemEntity.arr_index_weekly_specials_data.arr_data.size.toString()
+                bigTitleTv.typeface = typeFaceMedium
+                subTitleTv.typeface = typeFaceLight
+            }
+            HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY -> {
+                bigTitleTv = helper!!.getView(R.id.tv_group_buy_name)
+                subTitleTv = helper!!.getView(R.id.tv_group_buy_subtitle)
+                bigTitleStr = itemEntity.arr_group_data.arr_title_data.string_positive_title
+                subTittleStr = itemEntity.arr_group_data.arr_title_data.sting_negative_title
+                bigTitleTv.text = bigTitleStr
+                subTitleTv.text = subTittleStr
                 bigTitleTv.typeface = typeFaceMedium
                 subTitleTv.typeface = typeFaceLight
             }

@@ -75,6 +75,7 @@
         style="@style/BaseRecycleViewStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:nestedScrollingEnabled="false"
         android:overScrollMode="never"
         android:paddingBottom="@dimen/dp_16"
         app:layout_constraintTop_toBottomOf="@+id/ll_recommend_week_special_container">

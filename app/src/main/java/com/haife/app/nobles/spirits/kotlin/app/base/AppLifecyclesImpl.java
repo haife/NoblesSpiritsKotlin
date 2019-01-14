@@ -19,7 +19,6 @@ import me.yokeyword.fragmentation.helper.ExceptionHandler;
 import timber.log.Timber;
 
 public class AppLifecyclesImpl implements AppLifecycles {
-
     private RefWatcher mRefWatcher;
 
     @Override
@@ -57,8 +56,7 @@ public class AppLifecyclesImpl implements AppLifecycles {
     private void initLeakCanary(Application application) {
         //leakCanary内存泄露检查
         mRefWatcher = BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED;
-        ArmsUtils.obtainAppComponentFromContext(application)
-                .extras().put(RefWatcher.class.getName(), mRefWatcher);
+        ArmsUtils.obtainAppComponentFromContext(application).extras().put(RefWatcher.class.getName(), mRefWatcher);
     }
 
     private void initTimber() {

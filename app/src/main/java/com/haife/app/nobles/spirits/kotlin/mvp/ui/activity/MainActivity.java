@@ -117,12 +117,13 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
                         Manifest.permission.READ_CALENDAR,
                         Manifest.permission.READ_CALL_LOG,
                         Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.ACCESS_NOTIFICATION_POLICY,
                         Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.READ_SMS,
                         Manifest.permission.RECORD_AUDIO,
                         Manifest.permission.CAMERA,
                         Manifest.permission.CALL_PHONE,
-                        Manifest.permission.ACCESS_NOTIFICATION_POLICY,
+                        Manifest.permission.BIND_NOTIFICATION_LISTENER_SERVICE,
                         Manifest.permission.SEND_SMS)
                 .subscribe(permission -> {
                     if (permission.granted) {

@@ -1,6 +1,7 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter
 
 import android.content.Context
+import android.graphics.Paint
 import android.graphics.Typeface
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -49,6 +50,15 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
                     val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_flash_sale_child, null)
                     FlashSaleViewHolder(itemView)
                 }
+
+                HRecommendMultiItemEntity.WEEK_PREFERENTIAL -> {
+                    val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_week_special_child, null)
+                    WeeklySpecialViewHolder(itemView)
+                }
+                HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY -> {
+                    val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_group_buy_child, null)
+                    GroupBuyViewHolder(itemView)
+                }
                 else -> throw NullPointerException()
             }
 
@@ -59,6 +69,8 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     override fun getItemCount(): Int = when (mViewType) {
         HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> list.arr_index_recommend_shop.arr_data.size
         HRecommendMultiItemEntity.FLASH_SAlE -> list.arr_index_flash_sale_list.arr_data.size
+        HRecommendMultiItemEntity.WEEK_PREFERENTIAL -> list.arr_index_weekly_specials_data.arr_data.size
+        HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY -> list.arr_group_data.arr_data.size
         else -> 0
     }
 
@@ -72,8 +84,14 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
             is RecommendRestaurantViewHolder -> bindRecommendRestaurantViewHolder(holder, position)
 
             is FlashSaleViewHolder -> bindFlashSaleViewHolder(holder, position)
+
+            is WeeklySpecialViewHolder -> bindWeeklySpecialHolder(holder, position)
+
+            is GroupBuyViewHolder -> binGroupBuyHolder(holder, position)
+
         }
     }
+
 
     /**
      * Recycle Item 类型
@@ -104,7 +122,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
         val flashSaleItemEntity: HomeRecommendData.ArrIndexFlashSaleListBean.ArrDataBeanFlash = list.arr_index_flash_sale_list.arr_data[position]
         loadImage(holder.productIv, R.drawable.ic_flash_sale_product_place_holder, flashSaleItemEntity.string_pic_url)
         holder.productName.text = flashSaleItemEntity.string_title
-        holder.numberPeopleTv.text = context.getString(R.string.flash_sale_number_of_people, flashSaleItemEntity.int_surplus)
+        holder.numberPeopleTv.text = context.getString(R.string.flash_sale_product_number, flashSaleItemEntity.int_surplus)
         holder.priceTv.text = context.getString(R.string.product_price, flashSaleItemEntity.float_price)
         holder.originalPriceTv.text = context.getString(R.string.product_price, flashSaleItemEntity.float_origin_price)
         holder.secKillBtn.text = flashSaleItemEntity.string_btn_text
@@ -115,6 +133,41 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
 
         }
     }
+
+    /**
+     * bind每周特惠
+     * @param holder HRecommendChildAdapter.WeeklySpecialViewHolder
+     * @param position Int
+     */
+    private fun bindWeeklySpecialHolder(holder: HRecommendChildAdapter.WeeklySpecialViewHolder, position: Int) {
+        val weeklySpecialsEntity: HomeRecommendData.ArrIndexWeeklySpecialsDataBean.WeeklySpecialsBean = list.arr_index_weekly_specials_data.arr_data[position]
+        loadImage(holder.productIv, R.drawable.ic_flash_sale_product_place_holder, weeklySpecialsEntity.string_cover_url, isRadius = true)
+        holder.productNameTv.text = weeklySpecialsEntity.string_title
+        holder.productEnNameTv.text = weeklySpecialsEntity.string_title_en
+        holder.productPriceTv.text = context.getString(R.string.product_price, weeklySpecialsEntity.float_price)
+
+    }
+
+    /**
+     * bind 团购
+     * @param holder HRecommendChildAdapter.GroupBuyViewHolder
+     * @param position Int
+     */
+    private fun binGroupBuyHolder(holder: HRecommendChildAdapter.GroupBuyViewHolder, position: Int) {
+        val groupBuyItemEntity: HomeRecommendData.ArrGroupDataBean.ArrGroupBuyTitleBean = list.arr_group_data.arr_data[position]
+        loadImage(holder.productIv, R.drawable.ic_flash_sale_product_place_holder, groupBuyItemEntity.string_pic_url)
+        holder.productName.text = groupBuyItemEntity.string_title
+        holder.numberPeopleTv.text = context.getString(R.string.flash_sale_product_number, groupBuyItemEntity.int_surplus)
+        holder.priceTv.text = context.getString(R.string.product_price, groupBuyItemEntity.int_group_price)
+        holder.originalPriceTv.text = context.getString(R.string.product_price, groupBuyItemEntity.int_origin_price)
+        holder.groupBuyBtn.text = context.getString(R.string.go_to_group_buy)
+        holder.countDownTimerTv.formatTimerDuring(groupBuyItemEntity.int_surplus_time.toLong(), holder.countDownTimerTv)
+        holder.countDownTimerTv.setCountDownEndListener {
+            list.arr_index_flash_sale_list.arr_data.removeAt(position)
+            notifyItemRemoved(position)
+        }
+    }
+
 
     /**
      * 加载图片
@@ -168,6 +221,31 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
         val countDownTimerTv: FlashSaleTimerView = itemView!!.findViewById(R.id.tv_flash_sale_count_down_time)
         val secKillBtn: Button = itemView!!.findViewById(R.id.btn_sec_kill)
 
+        init {
+            originalPriceTv.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+        }
+    }
+
+
+    inner class WeeklySpecialViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+        var productIv: ImageView = itemView!!.findViewById(R.id.iv_week_special_product)
+        var productNameTv: TextView = itemView!!.findViewById(R.id.tv_week_special_product_name)
+        var productEnNameTv: TextView = itemView!!.findViewById(R.id.tv_week_special_product_name_en)
+        var productPriceTv: TextView = itemView!!.findViewById(R.id.tv_week_special_product_price)
+    }
+
+    inner class GroupBuyViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+        var productIv: ImageView = itemView!!.findViewById(R.id.iv_group_buy_child_product_bg)
+        val productName: TextView = itemView!!.findViewById(R.id.tv_group_buy_child_product_name)
+        val numberPeopleTv: TextView = itemView!!.findViewById(R.id.tv_group_buy_number_of_people)
+        val priceTv: TextView = itemView!!.findViewById(R.id.tv_group_buy_child_product_price)
+        val originalPriceTv: TextView = itemView!!.findViewById(R.id.tv_group_buy_child_product_original_price)
+        val countDownTimerTv: FlashSaleTimerView = itemView!!.findViewById(R.id.tv_group_buy_count_down_time)
+        val groupBuyBtn: Button = itemView!!.findViewById(R.id.btn_group_buy)
+
+        init {
+            originalPriceTv.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
+        }
     }
 
 }

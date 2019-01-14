@@ -53,7 +53,7 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
         val token = Token()
         mPresenter?.getHomeRecommendData(token, simpleName)
         rv_home_recommend.layoutManager = layoutManager
-        rv_home_recommend.addItemDecoration(RecycleViewDivide(context!!,drawableId = null,divideHeight = 16))
+        rv_home_recommend.addItemDecoration(RecycleViewDivide(context!!,drawableId = null,divideHeight = 20))
         rv_home_recommend.adapter = mRecommendAdapter
     }
 

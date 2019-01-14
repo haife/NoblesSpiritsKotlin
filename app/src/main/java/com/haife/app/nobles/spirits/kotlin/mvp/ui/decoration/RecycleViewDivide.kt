@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.haife.app.nobles.spirits.kotlin.R
 
-open class RecycleViewDivide constructor(context: Context, orientation: Int = LinearLayoutManager.VERTICAL, drawableId: Drawable?, divideHeight: Int = 1, divideColor: Int = ContextCompat.getColor(context, R.color.home_recycle_view_divide_color)) : RecyclerView.ItemDecoration() {
+open class RecycleViewDivide constructor(context: Context, orientation: Int = LinearLayoutManager.VERTICAL, drawableId: Drawable? = null, divideHeight: Int = 1, divideColor: Int = ContextCompat.getColor(context, R.color.home_recycle_view_divide_color)) : RecyclerView.ItemDecoration() {
     private val mPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var mDivideHeight: Int = divideHeight
     private var mDivideDrawable: Drawable? = null
