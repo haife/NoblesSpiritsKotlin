@@ -15,8 +15,7 @@ public interface AppService {
      * 首页推荐
      */
     @POST("api.php?s=/index/app_index")
-    Observable<BaseResponse<HomeRecommendData>> getHomeRecommendData(@Body RequestBody requestBody);
-
+    Observable<HomeRecommendData> getHomeRecommendData(@Body RequestBody requestBody);
 
     /**
      * 首页联盟餐厅

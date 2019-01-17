@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @ since 2018/11/22
  * TODO：
  */
-public class Data<T> implements Serializable {
+public class Data<T> extends BaseResponse<T> implements Serializable {
 
     private String code;
     private String msg;

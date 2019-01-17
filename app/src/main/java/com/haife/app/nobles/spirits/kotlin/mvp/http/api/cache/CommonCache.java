@@ -1,7 +1,6 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.http.api.cache;
 
 
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 
 import java.util.concurrent.TimeUnit;
@@ -20,5 +19,5 @@ import io.rx_cache2.Reply;
  */
 public interface CommonCache {
     @LifeCache(duration = 3, timeUnit = TimeUnit.MINUTES)
-    Observable<Reply<BaseResponse<HomeRecommendData>>> getHomeRecommendDataCache(Observable<BaseResponse<HomeRecommendData>> users, DynamicKey idLastUserQueried, EvictProvider evictProvider);
+    Observable<Reply<HomeRecommendData>> getHomeRecommendDataCache(Observable<HomeRecommendData> users, DynamicKey idLastUserQueried, EvictProvider evictProvider);
 }

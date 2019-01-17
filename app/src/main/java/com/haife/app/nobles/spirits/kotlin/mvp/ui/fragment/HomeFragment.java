@@ -53,6 +53,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     @BindView(R.id.view_pager_home_container)
     ViewPager mHomeViewPager;
 
+
     @Inject
     List<BaseFragment> mHomeFragmentList;
     private final String simpleName = getClass().getSimpleName();

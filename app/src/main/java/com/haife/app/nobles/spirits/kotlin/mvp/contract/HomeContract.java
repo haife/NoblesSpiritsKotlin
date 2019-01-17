@@ -29,6 +29,6 @@ public interface HomeContract {
 
     interface Model extends IModel {
         Observable<BaseResponse<RestaurantUnionBean>> getUnionRestaurant(Token mainBean);
-        Observable<BaseResponse<HomeRecommendData>> getHomeRecommendData(Token mainBean);
+        Observable<HomeRecommendData> getHomeRecommendData(Token mainBean);
     }
 }

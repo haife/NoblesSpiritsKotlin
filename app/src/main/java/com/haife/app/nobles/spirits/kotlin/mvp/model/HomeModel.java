@@ -20,7 +20,8 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.functions.Function;
 import io.rx_cache2.DynamicKey;
-import io.rx_cache2.EvictDynamicKey;
+import io.rx_cache2.EvictProvider;
+import io.rx_cache2.Reply;
 import okhttp3.RequestBody;
 
 /**
@@ -49,18 +50,15 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
     }
 
     @Override
-    public Observable<BaseResponse<HomeRecommendData>> getHomeRecommendData(Token bean) {
+    public Observable<HomeRecommendData> getHomeRecommendData(Token bean) {
         return Observable.just(mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommendData(getRequestBody(mGson.toJson(bean))))
-                .flatMap((Function<Observable<BaseResponse<HomeRecommendData>>, ObservableSource<BaseResponse<HomeRecommendData>>>) baseResponseObservable -> mRepositoryManager.obtainCacheService(CommonCache.class)
+                .flatMap((Function<Observable<HomeRecommendData>, ObservableSource<HomeRecommendData>>) baseResponseObservable -> mRepositoryManager.obtainCacheService(CommonCache.class)
                         .getHomeRecommendDataCache(baseResponseObservable
                                 , new DynamicKey(homeDynamicKey)
-                                , new EvictDynamicKey(true)).map(baseResponseReply -> baseResponseReply.getData()));
-
-
-        //return mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommendData(getRequestBody(mGson.toJson(bean)));
+                                , new EvictProvider(false)).map(Reply::getData));
     }
 
-    public RequestBody getRequestBody(String postJson) {
+    private RequestBody getRequestBody(String postJson) {
         return RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), postJson);
     }
 
