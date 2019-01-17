@@ -6,9 +6,7 @@ kapt {
     generateStubs = true
 }
 android {
-    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-    buildToolsVersion '28.0.3'
-
+    compileSdkVersion 28
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -28,6 +26,7 @@ android {
             buildConfigField "boolean", "USE_CANARY", "true"
             buildConfigField("String", "App_CODE", "\"098F6BCD4621D373CADE4E832627B4F6\"")
             buildConfigField("String", "API_HOST", "\"http://nstest.noble-spirits.com\"")
+
         }
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
@@ -36,7 +35,9 @@ android {
             buildConfigField("String", "API_HOST", "\"http://nstest.noble-spirits.com\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
         }
+
     }
 }
 
@@ -48,12 +49,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'me.jessyan:arms:2.4.1'
 
-    implementation 'com.android.support:support-v4:27.1.0'
-    implementation rootProject.ext.dependencies["support-v4"]
+    implementation rootProject.ext.dependencies["appcompat"]
+    implementation rootProject.ext.dependencies["material"]
     implementation rootProject.ext.dependencies["gson"]
-    implementation rootProject.ext.dependencies["appcompat-v7"]
-    //view
-    implementation rootProject.ext.dependencies["cardview-v7"]
+    implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["autolayout"]
     implementation rootProject.ext.dependencies["constraint-layout"]
     implementation rootProject.ext.dependencies["rippleeffect"]
@@ -67,8 +66,8 @@ dependencies {
     implementation rootProject.ext.dependencies["fragmentation-swipeback"]
     implementation rootProject.ext.dependencies["bottomnavigationviewex"]
     implementation rootProject.ext.dependencies["glide"]
+    kapt rootProject.ext.dependencies["glide-compiler"]
     implementation rootProject.ext.dependencies["autosize"]
-    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
     //Butterknife 插件,很多人因为没加这个而报错,切记!!!
     implementation rootProject.ext.dependencies["butterknife"]
     kapt rootProject.ext.dependencies["butterknife-compiler"]
@@ -79,5 +78,5 @@ dependencies {
     debugImplementation rootProject.ext.dependencies["canary-debug"]
     releaseImplementation rootProject.ext.dependencies["canary-release"]
     testImplementation rootProject.ext.dependencies["canary-release"]
-
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }

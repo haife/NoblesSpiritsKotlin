@@ -1,7 +1,5 @@
 package com.haife.app.nobles.spirits.kotlin.di.module;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity;
@@ -16,6 +14,8 @@ import com.jess.arms.di.scope.FragmentScope;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import dagger.Module;
 import dagger.Provides;
 

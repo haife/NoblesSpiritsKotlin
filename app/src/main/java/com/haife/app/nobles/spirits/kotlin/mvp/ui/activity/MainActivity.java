@@ -5,8 +5,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.haife.app.nobles.spirits.kotlin.R;
 import com.haife.app.nobles.spirits.kotlin.app.base.BaseSupportActivity;
@@ -22,6 +20,8 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import javax.inject.Inject;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import me.yokeyword.fragmentation.ISupportFragment;
 import timber.log.Timber;
@@ -64,8 +64,8 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
      */
     @Override
     public void initWidget() {
+        mMainBottomBnve.enableAnimation(false);
         mMainBottomBnve.enableShiftingMode(false);
-        mMainBottomBnve.enableItemShiftingMode(false);
         addFragment();
     }
 

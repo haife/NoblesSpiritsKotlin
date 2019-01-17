@@ -4,11 +4,12 @@ import android.app.Application;
 
 import com.google.gson.Gson;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.api.cache.CommonCache;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.api.service.AppService;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.service.AppService;
 import com.jess.arms.di.scope.FragmentScope;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
@@ -16,6 +17,10 @@ import com.jess.arms.mvp.BaseModel;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
+import io.rx_cache2.DynamicKey;
+import io.rx_cache2.EvictDynamicKey;
 import okhttp3.RequestBody;
 
 /**
@@ -29,6 +34,7 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
     Gson mGson;
     @Inject
     Application mApplication;
+    public final String homeDynamicKey = "HomeData";
 
     @Inject
     public HomeModel(IRepositoryManager repositoryManager) {
@@ -38,16 +44,25 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
 
     @Override
     public Observable<BaseResponse<RestaurantUnionBean>> getUnionRestaurant(Token bean) {
+
         return mRepositoryManager.obtainRetrofitService(AppService.class).getHomeUnionRestaurant(getRequestBody(mGson.toJson(bean)));
     }
 
     @Override
     public Observable<BaseResponse<HomeRecommendData>> getHomeRecommendData(Token bean) {
-        return mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommendData(getRequestBody(mGson.toJson(bean)));
+        return Observable.just(mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommendData(getRequestBody(mGson.toJson(bean))))
+                .flatMap((Function<Observable<BaseResponse<HomeRecommendData>>, ObservableSource<BaseResponse<HomeRecommendData>>>) baseResponseObservable -> mRepositoryManager.obtainCacheService(CommonCache.class)
+                        .getHomeRecommendDataCache(baseResponseObservable
+                                , new DynamicKey(homeDynamicKey)
+                                , new EvictDynamicKey(true)).map(baseResponseReply -> baseResponseReply.getData()));
+
+
+        //return mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommendData(getRequestBody(mGson.toJson(bean)));
     }
 
     public RequestBody getRequestBody(String postJson) {
         return RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), postJson);
     }
+
 
 }

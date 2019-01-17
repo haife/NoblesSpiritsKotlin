@@ -3,14 +3,14 @@ package com.haife.app.nobles.spirits.kotlin.app.base;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.animation.Animation;
 
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.mvp.IPresenter;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragmentDelegate;

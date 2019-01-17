@@ -110,8 +110,10 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
      */
     private void processHomeData() {
         List<String> magicList = new ArrayList<>();
-        for (int i = 0; i < mHomeRecommendData.getArr_table_data().size(); i++) {
-            magicList.add(mHomeRecommendData.getArr_table_data().get(i).getString_title_cn());
+        if (mHomeRecommendData.getArr_table_data() != null) {
+            for (int i = 0; i < mHomeRecommendData.getArr_table_data().size(); i++) {
+                magicList.add(mHomeRecommendData.getArr_table_data().get(i).getString_title_cn());
+            }
         }
         mRootView.initMagicIndicatorView(magicList);
     }
@@ -121,49 +123,26 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
      * TODO 处理首页推荐的数据 提供给View层
      */
     private void processRecommendData() {
-
         //判断banner是否为空
         if (mHomeRecommendData.getArr_index_banner_data() != null && mHomeRecommendData.getArr_index_banner_data().size() != 0) {
-            HRecommendMultiItemEntity bannerEntity = new HRecommendMultiItemEntity();
-            bannerEntity.setArr_index_banner_data(mHomeRecommendData.getArr_index_banner_data());
-            bannerEntity.setTypeItem(HRecommendMultiItemEntity.BANNER_TYPE);
+            HRecommendMultiItemEntity bannerEntity = new HRecommendMultiItemEntity(HRecommendMultiItemEntity.STRING_BANNER_TYPE);
+            bannerEntity.setBannerData(mHomeRecommendData.getArr_index_banner_data());
             hRecommendMultiItemList.add(bannerEntity);
         }
-
-        // 判断有无推荐餐厅
-        if (mHomeRecommendData.getArr_index_recommend_shop() != null && mHomeRecommendData.getArr_index_recommend_shop().getArr_data() != null
-                && mHomeRecommendData.getArr_index_recommend_shop().getArr_data().size() != 0) {
-            HRecommendMultiItemEntity recommendShopEntity = new HRecommendMultiItemEntity();
-            recommendShopEntity.setArr_index_recommend_shop(mHomeRecommendData.getArr_index_recommend_shop());
-            recommendShopEntity.setTypeItem(HRecommendMultiItemEntity.RECOMMEND_RESTAURANT);
-            hRecommendMultiItemList.add(recommendShopEntity);
-        }
-        //判断限时抢购
-        if (mHomeRecommendData.getArr_index_flash_sale_list() != null && mHomeRecommendData.getArr_index_flash_sale_list().getArr_data() != null
-                && mHomeRecommendData.getArr_index_flash_sale_list().getArr_data().size() > 0) {
-            HRecommendMultiItemEntity recommendShopEntity = new HRecommendMultiItemEntity();
-            recommendShopEntity.setArr_index_flash_sale_list(mHomeRecommendData.getArr_index_flash_sale_list());
-            recommendShopEntity.setTypeItem(HRecommendMultiItemEntity.FLASH_SAlE);
-            hRecommendMultiItemList.add(recommendShopEntity);
+        //实体类处理
+        if (mHomeRecommendData.getArr_module_data() != null) {
+            for (int i = 0; i < mHomeRecommendData.getArr_module_data().size(); i++) {
+                if (mHomeRecommendData.getArr_module_data().get(i).getArr_data() != null && mHomeRecommendData.getArr_module_data().get(i).getArr_data().size() > 0) {
+                    String typeModuleStr = mHomeRecommendData.getArr_module_data().get(i).getArr_title_data().getSting_module_name();
+                    HRecommendMultiItemEntity recommendShopEntity = new HRecommendMultiItemEntity(typeModuleStr);
+                    recommendShopEntity.setArr_data(mHomeRecommendData.getArr_module_data().get(i).getArr_data());
+                    recommendShopEntity.setArr_title_data(mHomeRecommendData.getArr_module_data().get(i).getArr_title_data());
+                    hRecommendMultiItemList.add(recommendShopEntity);
+                }
+            }
+            mRecommendAdapter.notifyDataSetChanged();
         }
 
-        //判断每周特惠
-        if (mHomeRecommendData.getArr_index_weekly_specials_data() != null && mHomeRecommendData.getArr_index_weekly_specials_data().getArr_data() != null
-                && mHomeRecommendData.getArr_index_weekly_specials_data().getArr_data().size() > 0) {
-            HRecommendMultiItemEntity weekSpecialEntity = new HRecommendMultiItemEntity();
-            weekSpecialEntity.setArr_index_weekly_specials_data(mHomeRecommendData.getArr_index_weekly_specials_data());
-            weekSpecialEntity.setTypeItem(HRecommendMultiItemEntity.WEEK_PREFERENTIAL);
-            hRecommendMultiItemList.add(weekSpecialEntity);
-        }
-        //判断团购数据
-        if (mHomeRecommendData.getArr_group_data() != null && mHomeRecommendData.getArr_group_data().getArr_data() != null
-                && mHomeRecommendData.getArr_group_data().getArr_data().size() > 0) {
-            HRecommendMultiItemEntity groupBuyEntity = new HRecommendMultiItemEntity();
-            groupBuyEntity.setArr_group_data(mHomeRecommendData.getArr_group_data());
-            groupBuyEntity.setTypeItem(HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY);
-            hRecommendMultiItemList.add(groupBuyEntity);
-        }
-        mRecommendAdapter.notifyDataSetChanged();
 
     }
 

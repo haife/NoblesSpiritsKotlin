@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/ToolBar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/base_tool_bar_height"
-    app:layout_scrollFlags="scroll|enterAlways">
+    app:layout_scrollFlags="scroll">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -29,4 +29,4 @@
             android:src="@drawable/ic_home_ab_search" />
     </com.andexert.library.RippleView>
 
-</android.support.v7.widget.Toolbar>
+</androidx.appcompat.widget.Toolbar>

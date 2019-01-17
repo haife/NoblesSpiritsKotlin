@@ -1,7 +1,5 @@
 package com.haife.app.nobles.spirits.kotlin.app.base;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.jess.arms.integration.cache.Cache;
 import com.jess.arms.integration.cache.LruCache;
@@ -10,6 +8,9 @@ import com.jess.arms.utils.Preconditions;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * ================================================

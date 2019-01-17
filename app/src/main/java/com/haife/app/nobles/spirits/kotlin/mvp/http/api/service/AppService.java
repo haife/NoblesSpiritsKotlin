@@ -1,4 +1,4 @@
-package com.haife.app.nobles.spirits.kotlin.mvp.http.service;
+package com.haife.app.nobles.spirits.kotlin.mvp.http.api.service;
 
 
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;

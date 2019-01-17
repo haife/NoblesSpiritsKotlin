@@ -2,10 +2,10 @@ package com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter
 
 import android.content.Context
 import android.graphics.Typeface
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.haife.app.nobles.spirits.kotlin.BuildConfig
@@ -24,12 +24,12 @@ import com.youth.banner.Banner
  */
 
 class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val context: Context) : BaseMultiItemQuickAdapter<HRecommendMultiItemEntity, BaseViewHolder>(data) {
-    private val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-    private val verticalManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
     private var typeFaceMedium = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")!!
     private var typeFaceLight = Typeface.createFromAsset(context.assets, "PingFangSC-Light-Face.ttf")
-    private var bannerUrls: ArrayList<String>? = null
+    private var bannerUrls: ArrayList<String> = arrayListOf()
     private var recommendRestaurantAdapter: HRecommendChildAdapter? = null
+    private var newRecommendRestaurantAdapter: HRecommendChildAdapter? = null
+    private var enjoyLifeAdapter: HRecommendChildAdapter? = null
     private var flashSaleAdapter: HRecommendChildAdapter? = null
     private var weeklySpecialAdapter: HRecommendChildAdapter? = null
     private var groupBuyAdapter: HRecommendChildAdapter? = null
@@ -40,127 +40,120 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
         addItemType(HRecommendMultiItemEntity.FLASH_SAlE, R.layout.recycle_item_home_flash_sale)
         addItemType(HRecommendMultiItemEntity.WEEK_PREFERENTIAL, R.layout.recycle_item_home_week_special)
         addItemType(HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY, R.layout.recycle_item_home_group_buy)
+        addItemType(HRecommendMultiItemEntity.NEW_RECOMMEND_RESTAURANT, R.layout.recycle_item_home_recommend_new_restaurant)
+        addItemType(HRecommendMultiItemEntity.TASTE_OF_LIFE, R.layout.recycle_item_home_recommend_life)
+        addItemType(HRecommendMultiItemEntity.NUll_TYPE, R.layout.recycle_item_home_no_type)
     }
 
-    override fun convert(helper: BaseViewHolder?, item: HRecommendMultiItemEntity?) {
-        when (item?.TypeItem) {
+
+    override fun convert(helper: BaseViewHolder, item: HRecommendMultiItemEntity) {
+        when (item.itemType) {
             HRecommendMultiItemEntity.BANNER_TYPE -> {
-                item.arr_index_banner_data.forEach { bannerUrls?.add(BuildConfig.API_HOST + it.string_pic_url) }
-                var banner: Banner = helper!!.getView<Banner>(R.id.banner_home_recommend)
+                item.bannerData.forEach { if (bannerUrls.size == 0) bannerUrls.add(BuildConfig.API_HOST + it.string_pic_url) else return@forEach }
+                var banner: Banner = helper.getView(R.id.banner_home_recommend)
                 banner.setImages(bannerUrls)
                 banner.startAutoPlay()
                 banner.setImageLoader(BannerImageLoader())
-
+                banner.start()
             }
             HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
                 setItemTitleText(helper, item)
                 if (recommendRestaurantAdapter == null) {
-                    val recommendRestaurantRv: RecyclerView = helper!!.getView(R.id.rv_recommend_shop_container)
                     recommendRestaurantAdapter = HRecommendChildAdapter(item, mContext)
-                    recommendRestaurantRv.layoutManager = mLayoutManager
-                    recommendRestaurantRv.addItemDecoration(HorizontalSpacesItemDecoration(42))
-                    recommendRestaurantRv.adapter = recommendRestaurantAdapter
+                    setItemAdapter(helper, recommendRestaurantAdapter)
                 }
             }
-
-            HRecommendMultiItemEntity.FLASH_SAlE -> {
+            HRecommendMultiItemEntity.NEW_RECOMMEND_RESTAURANT -> {
                 setItemTitleText(helper, item)
-                if (flashSaleAdapter == null) {
-                    val flashSaleRv: RecyclerView = helper!!.getView(R.id.rv_flash_sale_container)
-                    flashSaleAdapter = HRecommendChildAdapter(item, mContext)
-                    flashSaleRv.addItemDecoration(RecycleViewDivide(mContext, drawableId = null, divideHeight = 20, divideColor = ContextCompat.getColor(mContext, R.color.write)))
-                    flashSaleRv.layoutManager = verticalManager
-                    flashSaleRv.adapter = flashSaleAdapter
+                if (newRecommendRestaurantAdapter == null) {
+                    newRecommendRestaurantAdapter = HRecommendChildAdapter(item, mContext)
+                    setItemAdapter(helper, newRecommendRestaurantAdapter)
+                }
+            }
+            HRecommendMultiItemEntity.TASTE_OF_LIFE -> {
+                setItemTitleText(helper, item)
+                if (enjoyLifeAdapter == null) {
+                    enjoyLifeAdapter = HRecommendChildAdapter(item, mContext)
+                    setItemAdapter(helper, enjoyLifeAdapter)
                 }
             }
 
             HRecommendMultiItemEntity.WEEK_PREFERENTIAL -> {
                 setItemTitleText(helper, item)
                 if (weeklySpecialAdapter == null) {
-                    val weekSpecialRV = helper!!.getView<RecyclerView>(R.id.rv_recommend_week_special_container)
-                    weekSpecialRV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                    weekSpecialRV.addItemDecoration(HorizontalSpacesItemDecoration(42))
                     weeklySpecialAdapter = HRecommendChildAdapter(item, mContext)
-                    weekSpecialRV.adapter = weeklySpecialAdapter
-
+                    setItemAdapter(helper, weeklySpecialAdapter)
                 }
             }
             HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY -> {
                 setItemTitleText(helper, item)
                 if (groupBuyAdapter == null) {
-                    var groupBuyRV = helper!!.getView<RecyclerView>(R.id.rv_group_buy_container)
-                    groupBuyRV.layoutManager = LinearLayoutManager(context)
-                    groupBuyRV.addItemDecoration(RecycleViewDivide(mContext,divideHeight = 20, divideColor = ContextCompat.getColor(mContext, R.color.write)))
                     groupBuyAdapter = HRecommendChildAdapter(item, mContext)
-                    groupBuyRV.adapter = groupBuyAdapter
+                    setGroupFlashItemAdapter(helper, groupBuyAdapter)
+                }
+            }
+
+            HRecommendMultiItemEntity.FLASH_SAlE -> {
+                setItemTitleText(helper, item)
+                if (flashSaleAdapter == null) {
+                    flashSaleAdapter = HRecommendChildAdapter(item, mContext)
+                    setGroupFlashItemAdapter(helper, flashSaleAdapter)
                 }
             }
         }
     }
 
     /**
+     *  添加横向滚动适配器方法
+     * @param helper BaseViewHolder
+     * @param recommendRestaurantAdapter HRecommendChildAdapter?
+     */
+    private fun setItemAdapter(helper: BaseViewHolder, adapter: HRecommendChildAdapter?) {
+        val recommendRestaurantRv: RecyclerView = helper.getView(R.id.rv_recommend_parent_container)
+        recommendRestaurantRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recommendRestaurantRv.adapter = adapter
+        recommendRestaurantRv.addItemDecoration(HorizontalSpacesItemDecoration(42))
+    }
+
+    /**
+     *  配置团购和限时抢购的适配器
+     * @param helper BaseViewHolder
+     * @param adapter HRecommendChildAdapter?
+     */
+    private fun setGroupFlashItemAdapter(helper: BaseViewHolder, adapter: HRecommendChildAdapter?) {
+        var groupBuyRV = helper.getView<RecyclerView>(R.id.rv_group_buy_container)
+        groupBuyRV.layoutManager = LinearLayoutManager(context)
+        groupBuyRV.adapter = adapter
+        groupBuyRV.addItemDecoration(RecycleViewDivide(mContext, divideColor = ContextCompat.getColor(mContext, R.color.write)))
+    }
+
+
+    /**
      * TODO: 设置ItemTitle和TypeFace
-     * @param helper BaseViewHolder?
+     * @param helper BaseViewHolder
      * @param itemEntity HRecommendMultiItemEntity
      */
-    private fun setItemTitleText(helper: BaseViewHolder?, itemEntity: HRecommendMultiItemEntity) {
-        var bigTitleStr: String
-        var subTittleStr: String
-        var bigTitleTv: TextView
-        var subTitleTv: TextView
-        var itemSizeTv: TextView
-        when (itemEntity.TypeItem) {
-            HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
-                bigTitleTv = helper!!.getView(R.id.tv_recommend_shop_name)
-                subTitleTv = helper!!.getView(R.id.tv_recommend_shop_subtitle)
-                itemSizeTv = helper!!.getView(R.id.tv_recommend_shop_number)
-                bigTitleStr = itemEntity.arr_index_recommend_shop.arr_title_data.string_positive_title
-                subTittleStr = itemEntity.arr_index_recommend_shop.arr_title_data.sting_negative_title
-                bigTitleTv.text = bigTitleStr
-                subTitleTv.text = subTittleStr
-                itemSizeTv.text = itemEntity.arr_index_recommend_shop.arr_data.size.toString()
-                bigTitleTv.typeface = typeFaceMedium
-                subTitleTv.typeface = typeFaceLight
-            }
-
-            HRecommendMultiItemEntity.FLASH_SAlE -> {
-                bigTitleTv = helper!!.getView(R.id.tv_flash_sale_name)
-                subTitleTv = helper!!.getView(R.id.tv_flash_sale_subtitle)
-                bigTitleStr = itemEntity.arr_index_flash_sale_list.arr_title_data.string_positive_title
-                subTittleStr = itemEntity.arr_index_flash_sale_list.arr_title_data.sting_negative_title
-                bigTitleTv.text = bigTitleStr
-                subTitleTv.text = subTittleStr
-                bigTitleTv.typeface = typeFaceMedium
-                subTitleTv.typeface = typeFaceLight
-            }
-
-            HRecommendMultiItemEntity.WEEK_PREFERENTIAL -> {
-                bigTitleTv = helper!!.getView(R.id.tv_recommend_week_special_title)
-                subTitleTv = helper!!.getView(R.id.tv_recommend_week_special_subtitle)
-                itemSizeTv = helper!!.getView(R.id.tv_ic_home_recommend_week_special_number)
-                bigTitleStr = itemEntity.arr_index_weekly_specials_data.arr_title_data.string_positive_title
-                subTittleStr = itemEntity.arr_index_weekly_specials_data.arr_title_data.sting_negative_title
-                bigTitleTv.text = bigTitleStr
-                subTitleTv.text = subTittleStr
-                itemSizeTv.text = itemEntity.arr_index_weekly_specials_data.arr_data.size.toString()
-                bigTitleTv.typeface = typeFaceMedium
-                subTitleTv.typeface = typeFaceLight
-            }
+    private fun setItemTitleText(helper: BaseViewHolder, itemEntity: HRecommendMultiItemEntity) {
+        lateinit var bigTitleTv: TextView
+        lateinit var subTitleTv: TextView
+        lateinit var itemSizeTv: TextView
+        when (itemEntity.itemType) {
             HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY -> {
-                bigTitleTv = helper!!.getView(R.id.tv_group_buy_name)
-                subTitleTv = helper!!.getView(R.id.tv_group_buy_subtitle)
-                bigTitleStr = itemEntity.arr_group_data.arr_title_data.string_positive_title
-                subTittleStr = itemEntity.arr_group_data.arr_title_data.sting_negative_title
-                bigTitleTv.text = bigTitleStr
-                subTitleTv.text = subTittleStr
-                bigTitleTv.typeface = typeFaceMedium
-                subTitleTv.typeface = typeFaceLight
+                bigTitleTv = helper.getView(R.id.tv_group_buy_name)
+                subTitleTv = helper.getView(R.id.tv_group_buy_subtitle)
             }
-
+            else -> {
+                bigTitleTv = helper.getView(R.id.tv_recommend_big_title_name)
+                subTitleTv = helper.getView(R.id.tv_recommend_subtitle)
+                itemSizeTv = helper.getView(R.id.tv_recommend_shop_number)
+                itemSizeTv.text = itemEntity.arr_data.size.toString()
+            }
 
         }
-
-
+        bigTitleTv.text = itemEntity.arr_title_data.string_positive_title
+        subTitleTv.text = itemEntity.arr_title_data.sting_negative_title
+        bigTitleTv.typeface = typeFaceMedium
+        subTitleTv.typeface = typeFaceLight
     }
 
 

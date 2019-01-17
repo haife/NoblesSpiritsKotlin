@@ -1,7 +1,7 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base;
 
 
-import com.haife.app.nobles.spirits.kotlin.mvp.http.api.Api;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.service.Api;
 
 import java.io.Serializable;
 

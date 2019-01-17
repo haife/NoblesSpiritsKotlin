@@ -1,6 +1,5 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.contract;
 
-import android.support.v4.app.Fragment;
 
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
@@ -11,6 +10,7 @@ import com.jess.arms.mvp.IView;
 
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
 import io.reactivex.Observable;
 
 /**

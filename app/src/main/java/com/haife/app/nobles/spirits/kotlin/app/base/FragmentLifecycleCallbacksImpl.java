@@ -2,13 +2,13 @@ package com.haife.app.nobles.spirits.kotlin.app.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 
 import com.jess.arms.utils.ArmsUtils;
 import com.squareup.leakcanary.RefWatcher;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import timber.log.Timber;
 
 public class FragmentLifecycleCallbacksImpl extends FragmentManager.FragmentLifecycleCallbacks {

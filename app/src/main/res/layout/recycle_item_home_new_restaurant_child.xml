@@ -20,13 +20,37 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_10"
-        android:minLines="2"
         android:maxLines="2"
         android:textColor="@color/home_recommend_restaurant_name_color"
         android:textSize="@dimen/sp_14"
         app:layout_constraintLeft_toLeftOf="@+id/riv_recommend_restaurant"
         app:layout_constraintRight_toRightOf="@+id/riv_recommend_restaurant"
         app:layout_constraintTop_toBottomOf="@+id/riv_recommend_restaurant" />
+
+
+    <TextView
+        android:id="@+id/tv_recommend_new_restaurant_child_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:paddingRight="@dimen/dp_16"
+        android:textColor="@color/home_new_restaurant_average_price_color"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_recommend_restaurant_name"
+        app:layout_constraintRight_toRightOf="@+id/tv_recommend_restaurant_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_recommend_restaurant_name" />
+
+    <TextView
+        android:id="@+id/tv_recommend_new_restaurant_child_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:textColor="@color/home_new_restaurant_content_color"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_recommend_restaurant_name"
+        app:layout_constraintRight_toRightOf="@+id/tv_recommend_restaurant_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_recommend_new_restaurant_child_price" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

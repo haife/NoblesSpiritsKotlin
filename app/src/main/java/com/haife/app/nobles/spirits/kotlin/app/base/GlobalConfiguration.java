@@ -2,10 +2,9 @@ package com.haife.app.nobles.spirits.kotlin.app.base;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
 
 import com.haife.app.nobles.spirits.kotlin.BuildConfig;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.api.Api;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.service.Api;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.di.module.GlobalConfigModule;
 import com.jess.arms.http.imageloader.glide.GlideImageLoaderStrategy;
@@ -14,6 +13,8 @@ import com.jess.arms.integration.ConfigModule;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import androidx.fragment.app.FragmentManager;
 
 public class GlobalConfiguration implements ConfigModule {
     private static final int DEFAULT_TIME_OUT = 10;

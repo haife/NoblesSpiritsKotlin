@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,9 +9,11 @@
         android:id="@+id/iv_week_special_product"
         android:layout_width="@dimen/dp_125"
         android:layout_height="@dimen/dp_125"
-        android:scaleType="fitXY"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/ic_home_week_special_shadow" />
+        android:background="@drawable/ic_home_week_special_shadow"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_week_special_product_name"
@@ -58,4 +60,4 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/iv_home_weekly_special_item_child_cart" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

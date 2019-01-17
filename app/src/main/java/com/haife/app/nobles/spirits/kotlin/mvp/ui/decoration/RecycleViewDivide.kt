@@ -5,13 +5,13 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.haife.app.nobles.spirits.kotlin.R
 
-open class RecycleViewDivide constructor(context: Context, orientation: Int = LinearLayoutManager.VERTICAL, drawableId: Drawable? = null, divideHeight: Int = 1, divideColor: Int = ContextCompat.getColor(context, R.color.home_recycle_view_divide_color)) : RecyclerView.ItemDecoration() {
+open class RecycleViewDivide constructor(context: Context, orientation: Int = LinearLayoutManager.VERTICAL, drawableId: Drawable? = null, divideHeight: Int = 40, divideColor: Int = ContextCompat.getColor(context, R.color.home_recycle_view_divide_color)) : RecyclerView.ItemDecoration() {
     private val mPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var mDivideHeight: Int = divideHeight
     private var mDivideDrawable: Drawable? = null
@@ -23,7 +23,6 @@ open class RecycleViewDivide constructor(context: Context, orientation: Int = Li
         mPaint.color = divideColor
         mPaint.style = Paint.Style.FILL
     }
-
     /**
      * 获取分割线尺寸
      * @param outRect Rect?
@@ -31,10 +30,9 @@ open class RecycleViewDivide constructor(context: Context, orientation: Int = Li
      * @param parent RecyclerView?
      * @param state RecyclerView.State?
      */
-    override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
-
-        val childAdapterPosition = parent?.getChildAdapterPosition(view)
+        val childAdapterPosition = parent?.getChildAdapterPosition(view!!)
         val lastCount = parent?.adapter?.itemCount!! - 1
         if (childAdapterPosition == lastCount) {
             outRect?.set(0, 0, 0, 0)
@@ -43,14 +41,16 @@ open class RecycleViewDivide constructor(context: Context, orientation: Int = Li
         outRect?.set(0, 0, 0, mDivideHeight)
     }
 
+
+
     /**
      * 绘制分割线
      * @param c Canvas?
      * @param parent RecyclerView?
      * @param state RecyclerView.State?
      */
-    override fun onDraw(c: Canvas?, parent: RecyclerView?, state: RecyclerView.State?) {
-        super.onDraw(c, parent, state)
+    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+        super.onDraw(c!!, parent!!, state!!)
         when (intOrientation) {
             LinearLayoutManager.VERTICAL -> c?.let { parent?.let { it1 -> drawVertical(it, it1) } }
             LinearLayoutManager.HORIZONTAL -> c?.let { parent?.let { it1 -> drawHorizontal(it, it1) } }

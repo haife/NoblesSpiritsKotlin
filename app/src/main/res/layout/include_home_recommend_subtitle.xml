@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/home_tool_search_btn_padding">
+
+    <TextView
+        android:id="@+id/tv_recommend_big_title_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/dp_80"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_20"
+        android:textStyle="normal" />
+
+    <View
+        android:layout_width="@dimen/base_horizontal_line_height"
+        android:layout_height="@dimen/dp_12"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_5"
+        android:background="@color/home_recommend_line_split_color" />
+
+    <TextView
+        android:id="@+id/tv_recommend_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/home_recommend_subtitle_color"
+        android:textSize="@dimen/sp_14" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/dp_16">
+
+        <TextView
+            android:id="@+id/tv_recommend_shop_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_8"
+            android:layout_toLeftOf="@+id/ic_home_recommend_size"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ic_home_recommend_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawableTop="@drawable/ic_home_recommend_add_subtitle"
+            android:textColor="@color/black" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -12,5 +12,9 @@
     <dimen name="dp_34">34dp</dimen>
     <dimen name="dp_125">125dp</dimen>
     <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_155">155dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_300">300dp</dimen>
+    <dimen name="dp_170">170dp</dimen>
 
 </resources>

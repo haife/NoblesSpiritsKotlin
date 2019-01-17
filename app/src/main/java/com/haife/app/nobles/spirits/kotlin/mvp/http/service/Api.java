@@ -1,4 +1,4 @@
-package com.haife.app.nobles.spirits.kotlin.mvp.http.api;
+package com.haife.app.nobles.spirits.kotlin.mvp.http.service;
 
 import com.haife.app.nobles.spirits.kotlin.BuildConfig;
 

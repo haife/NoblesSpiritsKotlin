@@ -9,6 +9,8 @@
     <string name="remaining_time_desc">还剩:</string>
     <string name="flash_sale_product_number">仅剩%d件</string>
     <string name="product_price">￥%d.00</string>
+    <string name="average_price">人均 ￥%d.00</string>
     <string name="previous_group_buy">往期团购</string>
     <string name="go_to_group_buy">去参团</string>
+    <string name="group_buy_people_number">%d人团</string>
 </resources>
