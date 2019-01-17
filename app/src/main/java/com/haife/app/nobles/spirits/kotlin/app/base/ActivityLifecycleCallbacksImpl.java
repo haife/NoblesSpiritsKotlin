@@ -2,7 +2,9 @@ package com.haife.app.nobles.spirits.kotlin.app.base;
 
 import android.app.Activity;
 import android.app.Application;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 
 import timber.log.Timber;
 
@@ -11,6 +13,9 @@ public class ActivityLifecycleCallbacksImpl implements Application.ActivityLifec
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         Timber.i(activity + " - onActivityCreated");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//黑色
+        }
     }
 
     @Override

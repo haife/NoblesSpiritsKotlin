@@ -1,7 +1,9 @@
 package com.haife.app.nobles.spirits.kotlin.app.base;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.mvp.IPresenter;
@@ -23,7 +25,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * 框架 Fragmentation
  */
 public abstract class BaseSupportActivity<p extends IPresenter> extends BaseActivity<p> implements ISupportActivity {
-    final  SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
+    final SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
     public BaseSupportActivity mContext;
 
     @Override
@@ -44,6 +46,7 @@ public abstract class BaseSupportActivity<p extends IPresenter> extends BaseActi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         mContext = this;
         mDelegate.onCreate(savedInstanceState);
+
         super.onCreate(savedInstanceState);
     }
 

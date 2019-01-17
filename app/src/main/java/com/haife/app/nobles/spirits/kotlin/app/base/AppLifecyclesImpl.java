@@ -35,7 +35,6 @@ public class AppLifecyclesImpl implements AppLifecycles {
         AutoSizeConfig.getInstance().getUnitsManager()
                 .setSupportDP(true)
                 .setSupportSubunits(Subunits.PT);
-
         Fragmentation.builder()
                 // 设置 栈视图 模式为 悬浮球模式   SHAKE: 摇一摇唤出   NONE：隐藏
                 .stackViewMode(Fragmentation.BUBBLE)
