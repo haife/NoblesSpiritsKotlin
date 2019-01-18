@@ -64,6 +64,7 @@ ext {
             "magicindicator"           : "com.github.hackware1993:MagicIndicator:1.5.0",
             "banner"                   : "com.youth.banner:banner:1.4.9",
             "roundedimageview"         : "com.makeramen:roundedimageview:2.3.0",
+            "smartrefreshlayout"       : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-2",
 
             //rx1
             "rxandroid"                : "io.reactivex:rxandroid:1.2.1",

@@ -13,4 +13,6 @@
     <string name="previous_group_buy">往期团购</string>
     <string name="go_to_group_buy">去参团</string>
     <string name="group_buy_people_number">%d人团</string>
+    <string name="head_refreshing_status_desc">哔哔！连接成功</string>
+    <string name="head_pull_down_status_desc">正在连接小樽...</string>
 </resources>

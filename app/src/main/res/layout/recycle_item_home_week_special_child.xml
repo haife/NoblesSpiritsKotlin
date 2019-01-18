@@ -10,7 +10,7 @@
         android:layout_width="@dimen/dp_125"
         android:layout_height="@dimen/dp_125"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/ic_home_week_special_shadow"
+        android:background="@drawable/shadow_home_week_special"
         android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

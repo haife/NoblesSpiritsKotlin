@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:srlEnablePreviewInEditMode="true"
     tools:context=".mvp.ui.fragment.HRecommendFragment">
+
+    <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.CommonRefreshHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home_recommend"
         style="@style/BaseRecycleViewStyle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
+    <com.scwang.smartrefresh.layout.footer.FalsifyFooter
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-</FrameLayout>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

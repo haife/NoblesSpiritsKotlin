@@ -54,14 +54,6 @@ class HRecommendMultiItemEntity(private val typeItemStr: String) : HomeRecommend
         }
     }
 
-//    fun getItemDataEntity(position: Int): ArrDataBean? {
-//        for (i in this.arr_data.indices) {
-//            if (this.arr_title_data.sting_module_name == typeItemStr) {
-//                return arr_data[position]
-//            }
-//        }
-//        return null
-//    }
 
 
 }

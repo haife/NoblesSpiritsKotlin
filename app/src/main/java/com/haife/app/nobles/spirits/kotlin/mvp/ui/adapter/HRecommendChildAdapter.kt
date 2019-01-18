@@ -33,11 +33,11 @@ import com.makeramen.roundedimageview.RoundedImageView
  * 首页列表Item布局适配器
  */
 class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val mViewType = list.itemType
-    private var imageLoader: ImageLoader = ArmsUtils.obtainAppComponentFromContext(context).imageLoader()
-    private var layoutInflater: LayoutInflater = LayoutInflater.from(context)
-    private var typeFaceMedium: Typeface = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")
-    private val builder: ImageConfigImpl.Builder = ImageConfigImpl.builder()
+    private val mViewType: Int by lazy { list.itemType }
+    private val builder: ImageConfigImpl.Builder by lazy { ImageConfigImpl.builder() }
+    private val imageLoader: ImageLoader by lazy { ArmsUtils.obtainAppComponentFromContext(context).imageLoader() }
+    private val layoutInflater: LayoutInflater by lazy { LayoutInflater.from(context) }
+    private val typeFaceMedium: Typeface by lazy { Typeface.createFromAsset(context?.assets, "PingFangSC-Medium-Bold.ttf") }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
             when (viewType) {
@@ -225,7 +225,6 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     open inner class RecommendRestaurantViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         val restaurantRIV: RoundedImageView = itemView!!.findViewById(R.id.riv_recommend_restaurant)
         val restaurantNameTv: TextView = itemView!!.findViewById(R.id.tv_recommend_restaurant_name)
-
         init {
             restaurantNameTv.typeface = typeFaceMedium;
         }

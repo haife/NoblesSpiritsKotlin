@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -13,6 +14,7 @@ import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.HorizontalSpacesItemDecoration
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.RecycleViewDivide
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.helper.FixLinearSnapHelper
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.loader.BannerImageLoader
 import com.youth.banner.Banner
 
@@ -24,9 +26,9 @@ import com.youth.banner.Banner
  */
 
 class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val context: Context) : BaseMultiItemQuickAdapter<HRecommendMultiItemEntity, BaseViewHolder>(data) {
-    private var typeFaceMedium = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")!!
-    private var typeFaceLight = Typeface.createFromAsset(context.assets, "PingFangSC-Light-Face.ttf")
-    private var bannerUrls: ArrayList<String> = arrayListOf()
+    private val typeFaceMedium = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")!!
+    private val typeFaceLight = Typeface.createFromAsset(context.assets, "PingFangSC-Light-Face.ttf")
+    private val bannerUrls: ArrayList<String> = arrayListOf()
     private var recommendRestaurantAdapter: HRecommendChildAdapter? = null
     private var newRecommendRestaurantAdapter: HRecommendChildAdapter? = null
     private var enjoyLifeAdapter: HRecommendChildAdapter? = null
@@ -60,21 +62,21 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
                 setItemTitleText(helper, item)
                 if (recommendRestaurantAdapter == null) {
                     recommendRestaurantAdapter = HRecommendChildAdapter(item, mContext)
-                    setItemAdapter(helper, recommendRestaurantAdapter)
+                    setItemAdapter(helper, recommendRestaurantAdapter, HRecommendMultiItemEntity.RECOMMEND_RESTAURANT)
                 }
             }
             HRecommendMultiItemEntity.NEW_RECOMMEND_RESTAURANT -> {
                 setItemTitleText(helper, item)
                 if (newRecommendRestaurantAdapter == null) {
                     newRecommendRestaurantAdapter = HRecommendChildAdapter(item, mContext)
-                    setItemAdapter(helper, newRecommendRestaurantAdapter)
+                    setItemAdapter(helper, newRecommendRestaurantAdapter, HRecommendMultiItemEntity.NEW_RECOMMEND_RESTAURANT)
                 }
             }
             HRecommendMultiItemEntity.TASTE_OF_LIFE -> {
                 setItemTitleText(helper, item)
                 if (enjoyLifeAdapter == null) {
                     enjoyLifeAdapter = HRecommendChildAdapter(item, mContext)
-                    setItemAdapter(helper, enjoyLifeAdapter)
+                    setItemAdapter(helper, enjoyLifeAdapter, HRecommendMultiItemEntity.TASTE_OF_LIFE)
                 }
             }
 
@@ -82,7 +84,7 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
                 setItemTitleText(helper, item)
                 if (weeklySpecialAdapter == null) {
                     weeklySpecialAdapter = HRecommendChildAdapter(item, mContext)
-                    setItemAdapter(helper, weeklySpecialAdapter)
+                    setItemAdapter(helper, weeklySpecialAdapter, HRecommendMultiItemEntity.WEEK_PREFERENTIAL)
                 }
             }
             HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY -> {
@@ -104,15 +106,21 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
     }
 
     /**
-     *  添加横向滚动适配器方法
+     * 添加横向滚动适配器方法
      * @param helper BaseViewHolder
-     * @param recommendRestaurantAdapter HRecommendChildAdapter?
+     * @param adapter HRecommendChildAdapter?
+     * @param itemType Int
      */
-    private fun setItemAdapter(helper: BaseViewHolder, adapter: HRecommendChildAdapter?) {
+    private fun setItemAdapter(helper: BaseViewHolder, adapter: HRecommendChildAdapter?, itemType: Int) {
         val recommendRestaurantRv: RecyclerView = helper.getView(R.id.rv_recommend_parent_container)
         recommendRestaurantRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recommendRestaurantRv.adapter = adapter
         recommendRestaurantRv.addItemDecoration(HorizontalSpacesItemDecoration(42))
+        //横向滚动滑动定位
+        when (itemType) {
+            HRecommendMultiItemEntity.TASTE_OF_LIFE -> LinearSnapHelper().attachToRecyclerView(recommendRestaurantRv)
+            else -> FixLinearSnapHelper().attachToRecyclerView(recommendRestaurantRv)
+        }
     }
 
     /**
