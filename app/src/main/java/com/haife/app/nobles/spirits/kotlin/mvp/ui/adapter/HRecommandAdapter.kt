@@ -40,10 +40,10 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
         addItemType(HRecommendMultiItemEntity.BANNER_TYPE, R.layout.recycle_item_home_recommend_banner)
         addItemType(HRecommendMultiItemEntity.RECOMMEND_RESTAURANT, R.layout.recycle_item_home_recommend_restaurant)
         addItemType(HRecommendMultiItemEntity.FLASH_SAlE, R.layout.recycle_item_home_flash_sale)
-        addItemType(HRecommendMultiItemEntity.WEEK_PREFERENTIAL, R.layout.recycle_item_home_week_special)
+        addItemType(HRecommendMultiItemEntity.WEEK_PREFERENTIAL, R.layout.recycle_item_home_recommend_restaurant)
         addItemType(HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY, R.layout.recycle_item_home_group_buy)
-        addItemType(HRecommendMultiItemEntity.NEW_RECOMMEND_RESTAURANT, R.layout.recycle_item_home_recommend_new_restaurant)
-        addItemType(HRecommendMultiItemEntity.TASTE_OF_LIFE, R.layout.recycle_item_home_recommend_life)
+        addItemType(HRecommendMultiItemEntity.NEW_RECOMMEND_RESTAURANT, R.layout.recycle_item_home_recommend_restaurant)
+        addItemType(HRecommendMultiItemEntity.TASTE_OF_LIFE, R.layout.recycle_item_home_recommend_restaurant)
         addItemType(HRecommendMultiItemEntity.NUll_TYPE, R.layout.recycle_item_home_no_type)
     }
 

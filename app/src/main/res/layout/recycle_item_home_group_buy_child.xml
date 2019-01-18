@@ -11,7 +11,6 @@
         android:id="@+id/iv_group_buy_child_product_bg"
         android:layout_width="@dimen/dp_150"
         android:layout_height="@dimen/dp_150"
-        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,9 +21,9 @@
         android:layout_marginLeft="@dimen/dp_15"
         android:maxLines="2"
         android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/iv_group_buy_child_product_bg"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView

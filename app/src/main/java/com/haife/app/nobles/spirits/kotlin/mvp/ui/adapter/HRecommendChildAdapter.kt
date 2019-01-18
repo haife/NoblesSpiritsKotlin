@@ -46,23 +46,26 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
                     RecommendRestaurantViewHolder(itemView)
                 }
 
+                HRecommendMultiItemEntity.WEEK_PREFERENTIAL -> {
+                    val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_week_special_child, null)
+                    WeeklySpecialViewHolder(itemView)
+                }
+
+                HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY -> {
+                    val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_group_buy_child, null)
+                    GroupBuyViewHolder(itemView)
+                }
+
                 HRecommendMultiItemEntity.FLASH_SAlE -> {
                     val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_flash_sale_child, null)
                     FlashSaleViewHolder(itemView)
                 }
 
-                HRecommendMultiItemEntity.WEEK_PREFERENTIAL -> {
-                    val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_week_special_child, null)
-                    WeeklySpecialViewHolder(itemView)
-                }
-                HRecommendMultiItemEntity.GROUP_BUY_ACTIVITY -> {
-                    val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_group_buy_child, null)
-                    GroupBuyViewHolder(itemView)
-                }
                 HRecommendMultiItemEntity.NEW_RECOMMEND_RESTAURANT -> {
                     val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_new_restaurant_child, null)
                     RecommendNewRestaurantViewHolder(itemView)
                 }
+
                 HRecommendMultiItemEntity.TASTE_OF_LIFE -> {
                     val itemView: View = layoutInflater.inflate(R.layout.recycle_item_home_recommend_life_child, null)
                     EnjoyLifeViewHolder(itemView)
@@ -225,6 +228,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     open inner class RecommendRestaurantViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         val restaurantRIV: RoundedImageView = itemView!!.findViewById(R.id.riv_recommend_restaurant)
         val restaurantNameTv: TextView = itemView!!.findViewById(R.id.tv_recommend_restaurant_name)
+
         init {
             restaurantNameTv.typeface = typeFaceMedium;
         }
