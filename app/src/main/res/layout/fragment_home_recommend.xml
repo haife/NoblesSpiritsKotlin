@@ -2,12 +2,14 @@
 <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/smart_refresh_home_recommend"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:srlEnablePreviewInEditMode="true"
     tools:context=".mvp.ui.fragment.HRecommendFragment">
 
     <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.CommonRefreshHeader
+        android:id="@+id/smart_refresh_home_recommend_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -20,6 +22,6 @@
 
     <com.scwang.smartrefresh.layout.footer.FalsifyFooter
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>

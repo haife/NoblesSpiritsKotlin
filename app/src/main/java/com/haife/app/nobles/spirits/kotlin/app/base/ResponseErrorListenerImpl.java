@@ -27,6 +27,7 @@ import org.json.JSONException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
+import io.reactivex.exceptions.CompositeException;
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import retrofit2.HttpException;
 import timber.log.Timber;
@@ -49,7 +50,7 @@ public class ResponseErrorListenerImpl implements ResponseErrorListener {
         //这里只是对几个常用错误进行简单的处理, 展示这个类的用法, 在实际开发中请您自行对更多错误进行更严谨的处理
         String msg = "未知错误";
         if (t instanceof UnknownHostException) {
-            msg = "网络不可用";
+            msg = "网络异常，请检查网络设置";
         } else if (t instanceof SocketTimeoutException) {
             msg = "请求网络超时";
         } else if (t instanceof HttpException) {
@@ -57,8 +58,22 @@ public class ResponseErrorListenerImpl implements ResponseErrorListener {
             msg = convertStatusCode(httpException);
         } else if (t instanceof JsonParseException || t instanceof ParseException || t instanceof JSONException || t instanceof JsonIOException) {
             msg = "数据解析错误";
+        } else if (t instanceof CompositeException) {
+            for (int i = 0; i < ((CompositeException) t).getExceptions().size(); i++) {
+                Throwable throwable = ((CompositeException) t).getExceptions().get(i);
+                if (throwable instanceof UnknownHostException) {
+                    msg = "网络异常，请检查网络设置";
+                } else if (throwable instanceof SocketTimeoutException) {
+                    msg = "请求网络超时";
+                } else if (throwable instanceof HttpException) {
+                    HttpException httpException = (HttpException) t;
+                    msg = convertStatusCode(httpException);
+                } else if (throwable instanceof JsonParseException || t instanceof ParseException || t instanceof JSONException || t instanceof JsonIOException) {
+                    msg = "数据解析错误";
+                }
+            }
         }
-        ArmsUtils.snackbarText(msg);
+        ArmsUtils.makeText(context, msg);
     }
 
     private String convertStatusCode(HttpException httpException) {

@@ -49,13 +49,19 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
         return mRepositoryManager.obtainRetrofitService(AppService.class).getHomeUnionRestaurant(getRequestBody(mGson.toJson(bean)));
     }
 
+    /**
+     *
+     * @param bean
+     * @param isEvictCache 是否删除缓存,true为
+     * @return
+     */
     @Override
-    public Observable<HomeRecommendData> getHomeRecommendData(Token bean) {
+    public Observable<HomeRecommendData> getHomeRecommendData(Token bean,boolean isEvictCache) {
         return Observable.just(mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommendData(getRequestBody(mGson.toJson(bean))))
                 .flatMap((Function<Observable<HomeRecommendData>, ObservableSource<HomeRecommendData>>) baseResponseObservable -> mRepositoryManager.obtainCacheService(CommonCache.class)
                         .getHomeRecommendDataCache(baseResponseObservable
                                 , new DynamicKey(homeDynamicKey)
-                                , new EvictProvider(false)).map(Reply::getData));
+                                , new EvictProvider(isEvictCache)).map(Reply::getData));
     }
 
     private RequestBody getRequestBody(String postJson) {

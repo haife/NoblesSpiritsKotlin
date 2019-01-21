@@ -8,18 +8,20 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.haife.app.nobles.spirits.kotlin.R;
 import com.haife.app.nobles.spirits.kotlin.app.base.BaseSupportFragment;
 import com.haife.app.nobles.spirits.kotlin.di.component.DaggerHomeComponent;
 import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HomeFragmentPagerAdapter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.ScaleTransitionPagerTitleView;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -53,9 +55,11 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     @BindView(R.id.view_pager_home_container)
     ViewPager mHomeViewPager;
 
-
+    @BindView(R.id.ll_home_net_work_error)
+    LinearLayout mNetWorkErrorLL;
     @Inject
     List<BaseFragment> mHomeFragmentList;
+
     private final String simpleName = getClass().getSimpleName();
 
 
@@ -63,6 +67,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
         HomeFragment fragment = new HomeFragment();
         return fragment;
     }
+
     @Override
     public void setupFragmentComponent(@NonNull AppComponent appComponent) {
         DaggerHomeComponent.builder().appComponent(appComponent)
@@ -77,9 +82,8 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        Token token = new Token();
         assert mPresenter != null;
-        mPresenter.getHomeRecommendData(token,simpleName);
+        mPresenter.getHomeRecommendData(simpleName, false);
     }
 
     @Override
@@ -114,12 +118,10 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     }
 
     /**
-     *
      * @param runnable
      */
     @Override
     public void post(Runnable runnable) {
-
     }
 
     @Override
@@ -157,7 +159,6 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
                 return indicator;
             }
         });
-
         mHomeMagicIndicator.setNavigator(mMIndicatorNavigator);
         ViewPagerHelper.bind(mHomeMagicIndicator, mHomeViewPager);
         HomeFragmentPagerAdapter homeViewPagerAdapter = new HomeFragmentPagerAdapter(getFragmentManager(), mHomeFragmentList);
@@ -165,6 +166,18 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     }
 
 
+    @Override
+    public void netWorkError() {
+        mNetWorkErrorLL.setVisibility(View.VISIBLE);
+        TextView mNetErrorBtn = mNetWorkErrorLL.findViewById(R.id.tv_net_work_error);
+        mNetErrorBtn.setOnClickListener(v -> {
+            mPresenter.getHomeRecommendData(simpleName, false);
+        });
+    }
 
 
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+    }
 }

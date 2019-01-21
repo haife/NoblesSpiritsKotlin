@@ -11,25 +11,25 @@ import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.di.component.DaggerHomeComponent
 import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommendAdapter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.RecycleViewDivide
 import com.jess.arms.base.BaseFragment
 import com.jess.arms.di.component.AppComponent
+import com.scwang.smartrefresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.fragment_home_recommend.*
 import javax.inject.Inject
 
 
 class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
 
-
     private val simpleName = javaClass.simpleName
-
     @Inject
     lateinit var mRecommendAdapter: HRecommendAdapter
     @Inject
     lateinit var layoutManager: RecyclerView.LayoutManager
+
+
 
     companion object {
         fun newInstance(): HRecommendFragment {
@@ -42,6 +42,7 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
     }
 
     override fun setData(data: Any?) {
+
     }
 
     override fun initView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -50,11 +51,12 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
 
 
     override fun initData(savedInstanceState: Bundle?) {
-        val token = Token()
-        mPresenter?.getHomeRecommendData(token, simpleName)
+        mPresenter?.getHomeRecommendData(simpleName, false)
         rv_home_recommend.layoutManager = layoutManager
-        rv_home_recommend.addItemDecoration(RecycleViewDivide(context!!,drawableId = null,divideHeight = 20))
+        rv_home_recommend.addItemDecoration(RecycleViewDivide(context!!, drawableId = null, divideHeight = 20))
         rv_home_recommend.adapter = mRecommendAdapter
+        //下拉刷新
+        smart_refresh_home_recommend.setOnRefreshListener(this)
     }
 
     override fun showLoading() {
@@ -79,6 +81,16 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
 
     override fun getFragment(): Fragment {
         return this
+    }
+
+
+    override fun onRefresh(refreshLayout: RefreshLayout) {
+        mPresenter?.getHomeRecommendData(simpleName, true)
+        smart_refresh_home_recommend?.finishRefresh(2000, false)
+    }
+
+
+    override fun netWorkError() {
     }
 
 

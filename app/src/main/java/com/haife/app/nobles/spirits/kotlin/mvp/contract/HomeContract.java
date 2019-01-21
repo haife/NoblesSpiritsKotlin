@@ -7,6 +7,7 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendD
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.jess.arms.mvp.IModel;
 import com.jess.arms.mvp.IView;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.List;
 
@@ -20,15 +21,17 @@ import io.reactivex.Observable;
  */
 public interface HomeContract {
 
-    interface View extends IView {
+    interface View extends IView, OnRefreshListener {
         Fragment getFragment();
+
         //首页指示器初始化
         void initMagicIndicatorView(List<String> magicIndicatorContentList);
-
+        void netWorkError();
     }
 
     interface Model extends IModel {
         Observable<BaseResponse<RestaurantUnionBean>> getUnionRestaurant(Token mainBean);
-        Observable<HomeRecommendData> getHomeRecommendData(Token mainBean);
+
+        Observable<HomeRecommendData> getHomeRecommendData(Token mainBean, boolean isEvictCache);
     }
 }

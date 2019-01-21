@@ -1,6 +1,10 @@
 package com.haife.app.nobles.spirits.kotlin.di.module;
 
 
+import android.view.LayoutInflater;
+import android.view.View;
+
+import com.haife.app.nobles.spirits.kotlin.R;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
@@ -28,6 +32,7 @@ import dagger.Provides;
 public class HomeModule {
 
     private HomeContract.View view;
+
     public HomeModule(HomeContract.View view) {
         this.view = view;
     }
@@ -59,7 +64,7 @@ public class HomeModule {
 
     @FragmentScope
     @Provides
-    RecyclerView.LayoutManager provideLayoutManager(){
+    RecyclerView.LayoutManager provideLayoutManager() {
         return new LinearLayoutManager(view.getFragment().getContext());
     }
 
@@ -79,7 +84,15 @@ public class HomeModule {
 
     @FragmentScope
     @Provides
-    HRecommendAdapter provideHRecommendAdapter(List<HRecommendMultiItemEntity> list){
-        return new HRecommendAdapter(list,view.getFragment().getActivity());
+    HRecommendAdapter provideHRecommendAdapter(List<HRecommendMultiItemEntity> list) {
+        return new HRecommendAdapter(list, view.getFragment().getActivity());
     }
+
+    @FragmentScope
+    @Provides
+    View provideNetErrorUiView() {
+        return LayoutInflater.from(view.getFragment().getContext()).inflate(R.layout.include_home_recommend_net_wort_error, null);
+    }
+
+
 }

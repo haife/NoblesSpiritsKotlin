@@ -31,7 +31,10 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
+    <include
+        android:visibility="gone"
+        layout="@layout/include_home_recommend_net_wort_error"
+        />
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager_home_container"
         android:layout_width="match_parent"

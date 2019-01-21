@@ -15,4 +15,10 @@
     <string name="group_buy_people_number">%d人团</string>
     <string name="head_refreshing_status_desc">哔哔！连接成功</string>
     <string name="head_pull_down_status_desc">正在连接小樽...</string>
+    <string name="net_work_error">您的手机网络不太顺畅</string>
+    <string name="check_net_work_error">请检查你的手机是否联网</string>
+    <string name="net_work_error_try_again_desc">点击重试</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

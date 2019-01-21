@@ -5,8 +5,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -146,7 +144,6 @@ public class CommonRefreshHeader extends RelativeLayout implements RefreshHeader
     }
 
     private void startAnimator() {
-        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.scale_common_head_refresh_image);
         mLoadingHeaderIv.setImageResource(R.drawable.animtion_list_common_refresh_header);
         mAnimationDrawable = (AnimationDrawable) mLoadingHeaderIv.getDrawable();
         mAnimationDrawable.start();
