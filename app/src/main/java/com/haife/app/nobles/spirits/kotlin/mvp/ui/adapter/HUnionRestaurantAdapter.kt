@@ -11,12 +11,13 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.UnionRestaurantB
  * @since 2019/1/22
  * 联盟餐厅列表适配器
  */
-class HUnionRestaurantAdapter(data: List<UnionRestaurantBean>, val context: Context) : BaseQuickAdapter<UnionRestaurantBean, BaseViewHolder>(data) {
+class HUnionRestaurantAdapter(layoutResId: Int, data: List<UnionRestaurantBean>, val context: Context) : BaseQuickAdapter<UnionRestaurantBean, BaseViewHolder>(layoutResId, data) {
 
 
+    override fun convert(helper: BaseViewHolder, item: UnionRestaurantBean?) {
 
-    override fun convert(helper: BaseViewHolder?, item: UnionRestaurantBean?) {
     }
 
 
 }
+

@@ -33,3 +33,5 @@ public class HomeViewPagerAdapter extends FragmentPagerAdapter {
         return mHomeFragmentList.size();
     }
 }
+
+

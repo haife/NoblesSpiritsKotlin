@@ -86,7 +86,7 @@
         android:id="@+id/btn_group_buy"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_30"
-        android:background="@drawable/shape_sce_kill_button"
+        android:background="@drawable/shape_flash_sale_button"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_14"
         app:layout_constraintBottom_toBottomOf="@+id/iv_group_buy_child_product_bg"

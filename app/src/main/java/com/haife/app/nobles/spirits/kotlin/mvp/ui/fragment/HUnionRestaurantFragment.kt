@@ -34,7 +34,6 @@ import javax.inject.Named
 class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
     @Inject
     lateinit var layoutManager: RecyclerView.LayoutManager
-
     @Inject
     lateinit var mRestaurantUnionResponse: RestaurantUnionBean
     @Inject

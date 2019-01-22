@@ -5,6 +5,8 @@
     android:id="@+id/smart_refresh_home_recommend"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     app:srlEnablePreviewInEditMode="true"
     tools:context=".mvp.ui.fragment.HRecommendFragment">
 

@@ -114,7 +114,7 @@ public class HomeModule {
     @FragmentScope
     @Provides
     HUnionRestaurantAdapter provideUnionRestaurantAdapter(List<UnionRestaurantBean> dataList) {
-        return new HUnionRestaurantAdapter(dataList, view.getFragment().getContext());
+        return new HUnionRestaurantAdapter(R.layout.recycle_item_union_restaurant,dataList, view.getFragment().getContext());
     }
 
 

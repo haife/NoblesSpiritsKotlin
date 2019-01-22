@@ -15,7 +15,6 @@ import java.lang.reflect.Field;
 import me.jessyan.autosize.AutoSizeConfig;
 import me.jessyan.autosize.unit.Subunits;
 import me.yokeyword.fragmentation.Fragmentation;
-import me.yokeyword.fragmentation.helper.ExceptionHandler;
 import timber.log.Timber;
 
 public class AppLifecyclesImpl implements AppLifecycles {
@@ -40,13 +39,10 @@ public class AppLifecyclesImpl implements AppLifecycles {
                 .stackViewMode(Fragmentation.BUBBLE)
                 .debug(BuildConfig.DEBUG)
                 // 在遇到After onSaveInstanceState时，不会抛出异常，会回调到下面的ExceptionHandler
-                .handleException(new ExceptionHandler() {
-                    @Override
-                    public void onException(Exception e) {
-                        // 建议在该回调处上传至我们的Crash监测服务器
-                        // 以Bugtags为例子: 手动把捕获到的 Exception 传到 Bugtags 后台。
-                        // Bugtags.sendException(e);
-                    }
+                .handleException(e -> {
+                    // 建议在该回调处上传至我们的Crash监测服务器
+                    // 以Bugtags为例子: 手动把捕获到的 Exception 传到 Bugtags 后台。
+                    // Bugtags.sendException(e);
                 })
                 .install();
     }

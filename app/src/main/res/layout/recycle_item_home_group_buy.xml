@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/dp_16"
-        android:background="@drawable/shape_sce_kill_button"
+        android:background="@drawable/shape_flash_sale_button"
         android:text="@string/previous_group_buy"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_12"
