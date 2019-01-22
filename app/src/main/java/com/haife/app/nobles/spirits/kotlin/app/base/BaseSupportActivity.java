@@ -1,9 +1,7 @@
 package com.haife.app.nobles.spirits.kotlin.app.base;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
 
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.mvp.IPresenter;
@@ -46,7 +44,6 @@ public abstract class BaseSupportActivity<p extends IPresenter> extends BaseActi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         mContext = this;
         mDelegate.onCreate(savedInstanceState);
-
         super.onCreate(savedInstanceState);
     }
 

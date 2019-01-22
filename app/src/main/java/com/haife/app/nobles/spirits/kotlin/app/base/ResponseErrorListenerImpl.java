@@ -20,7 +20,6 @@ import android.net.ParseException;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
-import com.jess.arms.utils.ArmsUtils;
 
 import org.json.JSONException;
 
@@ -73,7 +72,7 @@ public class ResponseErrorListenerImpl implements ResponseErrorListener {
                 }
             }
         }
-        ArmsUtils.makeText(context, msg);
+    //    ArmsUtils.makeText(context, msg);
     }
 
     private String convertStatusCode(HttpException httpException) {

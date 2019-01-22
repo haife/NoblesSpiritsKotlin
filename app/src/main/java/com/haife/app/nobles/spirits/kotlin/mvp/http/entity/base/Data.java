@@ -12,7 +12,6 @@ import java.io.Serializable;
  * TODO：
  */
 public class Data<T> extends BaseResponse<T> implements Serializable {
-
     private String code;
     private String msg;
     private T result;

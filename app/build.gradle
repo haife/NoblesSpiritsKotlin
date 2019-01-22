@@ -61,6 +61,7 @@ dependencies {
     implementation rootProject.ext.dependencies["banner"]
     implementation rootProject.ext.dependencies["roundedimageview"]
     implementation rootProject.ext.dependencies["smartrefreshlayout"]
+    implementation rootProject.ext.dependencies["sneaker"]
     //tool
     implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     kapt rootProject.ext.dependencies["dagger2-compiler"]

@@ -10,14 +10,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 /**
- * @ author haife
- * @ since 2019/1/4
- * TODO：
+ * @author Eddie Android Developer
+ * @company Q | 樽尚汇
+ * @since 2019/1/22
+ * TODO: {@link HomeViewPagerAdapter}
  */
-public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
+public class HomeViewPagerAdapter extends FragmentPagerAdapter {
     private List<BaseFragment> mHomeFragmentList;
 
-    public HomeFragmentPagerAdapter(FragmentManager fm, List<BaseFragment> homeFragmentList) {
+    public HomeViewPagerAdapter(FragmentManager fm, List<BaseFragment> homeFragmentList) {
         super(fm);
         this.mHomeFragmentList = homeFragmentList;
     }

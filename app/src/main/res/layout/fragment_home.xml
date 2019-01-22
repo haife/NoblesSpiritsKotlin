@@ -15,7 +15,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include layout="@layout/home_include_toolbar" />
+        <include layout="@layout/include_home_toolbar" />
 
 
         <net.lucode.hackware.magicindicator.MagicIndicator

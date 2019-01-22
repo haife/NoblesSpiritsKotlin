@@ -2,6 +2,7 @@ package com.haife.app.nobles.spirits.kotlin.di.component;
 
 import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HRecommendFragment;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HUnionRestaurantFragment;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HomeFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.di.scope.FragmentScope;
@@ -18,4 +19,5 @@ import dagger.Component;
 public interface HomeComponent {
     void inject(HomeFragment fragment);
     void inject(HRecommendFragment fragment);
+    void inject(HUnionRestaurantFragment fragment);
 }

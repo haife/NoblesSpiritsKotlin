@@ -6,17 +6,22 @@ import android.view.View;
 
 import com.haife.app.nobles.spirits.kotlin.R;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.UnionRestaurantBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.model.HomeModel;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommendAdapter;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HUnionRestaurantAdapter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HRecommendFragment;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HUnionRestaurantFragment;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.scope.FragmentScope;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Named;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,20 +57,15 @@ public class HomeModule {
 
     @FragmentScope
     @Provides
-    RestaurantUnionBean provideRestaurantUnionBean() {
-        return new RestaurantUnionBean();
-    }
-
-    @FragmentScope
-    @Provides
-    HomeRecommendData provideHomeRecommendData() {
-        return new HomeRecommendData();
-    }
-
-    @FragmentScope
-    @Provides
     RecyclerView.LayoutManager provideLayoutManager() {
         return new LinearLayoutManager(view.getFragment().getContext());
+    }
+
+    @FragmentScope
+    @Provides
+    @Named("NetErrorView")
+    View provideNetErrorUiView() {
+        return LayoutInflater.from(view.getFragment().getContext()).inflate(R.layout.include_home_recommend_net_wort_error, null);
     }
 
     @FragmentScope
@@ -73,7 +73,15 @@ public class HomeModule {
     List<BaseFragment> provideHomeFragmentList() {
         List<BaseFragment> fragmentList = new ArrayList<>();
         fragmentList.add(HRecommendFragment.Companion.newInstance());
+        fragmentList.add(HUnionRestaurantFragment.Companion.newInstance());
         return fragmentList;
+    }
+
+    /*---------------------------HomeRecommendFragment---------------------------------*/
+    @FragmentScope
+    @Provides
+    HomeRecommendData provideHomeRecommendData() {
+        return new HomeRecommendData();
     }
 
     @FragmentScope
@@ -88,11 +96,32 @@ public class HomeModule {
         return new HRecommendAdapter(list, view.getFragment().getActivity());
     }
 
+
+    /*----------------------------UnionRestaurantFragment--------------------------------*/
     @FragmentScope
     @Provides
-    View provideNetErrorUiView() {
-        return LayoutInflater.from(view.getFragment().getContext()).inflate(R.layout.include_home_recommend_net_wort_error, null);
+    RestaurantUnionBean provideRestaurantUnionResponse() {
+        return new RestaurantUnionBean();
     }
 
 
+    @FragmentScope
+    @Provides
+    List<UnionRestaurantBean> provideUnionRestaurantList() {
+        return new ArrayList<>();
+    }
+
+    @FragmentScope
+    @Provides
+    HUnionRestaurantAdapter provideUnionRestaurantAdapter(List<UnionRestaurantBean> dataList) {
+        return new HUnionRestaurantAdapter(dataList, view.getFragment().getContext());
+    }
+
+
+    @FragmentScope
+    @Provides
+    @Named("UnionRestaurantFilterView")
+    View provideUnionRestaurantHeaderView() {
+        return LayoutInflater.from(view.getFragment().getContext()).inflate(R.layout.header_union_restaurant_search_filter, null);
+    }
 }

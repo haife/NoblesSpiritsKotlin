@@ -17,7 +17,7 @@ import com.haife.app.nobles.spirits.kotlin.di.component.DaggerHomeComponent;
 import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter;
-import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HomeFragmentPagerAdapter;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HomeViewPagerAdapter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.ScaleTransitionPagerTitleView;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
@@ -88,7 +88,6 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     @Override
     public void setData(@Nullable Object data) {
-
     }
 
 
@@ -161,18 +160,20 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
         });
         mHomeMagicIndicator.setNavigator(mMIndicatorNavigator);
         ViewPagerHelper.bind(mHomeMagicIndicator, mHomeViewPager);
-        HomeFragmentPagerAdapter homeViewPagerAdapter = new HomeFragmentPagerAdapter(getFragmentManager(), mHomeFragmentList);
+        HomeViewPagerAdapter homeViewPagerAdapter = new HomeViewPagerAdapter(getFragmentManager(), mHomeFragmentList);
         mHomeViewPager.setAdapter(homeViewPagerAdapter);
     }
 
 
     @Override
-    public void netWorkError() {
-        mNetWorkErrorLL.setVisibility(View.VISIBLE);
-        TextView mNetErrorBtn = mNetWorkErrorLL.findViewById(R.id.tv_net_work_error);
-        mNetErrorBtn.setOnClickListener(v -> {
-            mPresenter.getHomeRecommendData(simpleName, false);
-        });
+    public void refreshStatusListener(boolean loadSuccess) {
+        if (!loadSuccess) {
+            mNetWorkErrorLL.setVisibility(View.VISIBLE);
+            TextView mNetErrorBtn = mNetWorkErrorLL.findViewById(R.id.tv_net_work_error);
+            mNetErrorBtn.setOnClickListener(v -> {
+                mPresenter.getHomeRecommendData(simpleName, false);
+            });
+        }
     }
 
 

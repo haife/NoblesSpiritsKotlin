@@ -6,8 +6,9 @@ import com.google.gson.Gson;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.api.cache.CommonCache;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.api.service.AppService;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseRequest;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.UnionRestaurantRequest;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.jess.arms.di.scope.FragmentScope;
@@ -36,27 +37,40 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
     @Inject
     Application mApplication;
     public final String homeDynamicKey = "HomeData";
+    public final String unionRestaurant = "unionRestaurant";
+    private BaseRequest<UnionRestaurantRequest> request = new BaseRequest<>();
 
     @Inject
     public HomeModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
     }
 
-
+    /**
+     * 联盟餐厅
+     *
+     * @param bean
+     * @return
+     */
     @Override
-    public Observable<BaseResponse<RestaurantUnionBean>> getUnionRestaurant(Token bean) {
-
-        return mRepositoryManager.obtainRetrofitService(AppService.class).getHomeUnionRestaurant(getRequestBody(mGson.toJson(bean)));
+    public Observable<RestaurantUnionBean> getUnionRestaurant(UnionRestaurantRequest bean) {
+        request.setParam(bean);
+        return Observable.just(mRepositoryManager.obtainRetrofitService(AppService.class).getHomeUnionRestaurant(getRequestBody(mGson.toJson(request))))
+                .flatMap((Function<Observable<RestaurantUnionBean>, ObservableSource<RestaurantUnionBean>>) restaurantUnionBeanObservable -> mRepositoryManager.obtainCacheService(CommonCache.class)
+                        .getHomeUnionRestaurantCache(restaurantUnionBeanObservable,
+                                new DynamicKey(unionRestaurant),
+                                new EvictProvider(false)).map(Reply::getData));
     }
 
+
     /**
+     * 首页推荐
      *
      * @param bean
      * @param isEvictCache 是否删除缓存,true为
      * @return
      */
     @Override
-    public Observable<HomeRecommendData> getHomeRecommendData(Token bean,boolean isEvictCache) {
+    public Observable<HomeRecommendData> getHomeRecommendData(Token bean, boolean isEvictCache) {
         return Observable.just(mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommendData(getRequestBody(mGson.toJson(bean))))
                 .flatMap((Function<Observable<HomeRecommendData>, ObservableSource<HomeRecommendData>>) baseResponseObservable -> mRepositoryManager.obtainCacheService(CommonCache.class)
                         .getHomeRecommendDataCache(baseResponseObservable

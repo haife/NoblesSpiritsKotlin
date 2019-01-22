@@ -6,10 +6,13 @@ import android.view.View;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.UnionRestaurantBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.UnionRestaurantRequest;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommendAdapter;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HUnionRestaurantAdapter;
 import com.jess.arms.di.scope.FragmentScope;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.OnLifecycleEvent;
@@ -40,17 +44,23 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
     @Inject
     AppManager mAppManager;
     @Inject
-    RestaurantUnionBean mRestaurantUnionBean;
-    @Inject
     HomeRecommendData mHomeRecommendData;
     @Inject
     List<HRecommendMultiItemEntity> hRecommendMultiItemList;
     @Inject
     HRecommendAdapter mRecommendAdapter;
     @Inject
+    @Named("NetErrorView")
     View netErrorView;
     @Inject
     Token mToken;
+    @Inject
+    HUnionRestaurantAdapter mUnionRestaurantAdapter;
+    @Inject
+    List<UnionRestaurantBean> mUnionRestaurantList;
+    @Inject
+    RestaurantUnionBean mRestaurantUnionBean;
+
 
     private final String HOME_FRAGMENT_SIMPLE_NAME = "HomeFragment";
     private final String HOME_RECOMMEND_FRAGMENT_SIMPLE_NAME = "HRecommendFragment";
@@ -69,33 +79,6 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
 
     }
 
-
-    /**
-     * 首页联盟餐厅
-     *
-     * @param token
-     */
-    public void getHomeUnionRestaurant(Token token) {
-        mModel.getUnionRestaurant(token).compose(RxLifecycleUtils.bindToLifecycle(mRootView))
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .retryWhen(new RetryWithDelay(3, 2))
-                .subscribe(new ErrorHandleSubscriber<BaseResponse<RestaurantUnionBean>>(mErrorHandler) {
-                    @Override
-                    public void onNext(BaseResponse<RestaurantUnionBean> response) {
-                        if (response.getData().isSuccess())
-                            mRestaurantUnionBean = response.getData().getResult();
-                        else
-                            mRootView.showMessage(response.getData().getMsg());
-                    }
-
-                    @Override
-                    public void onError(Throwable t) {
-                        super.onError(t);
-
-                    }
-                });
-    }
 
     /**
      * 首页推荐
@@ -117,12 +100,10 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
                             for (int i = 0; i < ((CompositeException) t).getExceptions().size(); i++) {
                                 Throwable throwable = ((CompositeException) t).getExceptions().get(i);
                                 if (throwable instanceof UnknownHostException || throwable instanceof SocketTimeoutException) {
-                                    if (fragmentName.equals(HOME_FRAGMENT_SIMPLE_NAME))
-                                        mRootView.netWorkError();
+                                    mRootView.refreshStatusListener(false);
                                 }
                             }
                         }
-
                     }
 
                     @Override
@@ -180,10 +161,36 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
                     hRecommendMultiItemList.add(recommendShopEntity);
                 }
             }
+            mRootView.refreshStatusListener(true);
             mRecommendAdapter.notifyDataSetChanged();
         }
 
+    }
 
+
+    /**
+     * 请求首页联盟餐厅
+     *
+     * @param request
+     */
+    public void getHomeUnionRestaurant(UnionRestaurantRequest request) {
+        mModel.getUnionRestaurant(request).compose(RxLifecycleUtils.bindToLifecycle(mRootView))
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .retryWhen(new RetryWithDelay(3, 2))
+                .subscribe(new ErrorHandleSubscriber<BaseResponse<RestaurantUnionBean>>(mErrorHandler) {
+                    @Override
+                    public void onNext(BaseResponse<RestaurantUnionBean> response) {
+                        if (response.getData().isSuccess()) {
+                            mRestaurantUnionBean = response.getData().getResult();
+                            mUnionRestaurantList.addAll(mRestaurantUnionBean.getArr_search_shop_data());
+                           // mUnionRestaurantAdapter.notifyDataSetChanged();
+                        } else {
+
+                        }
+
+                    }
+                });
     }
 
 
@@ -196,6 +203,10 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
         this.hRecommendMultiItemList = null;
         this.mRecommendAdapter = null;
         this.mHomeRecommendData = null;
+        this.mToken = null;
+        this.netErrorView = null;
+        this.mUnionRestaurantAdapter = null;
+        this.mUnionRestaurantList = null;
     }
 
 }

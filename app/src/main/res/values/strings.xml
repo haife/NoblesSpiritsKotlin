@@ -13,12 +13,16 @@
     <string name="previous_group_buy">往期团购</string>
     <string name="go_to_group_buy">去参团</string>
     <string name="group_buy_people_number">%d人团</string>
-    <string name="head_refreshing_status_desc">哔哔！连接成功</string>
-    <string name="head_pull_down_status_desc">正在连接小樽...</string>
     <string name="net_work_error">您的手机网络不太顺畅</string>
     <string name="check_net_work_error">请检查你的手机是否联网</string>
     <string name="net_work_error_try_again_desc">点击重试</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!--RefreshText-->
+    <string name="head_refreshing_status_success_desc">哔哔！连接成功</string>
+    <string name="head_refreshing_status_failed_desc">无法连接小樽...</string>
+    <string name="head_pull_down_status_desc">正在连接小樽...</string>
+    <string name="pull_down_refresh_desc">下拉即可刷新...</string>
+    <string name="release_to_refresh_desc">释放立即刷新...</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

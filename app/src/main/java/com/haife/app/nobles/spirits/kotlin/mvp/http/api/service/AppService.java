@@ -1,7 +1,6 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.http.api.service;
 
 
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 
@@ -21,6 +20,6 @@ public interface AppService {
      * 首页联盟餐厅
      */
     @POST("api.php?s=/shop/index")
-    Observable<BaseResponse<RestaurantUnionBean>> getHomeUnionRestaurant(@Body RequestBody requestBody);
+    Observable<RestaurantUnionBean> getHomeUnionRestaurant(@Body RequestBody requestBody);
 
 }

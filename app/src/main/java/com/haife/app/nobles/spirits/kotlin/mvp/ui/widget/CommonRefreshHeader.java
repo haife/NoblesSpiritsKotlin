@@ -107,11 +107,16 @@ public class CommonRefreshHeader extends RelativeLayout implements RefreshHeader
 
     @Override
     public int onFinish(@NonNull RefreshLayout refreshLayout, boolean success) {
+        if (success)
+            mLoadingHeaderTv.setText(getContext().getString(R.string.head_refreshing_status_success_desc));
+        else
+            mLoadingHeaderTv.setText(getContext().getString(R.string.head_refreshing_status_failed_desc));
+
         if (mAnimationDrawable.isRunning()) {
             mAnimationDrawable.stop();
-            headerViewContainer.setVisibility(GONE);
         }
-        return 100;
+
+        return 500;
     }
 
     @Override
@@ -129,16 +134,17 @@ public class CommonRefreshHeader extends RelativeLayout implements RefreshHeader
         switch (newState) {
             case None: // 无状态
             case PullDownToRefresh:// 可以下拉状态
-
                 headerViewContainer.setVisibility(VISIBLE);
+                mLoadingHeaderTv.setText(getContext().getString(R.string.pull_down_refresh_desc));
+                break;
+            case ReleaseToRefresh:
+                mLoadingHeaderTv.setText(mContext.getString(R.string.release_to_refresh_desc));
+                break;
+            case RefreshReleased:
+            case Refreshing: // 刷新中状态
                 mLoadingHeaderTv.setText(getContext().getString(R.string.head_pull_down_status_desc));
                 break;
-            case Refreshing: // 刷新中状态
-                mLoadingHeaderTv.setText(getContext().getString(R.string.head_refreshing_status_desc));
-                break;
-            case ReleaseToRefresh:  // 释放就开始刷新状态
 
-                break;
         }
         startAnimator();
     }

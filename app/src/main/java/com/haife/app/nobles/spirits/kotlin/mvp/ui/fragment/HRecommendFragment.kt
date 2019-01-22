@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.haife.app.nobles.spirits.kotlin.R
@@ -14,8 +15,10 @@ import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommendAdapter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.RecycleViewDivide
+import com.irozon.sneaker.Sneaker
 import com.jess.arms.base.BaseFragment
 import com.jess.arms.di.component.AppComponent
+import com.jess.arms.utils.ArmsUtils
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.fragment_home_recommend.*
 import javax.inject.Inject
@@ -28,9 +31,6 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
     lateinit var mRecommendAdapter: HRecommendAdapter
     @Inject
     lateinit var layoutManager: RecyclerView.LayoutManager
-
-
-
     companion object {
         fun newInstance(): HRecommendFragment {
             return HRecommendFragment()
@@ -83,14 +83,24 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
         return this
     }
 
-
+    /**
+     *
+     * @param refreshLayout RefreshLayout
+     * @param refreshStatus Boolean 刷新状态
+     */
     override fun onRefresh(refreshLayout: RefreshLayout) {
         mPresenter?.getHomeRecommendData(simpleName, true)
-        smart_refresh_home_recommend?.finishRefresh(2000, false)
     }
 
 
-    override fun netWorkError() {
+    override fun refreshStatusListener(refreshSuccess: Boolean) {
+        smart_refresh_home_recommend?.finishRefresh(refreshSuccess)
+        if (!refreshSuccess) {
+            Sneaker.with(activity)
+                    .setMessage(ArmsUtils.getString(context, R.string.net_work_error), ContextCompat.getColor(context!!, R.color.write))
+                    .setIcon(R.drawable.ic_error, ContextCompat.getColor(context!!, R.color.write), false)
+                    .sneak(R.color.flash_sale_product_original_price_color)
+        }
     }
 
 
