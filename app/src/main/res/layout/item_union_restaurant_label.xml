@@ -2,11 +2,8 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/dp_12"
-    android:paddingTop="@dimen/dp_5"
-    android:paddingRight="@dimen/dp_12"
-    android:paddingBottom="@dimen/dp_5"
-    android:textColor="@color/black"
-    android:textSize="15sp">
+    android:background="@drawable/shape_union_restaurant_label_item"
+    android:textColor="@color/home_union_restaurant_label_color"
+    android:textSize="@dimen/sp_11">
 
 </TextView>

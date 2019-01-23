@@ -17,6 +17,12 @@
     <dimen name="dp_300">300dp</dimen>
     <dimen name="dp_170">170dp</dimen>
     <dimen name="dp_60">60dp</dimen>
+    <dimen name="dp_140">140dp</dimen>
+    <dimen name="dp_90">90dp</dimen>
+    <dimen name="dp_6">6dp</dimen>
+    <dimen name="dp_3">3dp</dimen>
+    <dimen name="dp_160">160dp</dimen>
+    <dimen name="dp_105">105dp</dimen>
 
 
 </resources>

@@ -104,7 +104,6 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
             loadMultipleRootFragment(R.id.fl_main_container, 0, mFragments);
         } else {
             mFragments[0] = findFragment(HomeFragment.class);
-
         }
     }
 

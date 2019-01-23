@@ -1,7 +1,7 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter;
 
 
-import com.jess.arms.base.BaseFragment;
+import com.haife.app.nobles.spirits.kotlin.app.base.BaseSupportFragment;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
  * TODO: {@link HomeViewPagerAdapter}
  */
 public class HomeViewPagerAdapter extends FragmentPagerAdapter {
-    private List<BaseFragment> mHomeFragmentList;
+    private List<BaseSupportFragment> mHomeFragmentList;
 
-    public HomeViewPagerAdapter(FragmentManager fm, List<BaseFragment> homeFragmentList) {
+    public HomeViewPagerAdapter(FragmentManager fm, List<BaseSupportFragment> homeFragmentList) {
         super(fm);
         this.mHomeFragmentList = homeFragmentList;
     }

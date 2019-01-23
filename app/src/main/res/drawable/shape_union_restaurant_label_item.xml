@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke
+        android:width="0.5dp"
+        android:color="@color/home_union_restaurant_label_color" />
+    <corners android:radius="4dp" />
+    <padding
+        android:bottom="2dp"
+        android:left="6dp"
+        android:right="6dp"
+        android:top="2dp" />
+
+
+</shape>

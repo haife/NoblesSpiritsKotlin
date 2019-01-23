@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.haife.app.nobles.spirits.kotlin.R;
+import com.haife.app.nobles.spirits.kotlin.app.base.BaseSupportFragment;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.UnionRestaurantBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity;
@@ -15,7 +16,6 @@ import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommendAdapter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HUnionRestaurantAdapter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HRecommendFragment;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HUnionRestaurantFragment;
-import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.scope.FragmentScope;
 
 import java.util.ArrayList;
@@ -58,7 +58,12 @@ public class HomeModule {
     @FragmentScope
     @Provides
     RecyclerView.LayoutManager provideLayoutManager() {
-        return new LinearLayoutManager(view.getFragment().getContext());
+        return new LinearLayoutManager(view.getFragment().getContext()) {
+            @Override
+            protected int getExtraLayoutSpace(RecyclerView.State state) {
+                return 500;
+            }
+        };
     }
 
     @FragmentScope
@@ -70,8 +75,8 @@ public class HomeModule {
 
     @FragmentScope
     @Provides
-    List<BaseFragment> provideHomeFragmentList() {
-        List<BaseFragment> fragmentList = new ArrayList<>();
+    List<BaseSupportFragment> provideHomeFragmentList() {
+        List<BaseSupportFragment> fragmentList = new ArrayList<>();
         fragmentList.add(HRecommendFragment.Companion.newInstance());
         fragmentList.add(HUnionRestaurantFragment.Companion.newInstance());
         return fragmentList;
@@ -114,7 +119,7 @@ public class HomeModule {
     @FragmentScope
     @Provides
     HUnionRestaurantAdapter provideUnionRestaurantAdapter(List<UnionRestaurantBean> dataList) {
-        return new HUnionRestaurantAdapter(R.layout.recycle_item_union_restaurant,dataList, view.getFragment().getContext());
+        return new HUnionRestaurantAdapter(R.layout.recycle_item_union_restaurant, dataList, view.getFragment().getContext());
     }
 
 

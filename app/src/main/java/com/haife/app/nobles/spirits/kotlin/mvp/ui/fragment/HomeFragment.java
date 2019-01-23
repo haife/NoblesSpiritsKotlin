@@ -19,7 +19,6 @@ import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HomeViewPagerAdapter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.ScaleTransitionPagerTitleView;
-import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
@@ -58,7 +57,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     @BindView(R.id.ll_home_net_work_error)
     LinearLayout mNetWorkErrorLL;
     @Inject
-    List<BaseFragment> mHomeFragmentList;
+    List<BaseSupportFragment> mHomeFragmentList;
 
     private final String simpleName = getClass().getSimpleName();
 
@@ -114,13 +113,6 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     @Override
     public void killMyself() {
 
-    }
-
-    /**
-     * @param runnable
-     */
-    @Override
-    public void post(Runnable runnable) {
     }
 
     @Override
@@ -179,6 +171,12 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+    }
+
+
+    @Override
+    public void post(Runnable runnable) {
 
     }
 }

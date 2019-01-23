@@ -184,7 +184,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
                         if (response.getData().isSuccess()) {
                             mRestaurantUnionBean = response.getData().getResult();
                             mUnionRestaurantList.addAll(mRestaurantUnionBean.getArr_search_shop_data());
-                           // mUnionRestaurantAdapter.notifyDataSetChanged();
+                            mUnionRestaurantAdapter.notifyDataSetChanged();
                         } else {
 
                         }

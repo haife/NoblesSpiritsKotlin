@@ -11,6 +11,7 @@
     <color name="ripple_status_color">#DE000000</color>
     <color name="magic_indicator_text_color">#FFB87C51</color>
     <color name="common_text_color">#333333</color>
+    <color name="common_text_color_tint">#888888</color>
     <color name="home_recommend_indicator_select_color">#666666</color>
     <color name="home_recommend_line_split_color">#707070</color>
     <color name="home_recommend_subtitle_color">#898989</color>
@@ -21,7 +22,9 @@
     <color name="home_week_special_product_name_en_color">#373737</color>
     <color name="home_new_restaurant_average_price_color">#C19477</color>
     <color name="home_new_restaurant_content_color">#828282</color>
+    <color name="home_union_restaurant_label_color">#C09A7F</color>
 
     <!--DivideColor-->
     <color name="home_recycle_view_divide_color">#FFF0F0F0</color>
+    <color name="new_enter_restaurant_color">#FFF09428</color>
 </resources>

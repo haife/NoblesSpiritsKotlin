@@ -2,11 +2,13 @@ package com.haife.app.nobles.spirits.kotlin.mvp.ui.widget
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.haife.app.nobles.spirits.kotlin.R
 
 
 /**
@@ -15,31 +17,33 @@ import android.widget.TextView
  * @since 2019/1/22
  * 联盟餐厅标签layout
  */
-class LineBreakLayout(context: Context, attr: AttributeSet, defStyleAttr: Int) : ViewGroup(context, attr, defStyleAttr) {
+class LineBreakLayout(context: Context, attr: AttributeSet) : ViewGroup(context, attr) {
 
     //自定义属性
     private var horizontalSpace: Int = 10
     private var verticalSpace: Int = 10
-    private val tableList: ArrayList<String> = ArrayList()
+    private var tableList: List<String> = ArrayList()
+    private val typeFaceTint = Typeface.createFromAsset(context.assets, "PingFangSC-Light-Face-Medium-Tint.ttf")
 
     init {
-        val ta: TypedArray = context.obtainStyledAttributes(attr, com.haife.app.nobles.spirits.kotlin.R.styleable.LineBreakLayout)
-        horizontalSpace = ta.getDimensionPixelSize(com.haife.app.nobles.spirits.kotlin.R.styleable.LineBreakLayout_HorizontalSpace, horizontalSpace)
-        verticalSpace = ta.getDimensionPixelSize(com.haife.app.nobles.spirits.kotlin.R.styleable.LineBreakLayout_rowSpace, verticalSpace)
+        val ta: TypedArray = context.obtainStyledAttributes(attr, R.styleable.LineBreakLayout)
+        horizontalSpace = ta.getDimensionPixelSize(R.styleable.LineBreakLayout_HorizontalSpace, horizontalSpace)
+        verticalSpace = ta.getDimensionPixelSize(R.styleable.LineBreakLayout_VerticalSpace, verticalSpace)
         ta.recycle()
     }
+
 
     /**el
      * 设置标签
      * @param labels List<String>
      */
     fun setLabels(labels: List<String>) {
-        this.tableList.addAll(labels)
-
+        this.tableList = labels
         if (labels.isNotEmpty()) {
             for (element: String in tableList) {
                 val tv: TextView = LayoutInflater.from(context).inflate(com.haife.app.nobles.spirits.kotlin.R.layout.item_union_restaurant_label, null) as TextView
                 tv.text = element
+                tv.typeface = typeFaceTint
                 addView(tv)
             }
 

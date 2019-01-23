@@ -108,6 +108,10 @@ public abstract class BaseSupportFragment<P extends IPresenter> extends BaseFrag
         mDelegate.setUserVisibleHint(isVisibleToUser);
     }
 
+
+
+
+
     /**
      * If you want to call the start()/pop()/showHideFragment() on the onCreateXX/onActivityCreated,
      * call this method to deliver the transaction to the queue.

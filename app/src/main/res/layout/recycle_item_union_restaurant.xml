@@ -1,8 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingLeft="@dimen/dp_16"
+    android:paddingTop="@dimen/dp_16"
+    android:paddingRight="@dimen/dp_10"
+    android:paddingBottom="@dimen/dp_16">
+
+    <ImageView
+        android:id="@+id/iv_recycle_item_union_bg"
+        android:layout_width="@dimen/dp_140"
+        android:layout_height="@dimen/dp_90"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_new_enter_shape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_6"
+        android:background="@color/new_enter_restaurant_color"
+        android:padding="@dimen/dp_3"
+        android:text="@string/new_union_restaurant_enter_desc"
+        android:textColor="@color/write"
+        android:textSize="@dimen/sp_12"
+        android:visibility="gone"
+        app:layout_constraintRight_toRightOf="@+id/iv_recycle_item_union_bg"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
+    <TextView
+        android:id="@+id/tv_recycle_item_union_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintLeft_toRightOf="@+id/iv_recycle_item_union_bg"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_recycle_item_union_bg" />
+
+    <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.LineBreakLayout
+        android:id="@+id/ll_recycle_item_union_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_6"
+        app:HorizontalSpace="@dimen/dp_10"
+        app:VerticalSpace="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_recycle_item_union_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_recycle_item_union_name" />
+
+    <TextView
+        android:id="@+id/tv_recycle_item_union_average_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_4"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_11"
+        app:layout_constraintBottom_toTopOf="@+id/tv_recycle_item_union_desc"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_recycle_item_union_name"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_recycle_item_union_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_11"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_recycle_item_union_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_recycle_item_union_name"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

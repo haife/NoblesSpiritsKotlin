@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -13,11 +15,11 @@ import com.haife.app.nobles.spirits.kotlin.app.base.BaseSupportFragment
 import com.haife.app.nobles.spirits.kotlin.di.component.DaggerHomeComponent
 import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.UnionRestaurantBean
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.UnionRestaurantRequest
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HUnionRestaurantAdapter
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.RecycleViewDivide
 import com.jess.arms.di.component.AppComponent
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.fragment_home_union_restaurant.*
@@ -32,14 +34,15 @@ import javax.inject.Named
  * TODO: 联盟餐厅
  */
 class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
+
+
     @Inject
     lateinit var layoutManager: RecyclerView.LayoutManager
     @Inject
     lateinit var mRestaurantUnionResponse: RestaurantUnionBean
     @Inject
     lateinit var mUnionRestaurantAdapter: HUnionRestaurantAdapter
-    @Inject
-    lateinit var mUnionRestaurantList: MutableList<UnionRestaurantBean>
+
     //联盟餐厅头布局
     @Inject
     @JvmField
@@ -73,10 +76,12 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
 
     override fun initData(savedInstanceState: Bundle?) {
         mPresenter?.getHomeUnionRestaurant(requestBody)
+        rv_home_union_restaurant.addItemDecoration(RecycleViewDivide(context!!, drawableId = null, divideHeight = 20))
         rv_home_union_restaurant.layoutManager = layoutManager
-        rv_home_union_restaurant.adapter = mUnionRestaurantAdapter
-        mUnionRestaurantAdapter.addHeaderView(unionRestaurantFilterView)
+        mUnionRestaurantAdapter.setOnItemClickListener { adapter, view, position ->
+        }
     }
+
 
     override fun showLoading() {
     }
@@ -89,6 +94,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     }
 
     override fun hideLoading() {
+
     }
 
     override fun killMyself() {
@@ -107,5 +113,16 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
 
     }
 
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if (isVisibleToUser) {
+            if (mUnionRestaurantAdapter != null) {
+                rv_home_union_restaurant.adapter = mUnionRestaurantAdapter
+            }
+            rv_home_union_restaurant?.visibility = VISIBLE
+        } else {
+            rv_home_union_restaurant?.visibility = GONE
+        }
 
+    }
 }

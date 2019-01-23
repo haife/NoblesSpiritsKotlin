@@ -4,11 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.haife.app.nobles.spirits.kotlin.R
+import com.haife.app.nobles.spirits.kotlin.app.base.BaseSupportFragment
 import com.haife.app.nobles.spirits.kotlin.di.component.DaggerHomeComponent
 import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract
@@ -16,7 +19,6 @@ import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommendAdapter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.RecycleViewDivide
 import com.irozon.sneaker.Sneaker
-import com.jess.arms.base.BaseFragment
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.utils.ArmsUtils
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -24,13 +26,15 @@ import kotlinx.android.synthetic.main.fragment_home_recommend.*
 import javax.inject.Inject
 
 
-class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
+class HRecommendFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
+
 
     private val simpleName = javaClass.simpleName
     @Inject
     lateinit var mRecommendAdapter: HRecommendAdapter
     @Inject
     lateinit var layoutManager: RecyclerView.LayoutManager
+
     companion object {
         fun newInstance(): HRecommendFragment {
             return HRecommendFragment()
@@ -103,5 +107,18 @@ class HRecommendFragment : BaseFragment<HomePresenter>(), HomeContract.View {
         }
     }
 
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if (isVisibleToUser) {
+            rv_home_recommend?.visibility = VISIBLE
+        } else {
+            rv_home_recommend?.visibility = GONE
+        }
+
+    }
+
+    override fun post(runnable: Runnable?) {
+    }
 
 }

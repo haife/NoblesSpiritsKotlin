@@ -5,7 +5,7 @@ import android.graphics.Typeface
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -35,6 +35,8 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
     private var flashSaleAdapter: HRecommendChildAdapter? = null
     private var weeklySpecialAdapter: HRecommendChildAdapter? = null
     private var groupBuyAdapter: HRecommendChildAdapter? = null
+    //RecycleView线程池
+    private val shareRecycledViewPool: RecyclerView.RecycledViewPool = RecyclerView.RecycledViewPool()
 
     init {
         addItemType(HRecommendMultiItemEntity.BANNER_TYPE, R.layout.recycle_item_home_recommend_banner)
@@ -113,12 +115,21 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
      */
     private fun setItemAdapter(helper: BaseViewHolder, adapter: HRecommendChildAdapter?, itemType: Int) {
         val recommendRestaurantRv: RecyclerView = helper.getView(R.id.rv_recommend_parent_container)
-        recommendRestaurantRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        //TODO 横向嵌套RecyclerView滑动数据预加载 注意只适合横向嵌套
+        linearLayoutManager.initialPrefetchItemCount = 5
+        //TODO:Item的高度是固定的，设置这个选项可以提高性能.总得来说就是就是避免整个布局绘制。就是避免requestLayout.
+        recommendRestaurantRv.setHasFixedSize(true)
+        //TODO: 复用RecycledViewPool
+        recommendRestaurantRv.setRecycledViewPool(shareRecycledViewPool)
+
+        recommendRestaurantRv.layoutManager = linearLayoutManager
         recommendRestaurantRv.adapter = adapter
+
         recommendRestaurantRv.addItemDecoration(HorizontalSpacesItemDecoration(42))
         //横向滚动滑动定位
         when (itemType) {
-            HRecommendMultiItemEntity.TASTE_OF_LIFE -> LinearSnapHelper().attachToRecyclerView(recommendRestaurantRv)
+            HRecommendMultiItemEntity.TASTE_OF_LIFE -> PagerSnapHelper().attachToRecyclerView(recommendRestaurantRv)
             else -> FixLinearSnapHelper().attachToRecyclerView(recommendRestaurantRv)
         }
     }
@@ -130,6 +141,10 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
      */
     private fun setGroupFlashItemAdapter(helper: BaseViewHolder, adapter: HRecommendChildAdapter?) {
         var groupBuyRV = helper.getView<RecyclerView>(R.id.rv_group_buy_container)
+        //TODO:Item的高度是固定的，设置这个选项可以提高性能.总得来说就是就是避免整个布局绘制。就是避免requestLayout.
+        groupBuyRV.setHasFixedSize(true)
+        //TODO: 复用RecycledViewPool
+        groupBuyRV.setRecycledViewPool(shareRecycledViewPool)
         groupBuyRV.layoutManager = LinearLayoutManager(context)
         groupBuyRV.adapter = adapter
         groupBuyRV.addItemDecoration(RecycleViewDivide(mContext, divideColor = ContextCompat.getColor(mContext, R.color.write)))

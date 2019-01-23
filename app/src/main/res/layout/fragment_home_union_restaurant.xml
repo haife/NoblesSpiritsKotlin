@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".mvp.ui.fragment.HUnionRestaurantFragment">
 
     <com.scwang.smartrefresh.layout.header.FalsifyHeader

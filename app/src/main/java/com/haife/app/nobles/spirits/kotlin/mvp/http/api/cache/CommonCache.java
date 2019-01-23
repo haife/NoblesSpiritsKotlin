@@ -19,7 +19,7 @@ import io.rx_cache2.Reply;
  * TODO:展示 {@linkRxCache#using(Class)} 中需要传入的 Providers 的使用方式
  */
 public interface CommonCache {
-    @LifeCache(duration = 5, timeUnit = TimeUnit.MINUTES)
+    @LifeCache(duration = 3, timeUnit = TimeUnit.MINUTES)
     Observable<Reply<HomeRecommendData>> getHomeRecommendDataCache(Observable<HomeRecommendData> users, DynamicKey idLastUserQueried, EvictProvider evictProvider);
     @LifeCache(duration = 3, timeUnit = TimeUnit.MINUTES)
     Observable<Reply<RestaurantUnionBean>> getHomeUnionRestaurantCache(Observable<RestaurantUnionBean> users, DynamicKey idLastUserQueried, EvictProvider evictProvider);
