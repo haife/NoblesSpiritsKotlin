@@ -13,29 +13,10 @@ import com.jess.arms.utils.ArmsUtils
 
 
 /**
- * ================================================
- * Description:
- * <p>
- * Created by MVPArmsTemplate on 01/23/2019 16:04
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
- * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
- * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
- * ================================================
- */
-/**
- * 如果没presenter
- * 你可以这样写
- *
- * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
- * @Inject constructor() : IPresenter {
- * override fun onStart() {
- * }
- *
- * override fun onDestroy() {
- * }
- * }
+ * @author Eddie Android Developer
+ * @company Q | 樽尚汇
+ * @since 2019/1/24
+ * 商户详情
  */
 class RestaurantActivity : BaseActivity<RestaurantPresenter>(), RestaurantContract.View {
 

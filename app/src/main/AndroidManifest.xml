@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".mvp.ui.activity.RestaurantActivity"></activity>
 
         <meta-data
             android:name="com.haife.app.nobles.spirits.kotlin.app.impl.GlobalConfiguration"
@@ -30,9 +29,14 @@
         <activity
             android:name=".mvp.ui.activity.MainActivity"
             android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".mvp.ui.activity.RestaurantActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

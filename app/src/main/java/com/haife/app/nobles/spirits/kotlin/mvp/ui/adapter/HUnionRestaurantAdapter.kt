@@ -9,7 +9,7 @@ import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.app.base.BaseQuickRecycleAdapter
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.UnionRestaurantBean
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.getLabels
-import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.LineBreakLayout
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.restaurant.LineBreakLayout
 
 /**
  * @author Eddie Android Developer
@@ -19,9 +19,6 @@ import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.LineBreakLayout
  */
 class HUnionRestaurantAdapter(layoutResId: Int, data: List<UnionRestaurantBean>, context: Context) : BaseQuickRecycleAdapter<UnionRestaurantBean>(layoutResId, data, context) {
 
-    companion object {
-        const val RECYCLE_VIEW_TAG: String = "recycle_view_tag"
-    }
 
     override fun convert(helper: BaseViewHolder, item: UnionRestaurantBean) {
         loadImage(helper.getView(R.id.iv_recycle_item_union_bg), R.drawable.ic_flash_sale_product_place_holder, item.string_pic_logo)
@@ -39,7 +36,6 @@ class HUnionRestaurantAdapter(layoutResId: Int, data: List<UnionRestaurantBean>,
         }
         if (item.arr_category.isNotEmpty()) {
             labelLL.setLabels(item.arr_category.getLabels())
-            labelLL.tag = RECYCLE_VIEW_TAG
         }
     }
 

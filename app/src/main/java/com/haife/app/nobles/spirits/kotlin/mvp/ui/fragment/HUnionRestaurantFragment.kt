@@ -77,6 +77,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     override fun initData(savedInstanceState: Bundle?) {
         mPresenter?.getHomeUnionRestaurant(requestBody)
         rv_home_union_restaurant.addItemDecoration(RecycleViewDivide(context!!, drawableId = null, divideHeight = 20))
+        rv_home_union_restaurant.hasFixedSize()
         rv_home_union_restaurant.layoutManager = layoutManager
         mUnionRestaurantAdapter.setOnItemClickListener { adapter, view, position ->
         }
@@ -116,9 +117,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         if (isVisibleToUser) {
-            if (mUnionRestaurantAdapter != null) {
-                rv_home_union_restaurant.adapter = mUnionRestaurantAdapter
-            }
+            rv_home_union_restaurant.adapter = mUnionRestaurantAdapter
             rv_home_union_restaurant?.visibility = VISIBLE
         } else {
             rv_home_union_restaurant?.visibility = GONE

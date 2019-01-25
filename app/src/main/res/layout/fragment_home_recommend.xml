@@ -11,7 +11,7 @@
     tools:context=".mvp.ui.fragment.HRecommendFragment">
 
 
-    <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.CommonRefreshHeader
+    <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.common.CommonRefreshHeader
         android:id="@+id/smart_refresh_home_recommend_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

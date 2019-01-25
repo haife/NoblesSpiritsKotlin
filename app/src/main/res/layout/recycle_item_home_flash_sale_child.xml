@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_flash_sale_child_product_original_price" />
 
 
-    <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.FlashSaleTimerView
+    <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.time.FlashSaleTimerView
         android:id="@+id/tv_flash_sale_count_down_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

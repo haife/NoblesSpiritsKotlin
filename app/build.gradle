@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 kapt {
     generateStubs = true
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
 }
 android {
     compileSdkVersion 28
@@ -53,6 +56,7 @@ dependencies {
     implementation rootProject.ext.dependencies["material"]
     implementation rootProject.ext.dependencies["gson"]
     implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["recyclerview"]
     /*view*/
     implementation rootProject.ext.dependencies["autolayout"]
     implementation rootProject.ext.dependencies["constraint-layout"]
@@ -72,6 +76,9 @@ dependencies {
     implementation rootProject.ext.dependencies["glide"]
     kapt rootProject.ext.dependencies["glide-compiler"]
     implementation rootProject.ext.dependencies["autosize"]
+    /*ARouter*/
+    implementation rootProject.ext.dependencies["arouter"]
+    kapt rootProject.ext.dependencies["arouter-compiler"]
     //Butterknife 插件,很多人因为没加这个而报错,切记!!!
     implementation rootProject.ext.dependencies["butterknife"]
     kapt rootProject.ext.dependencies["butterknife-compiler"]
@@ -82,5 +89,5 @@ dependencies {
     debugImplementation rootProject.ext.dependencies["canary-debug"]
     releaseImplementation rootProject.ext.dependencies["canary-release"]
     testImplementation rootProject.ext.dependencies["canary-release"]
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
 }

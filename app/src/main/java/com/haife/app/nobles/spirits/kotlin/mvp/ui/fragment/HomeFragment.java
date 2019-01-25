@@ -18,7 +18,7 @@ import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HomeViewPagerAdapter;
-import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.ScaleTransitionPagerTitleView;
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.indicator.ScaleTransitionPagerTitleView;
 import com.jess.arms.di.component.AppComponent;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 

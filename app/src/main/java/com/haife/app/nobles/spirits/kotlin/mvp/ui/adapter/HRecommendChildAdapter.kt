@@ -15,7 +15,7 @@ import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.utlis.DiskCacheStrategyType
-import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.FlashSaleTimerView
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.time.FlashSaleTimerView
 import com.jess.arms.http.imageloader.ImageLoader
 import com.jess.arms.http.imageloader.glide.ImageConfigImpl
 import com.jess.arms.utils.ArmsUtils
@@ -313,7 +313,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     }
 
     /**
-     *
+     * 品味生活
      * @constructor
      */
     inner class EnjoyLifeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
