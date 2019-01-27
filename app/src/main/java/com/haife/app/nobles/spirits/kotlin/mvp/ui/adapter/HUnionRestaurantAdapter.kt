@@ -19,7 +19,6 @@ import com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.restaurant.LineBreakLay
  */
 class HUnionRestaurantAdapter(layoutResId: Int, data: List<UnionRestaurantBean>, context: Context) : BaseQuickRecycleAdapter<UnionRestaurantBean>(layoutResId, data, context) {
 
-
     override fun convert(helper: BaseViewHolder, item: UnionRestaurantBean) {
         loadImage(helper.getView(R.id.iv_recycle_item_union_bg), R.drawable.ic_flash_sale_product_place_holder, item.string_pic_logo)
         helper.getView<TextView>(R.id.tv_recycle_item_union_average_price).typeface = typeFaceTint
