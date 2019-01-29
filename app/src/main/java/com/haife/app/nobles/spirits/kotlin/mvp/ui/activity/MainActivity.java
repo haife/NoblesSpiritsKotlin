@@ -149,4 +149,10 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     public void post(Runnable runnable) {
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.mRxPermissions = null;
+    }
 }

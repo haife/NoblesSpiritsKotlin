@@ -121,4 +121,8 @@ class HRecommendFragment : BaseSupportFragment<HomePresenter>(), HomeContract.Vi
     override fun post(runnable: Runnable?) {
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 }

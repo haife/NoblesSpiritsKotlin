@@ -4,7 +4,6 @@ package com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +26,6 @@ import com.zaaach.citypicker.CityPicker;
 import com.zaaach.citypicker.adapter.OnPickListener;
 import com.zaaach.citypicker.model.City;
 import com.zaaach.citypicker.model.HotCity;
-import com.zaaach.citypicker.model.LocateState;
 import com.zaaach.citypicker.model.LocatedCity;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -51,8 +49,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static com.haife.app.nobles.spirits.kotlin.app.constant.TimeConstantKt.LOCATE_COMPLETE_MILLIS;
 
 /**
  * @author haife
@@ -124,6 +120,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
         CityPicker.from(this)
                 .enableAnimation(true)
                 .setHotCities(hotCities)
+                .setLocatedCity(new LocatedCity("上海", "上海", "101020100"))
                 .setLocatedCity(null).setOnPickListener(new OnPickListener() {
             @Override
             public void onPick(int position, City data) {
@@ -135,9 +132,10 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
             @Override
             public void onLocate() {
-                new Handler().postDelayed(() -> {
-                    CityPicker.from(HomeFragment.this).locateComplete(new LocatedCity("深圳", "广东", "101280601"), LocateState.SUCCESS);
-                }, LOCATE_COMPLETE_MILLIS);
+               /* new Handler().postDelayed(() ->
+                        CityPicker.from(HomeFragment.this).locateComplete(
+                                new LocatedCity("深圳", "广东", "101280601"),
+                                LocateState.SUCCESS), LOCATE_COMPLETE_MILLIS);*/
             }
         }).show();
     }

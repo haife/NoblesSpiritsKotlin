@@ -32,24 +32,22 @@ public class AppLifecyclesImpl implements AppLifecycles {
 
     @Override
     public void onCreate(Application application) {
-
         initTimber();
         initTextFaceType(application);
         initLeakCanary(application);
-
-        AutoSizeConfig.getInstance().getUnitsManager()
-                .setSupportDP(true)
-                .setSupportSubunits(Subunits.PT);
-        //ARouterSDK初始化
+        //AutoSize
+        AutoSizeConfig.getInstance().getUnitsManager().setSupportDP(true).setSupportSubunits(Subunits.PT);
+        /*-----ARouterSDK初始化Start-----*/
         if (isDebug()) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
             ARouter.openLog();     // 打印日志
             ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
         ARouter.init(application); // 尽可能早，推荐在Application中初始化
+        /*---------ARouterSDK初始化End-----------*/
 
         Fragmentation.builder()
                 // 设置 栈视图 模式为 悬浮球模式   SHAKE: 摇一摇唤出   NONE：隐藏
-                .stackViewMode(Fragmentation.BUBBLE)
+                .stackViewMode(Fragmentation.SHAKE)
                 .debug(BuildConfig.DEBUG)
                 // 在遇到After onSaveInstanceState时，不会抛出异常，会回调到下面的ExceptionHandler
                 .handleException(e -> {
@@ -64,7 +62,9 @@ public class AppLifecyclesImpl implements AppLifecycles {
 
 
     private void initLeakCanary(Application application) {
-        //leakCanary内存泄露检查
+        //LeakCanary 内存泄露检查
+        //使用 IntelligentCache.KEY_KEEP 作为 key 的前缀, 可以使储存的数据永久存储在内存中
+        //否则存储在 LRU 算法的存储空间中, 前提是 extras 使用的是 IntelligentCache (框架默认使用)
         mRefWatcher = BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED;
         ArmsUtils.obtainAppComponentFromContext(application).extras().put(RefWatcher.class.getName(), mRefWatcher);
     }

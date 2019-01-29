@@ -70,11 +70,13 @@ public class FragmentLifecycleCallbacksImpl extends FragmentManager.FragmentLife
     @Override
     public void onFragmentDestroyed(FragmentManager fm, Fragment f) {
         Timber.i(f.toString() + " - onFragmentDestroyed");
-        ((RefWatcher) ArmsUtils
+        RefWatcher refWatcher = ((RefWatcher) ArmsUtils
                 .obtainAppComponentFromContext(f.getActivity())
                 .extras()
-                .get(IntelligentCache.getKeyOfKeep(RefWatcher.class.getName())))
-                .watch(f);
+                .get(IntelligentCache.getKeyOfKeep(RefWatcher.class.getName())));
+        if (refWatcher != null) {
+            refWatcher.watch(f);
+        }
 
     }
 

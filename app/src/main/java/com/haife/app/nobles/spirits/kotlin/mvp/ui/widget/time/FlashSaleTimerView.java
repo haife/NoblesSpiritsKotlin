@@ -1,8 +1,6 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.time;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +10,7 @@ import android.widget.TextView;
 import com.haife.app.nobles.spirits.kotlin.R;
 import com.haife.app.nobles.spirits.kotlin.mvp.inter.FlashSaleCountDownEndListener;
 
+import java.lang.ref.WeakReference;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -41,14 +40,14 @@ public class FlashSaleTimerView extends LinearLayout {
     private int sec_unit;
     private Timer timer;
     private FlashSaleCountDownEndListener mCountDownEndListener;
-    private Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            countDown();
-        }
-    };
+
+    private WeakReference<Context> mWeakReference;
+
 
     public FlashSaleTimerView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.mWeakReference = new WeakReference<>(context);
+
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.flash_sale_time_count_down, this);
         tv_day_decade = view.findViewById(R.id.tv_day_decade);
@@ -68,7 +67,7 @@ public class FlashSaleTimerView extends LinearLayout {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    handler.sendEmptyMessage(0);
+                    //handler.sendEmptyMessage(0);
                 }
             }, 0, 1000);
         }
@@ -86,8 +85,9 @@ public class FlashSaleTimerView extends LinearLayout {
         }
         if (mCountDownEndListener != null) {
             mCountDownEndListener.onCountTimeEnd();
-
         }
+
+        //   handler.removeCallbacksAndMessages(null);
 
     }
 
@@ -174,9 +174,9 @@ public class FlashSaleTimerView extends LinearLayout {
     }
 
 
-
     /**
      * 将时间搓传化
+     *
      * @param mss
      * @return
      */

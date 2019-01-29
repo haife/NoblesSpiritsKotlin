@@ -70,7 +70,6 @@ dependencies {
     implementation rootProject.ext.dependencies["citypicker"]
 
     //tool lib
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     kapt rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["fragmentation"]
     implementation rootProject.ext.dependencies["fragmentation-code"]

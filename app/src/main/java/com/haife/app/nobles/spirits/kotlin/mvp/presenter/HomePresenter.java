@@ -207,6 +207,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
         this.netErrorView = null;
         this.mUnionRestaurantAdapter = null;
         this.mUnionRestaurantList = null;
+        this.mRestaurantUnionBean = null;
     }
 
 }
