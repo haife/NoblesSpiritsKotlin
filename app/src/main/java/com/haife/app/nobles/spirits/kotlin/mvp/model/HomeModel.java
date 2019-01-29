@@ -8,7 +8,7 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.api.cache.CommonCache;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.api.service.AppService;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseRequest;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.UnionRestaurantRequest;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.CityIdRequest;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.jess.arms.di.scope.FragmentScope;
@@ -38,7 +38,7 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
     Application mApplication;
     public final String homeDynamicKey = "HomeData";
     public final String unionRestaurant = "unionRestaurant";
-    private BaseRequest<UnionRestaurantRequest> request = new BaseRequest<>();
+    private BaseRequest<CityIdRequest> request = new BaseRequest<>();
 
     @Inject
     public HomeModel(IRepositoryManager repositoryManager) {
@@ -52,7 +52,7 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
      * @return
      */
     @Override
-    public Observable<RestaurantUnionBean> getUnionRestaurant(UnionRestaurantRequest bean) {
+    public Observable<RestaurantUnionBean> getUnionRestaurant(CityIdRequest bean) {
         request.setParam(bean);
         return Observable.just(mRepositoryManager.obtainRetrofitService(AppService.class).getHomeUnionRestaurant(getRequestBody(mGson.toJson(request))))
                 .flatMap((Function<Observable<RestaurantUnionBean>, ObservableSource<RestaurantUnionBean>>) restaurantUnionBeanObservable -> mRepositoryManager.obtainCacheService(CommonCache.class)

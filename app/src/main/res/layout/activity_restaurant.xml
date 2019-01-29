@@ -7,9 +7,11 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-
-
-
+    <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.restaurant.MerchantContentLayout
+        android:id="@+id/restaurant_content_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/BaseRecycleViewStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/write">
 
-    <com.youth.banner.Banner
-        android:id="@+id/banner_merchant_content_layout"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_250"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </com.youth.banner.Banner>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.youth.banner.Banner
+            android:id="@+id/banner_merchant_content_content_layout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_170"
+            android:background="@drawable/ic_home_banner_place_holder"
+            app:image_scale_type="center_crop"
+            app:indicator_drawable_selected="@drawable/shape_home_banner_indicator_selector"
+            app:indicator_drawable_unselected="@drawable/shape_home_banner_indicator_normal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_merchant_content_content_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="莫尔顿海鲜牛排坊"
+            android:textColor="@color/common_text_color"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/banner_merchant_content_content_layout" />
+
+        <TextView
+            android:id="@+id/tv_merchant_content_average_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="@string/merchant_average_price"
+            android:textColor="@color/common_text_color"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_merchant_content_content_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_merchant_content_content_name" />
+
+        <TextView
+            android:id="@+id/tv_merchant_content_reserve_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="@string/merchant_reserve_number_of_people"
+            android:textColor="@color/common_text_color_tint"
+            android:textSize="@dimen/sp_11"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_merchant_content_average_price"
+            app:layout_constraintLeft_toRightOf="@+id/tv_merchant_content_average_price" />
+
+
+        <com.andexert.library.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_merchant_content_content_name"
+            app:layout_constraintCircleRadius="@dimen/dp_4"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <Button
+                android:id="@+id/btn_merchant_content_"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/merchant_reserve_button_width"
+                android:layout_height="@dimen/merchant_reserve_button_height"
+                android:layout_marginRight="@dimen/dp_20"
+                android:background="@drawable/shape_merchant_reserve_button"
+                android:drawableLeft="@drawable/ic_merchant_reserve_button"
+                android:paddingLeft="@dimen/dp_10"
+                android:text="@string/merchant_reserve_desc"
+                android:textColor="@color/write"
+                android:textSize="@dimen/sp_14" />
+
+        </com.andexert.library.RippleView>
+
+
+        <TextView
+            android:id="@+id/tv_merchant_content_reserve_award_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_20"
+            android:text="@string/merchant_reserve_award_points"
+            android:textColor="@color/app_primary_color"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_merchant_content_average_price"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+        <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.restaurant.LineBreakLayout
+            android:id="@+id/ll_merchant_content_detail_label_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_18"
+            android:paddingLeft="@dimen/dp_20"
+            android:paddingRight="@dimen/dp_20"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_merchant_content_average_price" />
+
+        <com.borjabravo.readmoretextview.ReadMoreTextView
+            android:id="@+id/tv_merchant_content_introduce_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_14"
+            android:lineSpacingExtra="@dimen/dp_4"
+            android:paddingLeft="@dimen/dp_20"
+            android:paddingRight="@dimen/dp_20"
+            android:textColor="@color/common_text_color"
+            app:colorClickableText="@color/app_primary_color"
+            app:layout_constraintTop_toBottomOf="@+id/ll_merchant_content_detail_label_container"
+            app:showTrimExpandedText="true"
+            app:trimCollapsedText="@string/merchant_introduce_trim_collapsed"
+            app:trimExpandedText="@string/merchant_introduce_trim_expend"
+            app:trimLength="@integer/merchant_introduce_trim_length"
+            app:trimMode="trimModeLength" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_merchant_content_information"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_16"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_merchant_content_introduce_desc"></androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

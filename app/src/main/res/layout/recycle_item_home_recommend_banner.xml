@@ -12,7 +12,7 @@
         android:background="@drawable/ic_home_banner_place_holder"
         app:image_scale_type="center_crop"
         app:indicator_drawable_selected="@drawable/shape_home_banner_indicator_selector"
-        app:indicator_drawable_unselected="@drawable/shape_home_banner_indicator_nomal"
+        app:indicator_drawable_unselected="@drawable/shape_home_banner_indicator_normal"
         app:indicator_height="8dp"
         app:indicator_margin="5dp"
         app:indicator_width="8dp"/>

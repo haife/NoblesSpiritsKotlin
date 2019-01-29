@@ -8,7 +8,7 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.BaseResponse;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.UnionRestaurantBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.multi.HRecommendMultiItemEntity;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.UnionRestaurantRequest;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.CityIdRequest;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HRecommendAdapter;
@@ -173,7 +173,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
      *
      * @param request
      */
-    public void getHomeUnionRestaurant(UnionRestaurantRequest request) {
+    public void getHomeUnionRestaurant(CityIdRequest request) {
         mModel.getUnionRestaurant(request).compose(RxLifecycleUtils.bindToLifecycle(mRootView))
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

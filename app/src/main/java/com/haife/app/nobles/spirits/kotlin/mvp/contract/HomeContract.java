@@ -2,7 +2,7 @@ package com.haife.app.nobles.spirits.kotlin.mvp.contract;
 
 
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Token;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.UnionRestaurantRequest;
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.CityIdRequest;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.HomeRecommendData;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean;
 import com.jess.arms.mvp.IModel;
@@ -31,7 +31,7 @@ public interface HomeContract {
     }
 
     interface Model extends IModel {
-        Observable<RestaurantUnionBean> getUnionRestaurant(UnionRestaurantRequest request);
+        Observable<RestaurantUnionBean> getUnionRestaurant(CityIdRequest request);
         Observable<HomeRecommendData> getHomeRecommendData(Token mainBean, boolean isEvictCache);
     }
 }

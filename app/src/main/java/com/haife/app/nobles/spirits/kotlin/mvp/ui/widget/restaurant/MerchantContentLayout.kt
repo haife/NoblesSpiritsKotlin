@@ -15,6 +15,8 @@ import com.haife.app.nobles.spirits.kotlin.R
 class MerchantContentLayout(context: Context, attrs: AttributeSet) : ConstraintLayout(context, attrs) {
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.merchanet_content_layout,null)
+        LayoutInflater.from(context).inflate(R.layout.merchanet_content_layout, this)
     }
+
+
 }

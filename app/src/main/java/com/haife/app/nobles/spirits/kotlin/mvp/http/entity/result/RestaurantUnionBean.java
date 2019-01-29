@@ -56,4 +56,7 @@ public class RestaurantUnionBean extends Data<RestaurantUnionBean> {
     public void setArr_search_shop_data(List<UnionRestaurantBean> arr_search_shop_data) {
         this.arr_search_shop_data = arr_search_shop_data;
     }
+
+
+
 }

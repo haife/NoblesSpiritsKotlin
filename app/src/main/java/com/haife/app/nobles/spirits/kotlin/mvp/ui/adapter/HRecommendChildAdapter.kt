@@ -131,7 +131,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     private fun bindNewRestaurantViewHolder(holder: HRecommendChildAdapter.RecommendNewRestaurantViewHolder, position: Int) {
         val newRestaurantEntity: HomeRecommendData.ArrModuleDataBean.ArrDataBean = list.arr_data[position]
         holder.restaurantNameTv.text = newRestaurantEntity.string_title
-        holder.restaurantPriceTv.text = context.getString(R.string.average_price, newRestaurantEntity.float_spend)
+        holder.restaurantPriceTv.text = context.getString(R.string.average_price_desc, newRestaurantEntity.float_spend)
         holder.restaurantContentTv.text = newRestaurantEntity.string_slogn
         loadImage(holder.restaurantRIV, R.drawable.ic_home_banner_place_holder, newRestaurantEntity.string_pic_url, isRadius = true)
     }
@@ -145,9 +145,9 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
         val flashSaleItemEntity: HomeRecommendData.ArrModuleDataBean.ArrDataBean = list.arr_data[position]
         loadImage(holder.productIv, R.drawable.ic_flash_sale_product_place_holder, flashSaleItemEntity.string_pic_url)
         holder.productName.text = flashSaleItemEntity.string_title
-        holder.numberPeopleTv.text = context.getString(R.string.flash_sale_product_number, flashSaleItemEntity.int_surplus)
-        holder.priceTv.text = context.getString(R.string.product_price, flashSaleItemEntity.float_price)
-        holder.originalPriceTv.text = context.getString(R.string.product_price, flashSaleItemEntity.float_origin_price)
+        holder.numberPeopleTv.text = context.getString(R.string.flash_sale_product_number_desc, flashSaleItemEntity.int_surplus)
+        holder.priceTv.text = context.getString(R.string.average_price_desc, flashSaleItemEntity.float_price)
+        holder.originalPriceTv.text = context.getString(R.string.product_price_desc, flashSaleItemEntity.float_origin_price)
         holder.secKillBtn.text = flashSaleItemEntity.string_btn_text
         holder.countDownTimerTv.formatTimerDuring(flashSaleItemEntity.int_surplus_time.toLong(), holder.countDownTimerTv)
         holder.countDownTimerTv.setCountDownEndListener {
@@ -167,7 +167,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
         loadImage(holder.productIv, R.drawable.ic_flash_sale_product_place_holder, weeklySpecialsEntity.string_cover_url, isRadius = true)
         holder.productNameTv.text = weeklySpecialsEntity.string_title
         holder.productEnNameTv.text = weeklySpecialsEntity.string_title_en
-        holder.productPriceTv.text = context.getString(R.string.product_price, weeklySpecialsEntity.float_price)
+        holder.productPriceTv.text = context.getString(R.string.product_price_desc, weeklySpecialsEntity.float_price)
 
     }
 
@@ -181,8 +181,8 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
         loadImage(holder.productIv, R.drawable.ic_flash_sale_product_place_holder, groupBuyItemEntity.string_pic_url)
         holder.productName.text = groupBuyItemEntity.string_title
         holder.numberPeopleTv.text = context.getString(R.string.group_buy_people_number, groupBuyItemEntity.int_surplus)
-        holder.priceTv.text = context.getString(R.string.product_price, groupBuyItemEntity.int_group_price)
-        holder.originalPriceTv.text = context.getString(R.string.product_price, groupBuyItemEntity.int_origin_price)
+        holder.priceTv.text = context.getString(R.string.product_price_desc, groupBuyItemEntity.int_group_price)
+        holder.originalPriceTv.text = context.getString(R.string.product_price_desc, groupBuyItemEntity.int_origin_price)
         holder.groupBuyBtn.text = context.getString(R.string.go_to_group_buy)
         holder.countDownTimerTv.formatTimerDuring(groupBuyItemEntity.int_surplus_time.toLong(), holder.countDownTimerTv)
         holder.countDownTimerTv.setCountDownEndListener {

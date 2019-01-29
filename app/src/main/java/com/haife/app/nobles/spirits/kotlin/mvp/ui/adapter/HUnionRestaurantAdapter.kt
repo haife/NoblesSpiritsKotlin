@@ -28,7 +28,7 @@ class HUnionRestaurantAdapter(layoutResId: Int, data: List<UnionRestaurantBean>,
             false -> GONE
         }
         helper.setText(R.id.tv_recycle_item_union_desc, item.string_slogn).setText(R.id.tv_recycle_item_union_name, item.string_title)
-                .setText(R.id.tv_recycle_item_union_average_price, context.getString(R.string.average_price, item.float_money))
+                .setText(R.id.tv_recycle_item_union_average_price, context.getString(R.string.average_price_desc, item.float_money))
         val labelLL: LineBreakLayout = helper.getView(R.id.ll_recycle_item_union_label)
         if (labelLL.childCount != 0) {
             labelLL.removeAllViews()

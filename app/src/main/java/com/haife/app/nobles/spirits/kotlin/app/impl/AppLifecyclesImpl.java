@@ -3,7 +3,9 @@ package com.haife.app.nobles.spirits.kotlin.app.impl;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.location.LocationManager;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.haife.app.nobles.spirits.kotlin.BuildConfig;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.utils.ArmsUtils;
@@ -17,8 +19,11 @@ import me.jessyan.autosize.unit.Subunits;
 import me.yokeyword.fragmentation.Fragmentation;
 import timber.log.Timber;
 
+import static me.jessyan.autosize.utils.LogUtils.isDebug;
+
 public class AppLifecyclesImpl implements AppLifecycles {
     private RefWatcher mRefWatcher;
+    private LocationManager mLocationManager;
 
     @Override
     public void attachBaseContext(Context base) {
@@ -31,9 +36,17 @@ public class AppLifecyclesImpl implements AppLifecycles {
         initTimber();
         initTextFaceType(application);
         initLeakCanary(application);
+
         AutoSizeConfig.getInstance().getUnitsManager()
                 .setSupportDP(true)
                 .setSupportSubunits(Subunits.PT);
+        //ARouterSDK初始化
+        if (isDebug()) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
+            ARouter.openLog();     // 打印日志
+            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(application); // 尽可能早，推荐在Application中初始化
+
         Fragmentation.builder()
                 // 设置 栈视图 模式为 悬浮球模式   SHAKE: 摇一摇唤出   NONE：隐藏
                 .stackViewMode(Fragmentation.BUBBLE)
@@ -45,6 +58,8 @@ public class AppLifecyclesImpl implements AppLifecycles {
                     // Bugtags.sendException(e);
                 })
                 .install();
+
+
     }
 
 
@@ -74,11 +89,13 @@ public class AppLifecyclesImpl implements AppLifecycles {
         try {
             Field field = Typeface.class.getDeclaredField("MONOSPACE");
             field.setAccessible(true);
-            field.set(null,typeface);
+            field.set(null, typeface);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
+
+
 }

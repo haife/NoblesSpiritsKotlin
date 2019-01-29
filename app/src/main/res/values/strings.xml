@@ -1,29 +1,40 @@
 <resources>
     <string name="app_name">NoblesSpirits-Kotlin</string>
+    <!--main screen start-->
     <string name="main_bottom_menu_home_desc">首页</string>
     <string name="main_bottom_menu_sort_desc">分类</string>
     <string name="main_bottom_menu_shop_cart_desc">购物车</string>
     <string name="main_bottom_menu_mine_desc">我的</string>
-
-
+    <!--main screen end-->
+    <!--main fragment screen start-->
+    <string name="new_union_restaurant_enter_desc">全新入驻</string>
     <string name="remaining_time_desc">还剩:</string>
-    <string name="flash_sale_product_number">仅剩%d件</string>
-    <string name="product_price">￥%d.00</string>
-    <string name="average_price">人均 ￥%d.00</string>
+    <string name="flash_sale_product_number_desc">仅剩%d件</string>
+    <string name="product_price_desc">￥%d.00</string>
+    <string name="average_price_desc">人均 ￥%d.00</string>
     <string name="previous_group_buy">往期团购</string>
     <string name="go_to_group_buy">去参团</string>
     <string name="group_buy_people_number">%d人团</string>
+    <!--main fragment screen end-->
+    <!--net work hint-->
     <string name="net_work_error">您的手机网络不太顺畅</string>
     <string name="check_net_work_error">请检查你的手机是否联网</string>
     <string name="net_work_error_try_again_desc">点击重试</string>
-
-    <!--RefreshText-->
+    <!--net work hint end-->
+    <!--refresh hint desc-->
     <string name="head_refreshing_status_success_desc">哔哔！连接成功</string>
     <string name="head_refreshing_status_failed_desc">无法连接小樽...</string>
     <string name="head_pull_down_status_desc">正在连接小樽...</string>
     <string name="pull_down_refresh_desc">下拉即可刷新...</string>
     <string name="release_to_refresh_desc">释放立即刷新...</string>
+    <!--refresh end hint desc-->
+    <!--merchant screen start-->
+    <string name="merchant_average_price">人均 | ￥%d.00</string>
+    <string name="merchant_reserve_number_of_people">有 %d 人定过</string>
+    <string name="merchant_reserve_award_points">订座送 %d 积分</string>
+    <string name="merchant_reserve_desc">订座</string>
+    <string name="merchant_introduce_trim_collapsed">全文</string>
+    <string name="merchant_introduce_trim_expend">收起</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="new_union_restaurant_enter_desc">全新入驻</string>
+    <!--merchant end start-->
 </resources>

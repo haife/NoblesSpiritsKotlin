@@ -66,7 +66,10 @@ dependencies {
     implementation rootProject.ext.dependencies["roundedimageview"]
     implementation rootProject.ext.dependencies["smartrefreshlayout"]
     implementation rootProject.ext.dependencies["sneaker"]
-    //tool
+    implementation rootProject.ext.dependencies["readmoretextview"]
+    implementation rootProject.ext.dependencies["citypicker"]
+
+    //tool lib
     implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     kapt rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["fragmentation"]
@@ -76,6 +79,8 @@ dependencies {
     implementation rootProject.ext.dependencies["glide"]
     kapt rootProject.ext.dependencies["glide-compiler"]
     implementation rootProject.ext.dependencies["autosize"]
+    /*tool class*/
+    implementation rootProject.ext.dependencies["utilcode"]
     /*ARouter*/
     implementation rootProject.ext.dependencies["arouter"]
     kapt rootProject.ext.dependencies["arouter-compiler"]

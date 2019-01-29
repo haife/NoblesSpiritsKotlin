@@ -22,5 +22,6 @@ public class Token {
         String sign = MD5.encryptMD5ToString(BuildConfig.App_CODE + time + uuid);
         String from = "android";
         String lang = "cn";
+        String version = "3.0";
     }
 }

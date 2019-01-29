@@ -6,8 +6,6 @@ package com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean
  * @since 2019/1/22
  * @JvmFiled Kotlin 生成.java文件时属性默认为 private，给属性添加声明可以转成 public
  */
-
-
 data class UnionRestaurantBean(
 
         val arr_category: List<ArrCategory>,
@@ -41,7 +39,7 @@ data class UnionRestaurantBean(
         val string_title_en: String
 )
 
-public data class ArrCategory(
+ data class ArrCategory(
 
         val string_title: String,
 

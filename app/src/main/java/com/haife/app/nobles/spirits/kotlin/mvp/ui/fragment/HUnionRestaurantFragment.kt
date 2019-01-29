@@ -10,13 +10,15 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.app.base.BaseSupportFragment
 import com.haife.app.nobles.spirits.kotlin.di.component.DaggerHomeComponent
 import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.UnionRestaurantRequest
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.CityIdRequest
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean
+import com.haife.app.nobles.spirits.kotlin.mvp.http.router.restaurantActivityRouterUrl
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HUnionRestaurantAdapter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.RecycleViewDivide
@@ -49,7 +51,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     @field:[Named("UnionRestaurantFilterView")]
     var unionRestaurantFilterView: View? = null
 
-    private val requestBody: UnionRestaurantRequest = UnionRestaurantRequest()
+    private val requestBody: CityIdRequest = CityIdRequest()
     override fun post(runnable: Runnable?) {
 
     }
@@ -66,7 +68,6 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
 
     override fun setData(data: Any?) {
 
-
     }
 
     override fun initView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -80,7 +81,9 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
         rv_home_union_restaurant.hasFixedSize()
         rv_home_union_restaurant.layoutManager = layoutManager
         mUnionRestaurantAdapter.setOnItemClickListener { adapter, view, position ->
+            ARouter.getInstance().build(restaurantActivityRouterUrl).navigation()
         }
+
     }
 
 
@@ -114,6 +117,10 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
 
     }
 
+    /**
+     * fragment 切换回调函数
+     * @param isVisibleToUser Boolean
+     */
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
         if (isVisibleToUser) {

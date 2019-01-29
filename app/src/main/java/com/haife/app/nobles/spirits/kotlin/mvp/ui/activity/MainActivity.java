@@ -56,8 +56,10 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     public void initData(@Nullable Bundle savedInstanceState) {
         initWidget();
         requestPermissions();
-
     }
+
+
+
 
     /**
      * 初始化任务

@@ -16,9 +16,9 @@ import me.yokeyword.fragmentation.SupportHelper;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
- * @author haife
- * @email penghaifeng94@gmail.com
- * @since 2018/9/26
+ * @author Eddie Android Developer
+ * @company Q | 樽尚汇
+ * @since 2019/1/29
  * 展示自定制的MySupportFragment，不继承SupportFragment
  * 框架 Fragmentation
  */

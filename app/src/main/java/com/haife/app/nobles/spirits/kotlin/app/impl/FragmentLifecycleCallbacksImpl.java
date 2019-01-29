@@ -75,6 +75,7 @@ public class FragmentLifecycleCallbacksImpl extends FragmentManager.FragmentLife
                 .extras()
                 .get(IntelligentCache.getKeyOfKeep(RefWatcher.class.getName())))
                 .watch(f);
+
     }
 
     @Override

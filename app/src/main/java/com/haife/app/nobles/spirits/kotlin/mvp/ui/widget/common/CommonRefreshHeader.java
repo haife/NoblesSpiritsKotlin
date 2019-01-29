@@ -150,7 +150,7 @@ public class CommonRefreshHeader extends RelativeLayout implements RefreshHeader
     }
 
     private void startAnimator() {
-        mLoadingHeaderIv.setImageResource(R.drawable.animtion_list_common_refresh_header);
+        mLoadingHeaderIv.setImageResource(R.drawable.animtion_common_refresh_header);
         mAnimationDrawable = (AnimationDrawable) mLoadingHeaderIv.getDrawable();
         mAnimationDrawable.start();
     }
