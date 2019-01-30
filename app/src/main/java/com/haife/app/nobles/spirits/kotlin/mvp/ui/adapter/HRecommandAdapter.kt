@@ -179,6 +179,18 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
         subTitleTv.typeface = typeFaceLight
     }
 
+    /**
+     * 释放资源 防止内存泄露
+     */
+    fun onDestroy() {
+        recommendRestaurantAdapter = null
+        newRecommendRestaurantAdapter = null
+        enjoyLifeAdapter = null
+        groupBuyAdapter = null
+        flashSaleAdapter = null
+        shareRecycledViewPool.clear()
+    }
+
 
 }
 

@@ -10,15 +10,17 @@ import android.widget.TextView;
 import com.haife.app.nobles.spirits.kotlin.R;
 import com.haife.app.nobles.spirits.kotlin.mvp.inter.FlashSaleCountDownEndListener;
 
-import java.lang.ref.WeakReference;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
+import timber.log.Timber;
 
 /**
  * @author haife
  * @email penghaifeng94@gmail.com
  * @since 2019/1/9
- * TODO: 商品倒计时控件
+ * TODO: 显示抢购和团购的倒计时控件
  */
 
 public class FlashSaleTimerView extends LinearLayout {
@@ -38,16 +40,12 @@ public class FlashSaleTimerView extends LinearLayout {
     private int min_unit;
     private int sec_decade;
     private int sec_unit;
-    private Timer timer;
     private FlashSaleCountDownEndListener mCountDownEndListener;
-
-    private WeakReference<Context> mWeakReference;
+    private Disposable subscribe;
 
 
     public FlashSaleTimerView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.mWeakReference = new WeakReference<>(context);
-
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.flash_sale_time_count_down, this);
         tv_day_decade = view.findViewById(R.id.tv_day_decade);
@@ -62,15 +60,7 @@ public class FlashSaleTimerView extends LinearLayout {
 
 
     public void start() {
-        if (timer == null) {
-            timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    //handler.sendEmptyMessage(0);
-                }
-            }, 0, 1000);
-        }
+        subscribe = Observable.interval(1, TimeUnit.SECONDS).subscribe(aLong -> countDown());
     }
 
     public void setCountDownEndListener(FlashSaleCountDownEndListener countDownEndListener) {
@@ -79,15 +69,13 @@ public class FlashSaleTimerView extends LinearLayout {
 
 
     public void stop() {
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
         if (mCountDownEndListener != null) {
             mCountDownEndListener.onCountTimeEnd();
         }
-
-        //   handler.removeCallbacksAndMessages(null);
+        if (subscribe != null) {
+            Timber.e("取消订阅");
+            subscribe.isDisposed();
+        }
 
     }
 
@@ -121,7 +109,7 @@ public class FlashSaleTimerView extends LinearLayout {
     }
 
 
-    private void countDown() {
+    public void countDown() {
         if (isCarry4Unit(tv_sec_unit)) {
             if (isCarry4Decade(tv_sec_decade)) {
                 if (isCarry4Unit(tv_min_unit)) {
@@ -131,7 +119,7 @@ public class FlashSaleTimerView extends LinearLayout {
                                 if (isCarry4Unit(tv_day_unit)) {
                                     if (isCarry4Decade(tv_day_decade)) {
                                         stop();
-                                        setTime(0, 0, 0, 0);//重置为0
+                                        setTime(0, 0, 0, 0);
                                     }
                                 }
 
@@ -180,7 +168,7 @@ public class FlashSaleTimerView extends LinearLayout {
      * @param mss
      * @return
      */
-    public void formatTimerDuring(long mss, FlashSaleTimerView count_down_tv) {
+    public void formatTimerDuring(long mss) {
         long days = (mss / (60 * 60 * 24));
         long hours = (mss % (60 * 60 * 24)) / (60 * 60);
         long minutes = (mss % (60 * 60)) / (60);
@@ -189,9 +177,8 @@ public class FlashSaleTimerView extends LinearLayout {
         int hour = (int) hours;
         int minute = (int) minutes;
         int second = (int) seconds;
-        count_down_tv.setTime(da, hour, minute, second);
-        count_down_tv.start();
-
+        setTime(da, hour, minute, second);
+        start();
     }
 
 }

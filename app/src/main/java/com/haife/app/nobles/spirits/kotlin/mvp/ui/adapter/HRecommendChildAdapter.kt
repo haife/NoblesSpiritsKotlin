@@ -38,7 +38,6 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     private val imageLoader: ImageLoader by lazy { ArmsUtils.obtainAppComponentFromContext(context).imageLoader() }
     private val layoutInflater: LayoutInflater by lazy { LayoutInflater.from(context) }
     private val typeFaceMedium: Typeface by lazy { Typeface.createFromAsset(context?.assets, "PingFangSC-Medium-Bold.ttf") }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
             when (viewType) {
                 HRecommendMultiItemEntity.RECOMMEND_RESTAURANT -> {
@@ -131,6 +130,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     private fun bindNewRestaurantViewHolder(holder: HRecommendChildAdapter.RecommendNewRestaurantViewHolder, position: Int) {
         val newRestaurantEntity: HomeRecommendData.ArrModuleDataBean.ArrDataBean = list.arr_data[position]
         holder.restaurantNameTv.text = newRestaurantEntity.string_title
+        holder.restaurantNameTv.typeface = typeFaceMedium;
         holder.restaurantPriceTv.text = context.getString(R.string.average_price_desc, newRestaurantEntity.float_spend)
         holder.restaurantContentTv.text = newRestaurantEntity.string_slogn
         loadImage(holder.restaurantRIV, R.drawable.ic_home_banner_place_holder, newRestaurantEntity.string_pic_url, isRadius = true)
@@ -146,16 +146,17 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
         loadImage(holder.productIv, R.drawable.ic_flash_sale_product_place_holder, flashSaleItemEntity.string_pic_url)
         holder.productName.text = flashSaleItemEntity.string_title
         holder.numberPeopleTv.text = context.getString(R.string.flash_sale_product_number_desc, flashSaleItemEntity.int_surplus)
-        holder.priceTv.text = context.getString(R.string.average_price_desc, flashSaleItemEntity.float_price)
+        holder.priceTv.text = context.getString(R.string.product_price_desc, flashSaleItemEntity.float_price)
         holder.originalPriceTv.text = context.getString(R.string.product_price_desc, flashSaleItemEntity.float_origin_price)
         holder.secKillBtn.text = flashSaleItemEntity.string_btn_text
-        holder.countDownTimerTv.formatTimerDuring(flashSaleItemEntity.int_surplus_time.toLong(), holder.countDownTimerTv)
+        holder.countDownTimerTv.formatTimerDuring(flashSaleItemEntity.int_surplus_time.toLong())
         holder.countDownTimerTv.setCountDownEndListener {
             list.arr_data.removeAt(position)
             notifyItemRemoved(position)
         }
-
     }
+
+
 
     /**
      * bind每周特惠
@@ -184,13 +185,14 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
         holder.priceTv.text = context.getString(R.string.product_price_desc, groupBuyItemEntity.int_group_price)
         holder.originalPriceTv.text = context.getString(R.string.product_price_desc, groupBuyItemEntity.int_origin_price)
         holder.groupBuyBtn.text = context.getString(R.string.go_to_group_buy)
-        holder.countDownTimerTv.formatTimerDuring(groupBuyItemEntity.int_surplus_time.toLong(), holder.countDownTimerTv)
+
+        holder.countDownTimerTv.formatTimerDuring(groupBuyItemEntity.int_surplus_time.toLong())
         holder.countDownTimerTv.setCountDownEndListener {
             list.arr_data.removeAt(position)
             notifyItemRemoved(position)
         }
-
     }
+
 
     /**
      * 品味生活
@@ -225,13 +227,9 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
      * @property restaurantNameTv TextView
      * @constructor
      */
-    open inner class RecommendRestaurantViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+    open class RecommendRestaurantViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         val restaurantRIV: RoundedImageView = itemView!!.findViewById(R.id.riv_recommend_restaurant)
         val restaurantNameTv: TextView = itemView!!.findViewById(R.id.tv_recommend_restaurant_name)
-
-        init {
-            restaurantNameTv.typeface = typeFaceMedium;
-        }
     }
 
     /**
@@ -245,7 +243,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
      * @property secKillBtn
      * @constructor
      */
-    inner class FlashSaleViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+    class FlashSaleViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         val productIv: ImageView = itemView!!.findViewById(R.id.iv_flash_sale_child_product_bg)
         val productName: TextView = itemView!!.findViewById(R.id.tv_flash_sale_child_product_name)
         val numberPeopleTv: TextView = itemView!!.findViewById(R.id.tv_flash_sale_number_of_people)
@@ -260,21 +258,6 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     }
 
     /**
-     *  每周特惠
-     * @property productIv ImageView
-     * @property productNameTv TextView
-     * @property productEnNameTv TextView
-     * @property productPriceTv TextView
-     * @constructor
-     */
-    inner class WeeklySpecialViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
-        var productIv: ImageView = itemView!!.findViewById(R.id.iv_week_special_product)
-        var productNameTv: TextView = itemView!!.findViewById(R.id.tv_week_special_product_name)
-        var productEnNameTv: TextView = itemView!!.findViewById(R.id.tv_week_special_product_name_en)
-        var productPriceTv: TextView = itemView!!.findViewById(R.id.tv_week_special_product_price)
-    }
-
-    /**
      * 团购
      * @property productIv ImageView
      * @property productName TextView
@@ -285,7 +268,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
      * @property groupBuyBtn Button
      * @constructor
      */
-    inner class GroupBuyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class GroupBuyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var productIv: ImageView = itemView!!.findViewById(R.id.iv_group_buy_child_product_bg)
         val productName: TextView = itemView!!.findViewById(R.id.tv_group_buy_child_product_name)
         val numberPeopleTv: TextView = itemView!!.findViewById(R.id.tv_group_buy_number_of_people)
@@ -301,12 +284,28 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
 
 
     /**
+     *  每周特惠
+     * @property productIv ImageView
+     * @property productNameTv TextView
+     * @property productEnNameTv TextView
+     * @property productPriceTv TextView
+     * @constructor
+     */
+    class WeeklySpecialViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+        var productIv: ImageView = itemView!!.findViewById(R.id.iv_week_special_product)
+        var productNameTv: TextView = itemView!!.findViewById(R.id.tv_week_special_product_name)
+        var productEnNameTv: TextView = itemView!!.findViewById(R.id.tv_week_special_product_name_en)
+        var productPriceTv: TextView = itemView!!.findViewById(R.id.tv_week_special_product_price)
+    }
+
+
+    /**
      * 推荐餐厅
      * @property restaurantRIV RoundedImageView
      * @property restaurantNameTv TextView
      * @constructor
      */
-    inner class RecommendNewRestaurantViewHolder(itemView: View) : RecommendRestaurantViewHolder(itemView) {
+    class RecommendNewRestaurantViewHolder(itemView: View) : RecommendRestaurantViewHolder(itemView) {
         val restaurantPriceTv: TextView = itemView.findViewById(R.id.tv_recommend_new_restaurant_child_price)
         val restaurantContentTv: TextView = itemView.findViewById(R.id.tv_recommend_new_restaurant_child_content)
 
@@ -316,7 +315,7 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
      * 品味生活
      * @constructor
      */
-    inner class EnjoyLifeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class EnjoyLifeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val enjoyLifeRiv: RoundedImageView = itemView.findViewById(R.id.riv_recommend_enjoy_life_child)
         val enjoyLifeTv: TextView = itemView.findViewById(R.id.tv_enjoy_life_item_content)
     }

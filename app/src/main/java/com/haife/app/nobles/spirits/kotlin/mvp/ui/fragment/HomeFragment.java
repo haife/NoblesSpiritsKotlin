@@ -121,7 +121,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
                 .enableAnimation(true)
                 .setHotCities(hotCities)
                 .setLocatedCity(new LocatedCity("上海", "上海", "101020100"))
-                .setLocatedCity(null).setOnPickListener(new OnPickListener() {
+                .setOnPickListener(new OnPickListener() {
             @Override
             public void onPick(int position, City data) {
             }
