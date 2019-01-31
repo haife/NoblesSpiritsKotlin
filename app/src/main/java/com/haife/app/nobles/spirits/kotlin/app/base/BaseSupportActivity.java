@@ -22,7 +22,8 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * 展示自定制的MySupportFragment，不继承SupportFragment
  * 框架 Fragmentation
  */
-public abstract class BaseSupportActivity<p extends IPresenter> extends BaseActivity<p> implements ISupportActivity {
+public abstract class BaseSupportActivity<P extends IPresenter> extends BaseActivity<P> implements ISupportActivity {
+
     final SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
     public BaseSupportActivity mContext;
 

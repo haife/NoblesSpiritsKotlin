@@ -7,6 +7,7 @@
         <item name="colorAccent">@android:color/white</item>
         <item name="android:typeface">monospace</item>
         <item name="android:windowBackground">@color/window_bg_color</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="ToolBar" parent="Base.Widget.AppCompat.Button.Borderless">
@@ -14,8 +15,10 @@
         <item name="height">@dimen/base_tool_bar_height</item>
         <item name="navigationIcon">@drawable/ic_home_ab_rich_scan</item>
     </style>
-
-
+    <!--SwipeBackTheme-->
+    <style name="SwipeBackStyle" parent="@style/AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 
 
 </resources>

@@ -3,9 +3,11 @@ package com.haife.app.nobles.spirits.kotlin.app.base;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.view.animation.Animation;
 
+import com.haife.app.nobles.spirits.kotlin.R;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.mvp.IPresenter;
 
@@ -59,6 +61,7 @@ public abstract class BaseSupportFragment<P extends IPresenter> extends BaseFrag
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         return mDelegate.onCreateAnimation(transit, enter, nextAnim);
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -198,6 +201,8 @@ public abstract class BaseSupportFragment<P extends IPresenter> extends BaseFrag
      */
     @Override
     public void setFragmentAnimator(FragmentAnimator fragmentAnimator) {
+
+
         mDelegate.setFragmentAnimator(fragmentAnimator);
     }
 

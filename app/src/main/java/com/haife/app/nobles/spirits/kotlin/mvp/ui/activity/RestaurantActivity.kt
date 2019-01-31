@@ -4,13 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.haife.app.nobles.spirits.kotlin.R
+import com.haife.app.nobles.spirits.kotlin.app.base.BaseSwipeBackActivity
 import com.haife.app.nobles.spirits.kotlin.di.component.DaggerRestaurantComponent
 import com.haife.app.nobles.spirits.kotlin.di.module.RestaurantModule
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.RestaurantContract
 import com.haife.app.nobles.spirits.kotlin.mvp.http.router.restaurantActivityRouterUrl
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.RestaurantPresenter
-import com.jess.arms.base.BaseActivity
 import com.jess.arms.di.component.AppComponent
+import me.yokeyword.fragmentation.anim.FragmentAnimator
 
 
 /**
@@ -20,7 +21,10 @@ import com.jess.arms.di.component.AppComponent
  * Merchant Detail Screen
  */
 @Route(path = restaurantActivityRouterUrl)
-class RestaurantActivity : BaseActivity<RestaurantPresenter>(), RestaurantContract.View {
+class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), RestaurantContract.View {
+    override fun post(runnable: Runnable?) {
+    }
+
     override fun setupActivityComponent(appComponent: AppComponent) {
         DaggerRestaurantComponent
                 .builder()
@@ -59,4 +63,11 @@ class RestaurantActivity : BaseActivity<RestaurantPresenter>(), RestaurantContra
     override fun killMyself() {
         finish()
     }
+
+    override fun onCreateFragmentAnimator(): FragmentAnimator {
+        return super.onCreateFragmentAnimator()
+    }
+
+
+
 }

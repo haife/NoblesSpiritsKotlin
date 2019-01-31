@@ -35,6 +35,7 @@
     <string name="merchant_reserve_desc">订座</string>
     <string name="merchant_introduce_trim_collapsed">全文</string>
     <string name="merchant_introduce_trim_expend">收起</string>
-
+    <string name="trans_merchant_union">trans_merchant_union</string>
+    <string name="trans_merchant_union_title">trans_merchant_union_title</string>
     <!--merchant end start-->
 </resources>

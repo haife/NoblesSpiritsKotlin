@@ -38,7 +38,8 @@
 
         <activity
             android:name=".mvp.ui.activity.RestaurantActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SwipeBackStyle">
 
         </activity>
     </application>

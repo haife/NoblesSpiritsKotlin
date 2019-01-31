@@ -17,9 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        app:rv_centered="true"
-        app:rv_color="@color/ripple_status_color"
-        app:rv_zoom="true">
+        app:rv_centered="true">
 
         <ImageView
             android:id="@+id/ivbtn_home_ab_search"

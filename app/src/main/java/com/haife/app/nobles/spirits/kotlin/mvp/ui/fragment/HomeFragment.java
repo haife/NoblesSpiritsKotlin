@@ -49,6 +49,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 /**
  * @author haife
@@ -96,9 +97,9 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
         mPresenter.getHomeRecommendData(simpleName, false);
     }
 
+    // 选择城市
     @OnClick(R.id.iv_pick_city)
     void submit() {
-        // TODO call server...
         pickCityDialog();
     }
 
@@ -110,7 +111,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     public void pickCityDialog() {
         List<HotCity> hotCities = new ArrayList<>();
-        hotCities.add(new HotCity("北京", "北京", "101010100")); //code为城市代码
+        hotCities.add(new HotCity("北京", "北京", "101010100"));
         hotCities.add(new HotCity("上海", "上海", "101020100"));
         hotCities.add(new HotCity("广州", "广东", "101280101"));
         hotCities.add(new HotCity("深圳", "广东", "101280601"));
@@ -122,22 +123,23 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
                 .setHotCities(hotCities)
                 .setLocatedCity(new LocatedCity("上海", "上海", "101020100"))
                 .setOnPickListener(new OnPickListener() {
-            @Override
-            public void onPick(int position, City data) {
-            }
+                    @Override
+                    public void onPick(int position, City data) {
+                        Timber.i("选择的城市" + data.toString());
+                    }
 
-            @Override
-            public void onCancel() {
-            }
+                    @Override
+                    public void onCancel() {
+                    }
 
-            @Override
-            public void onLocate() {
+                    @Override
+                    public void onLocate() {
                /* new Handler().postDelayed(() ->
                         CityPicker.from(HomeFragment.this).locateComplete(
                                 new LocatedCity("深圳", "广东", "101280601"),
                                 LocateState.SUCCESS), LOCATE_COMPLETE_MILLIS);*/
-            }
-        }).show();
+                    }
+                }).show();
     }
 
 

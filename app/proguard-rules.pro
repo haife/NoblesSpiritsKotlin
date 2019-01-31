@@ -135,7 +135,6 @@ S
 -keep class com.zhy.autolayout.** { *; }
 -keep interface com.zhy.autolayout.** { *; }
 
-
 ################RxJava and RxAndroid###############
 -dontwarn org.mockito.**
 -dontwarn org.junit.**
@@ -226,6 +225,7 @@ S
  -keep class me.jessyan.rxerrorhandler.** { *; }
  -keep interface me.jessyan.rxerrorhandler.** { *; }
 
+
 ################Timber#################
 -dontwarn org.jetbrains.annotations.**
 
@@ -238,8 +238,22 @@ S
 -keep class com.squareup.haha.** { *; }
 -keep class com.squareup.leakcanary.** { *; }
 
+###############ARoute#################
+-keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep public class com.alibaba.android.arouter.facade.**{*;}
+-keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
+
+# 如果使用了 byType 的方式获取 Service，需添加下面规则，保护接口
+-keep interface * implements com.alibaba.android.arouter.facade.template.IProvider
+
+# 如果使用了 单类注入，即不定义接口实现 IProvider，需添加下面规则，保护实现
+# -keep class * implements com.alibaba.android.arouter.facade.template.IProvider
+
 # Marshmallow removed Notification.setLatestEventInfo()
 -dontwarn android.app.Notification
+
+
+
 
 
 

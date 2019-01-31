@@ -41,7 +41,7 @@ public class FlashSaleTimerView extends LinearLayout {
     private int sec_decade;
     private int sec_unit;
     private FlashSaleCountDownEndListener mCountDownEndListener;
-    private Disposable subscribe;
+    private Disposable disposed;
 
 
     public FlashSaleTimerView(Context context, AttributeSet attrs) {
@@ -60,7 +60,7 @@ public class FlashSaleTimerView extends LinearLayout {
 
 
     public void start() {
-        subscribe = Observable.interval(1, TimeUnit.SECONDS).subscribe(aLong -> countDown());
+        disposed = Observable.interval(1, TimeUnit.SECONDS).subscribe(aLong -> countDown());
     }
 
     public void setCountDownEndListener(FlashSaleCountDownEndListener countDownEndListener) {
@@ -72,9 +72,9 @@ public class FlashSaleTimerView extends LinearLayout {
         if (mCountDownEndListener != null) {
             mCountDownEndListener.onCountTimeEnd();
         }
-        if (subscribe != null) {
+        if (disposed != null && !disposed.isDisposed()) {
             Timber.e("取消订阅");
-            subscribe.isDisposed();
+            disposed.dispose();
         }
 
     }

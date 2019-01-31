@@ -6,6 +6,7 @@
         <item name="colorAccent">@android:color/white</item>
         <item name="android:windowBackground">@color/window_bg_color</item>
         <item name="android:typeface">monospace</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="ToolBar">
@@ -37,6 +38,13 @@
         <item name="android:textColor">@android:color/black</item>
         <item name="android:layout_margin">3dp</item>
     </style>
+
+    <!--SwipeBackTheme-->
+    <style name="SwipeBackStyle" parent="@style/AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+
 
 
 </resources>

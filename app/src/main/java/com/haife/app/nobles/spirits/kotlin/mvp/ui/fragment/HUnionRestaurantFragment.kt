@@ -1,6 +1,7 @@
 package com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment
 
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +9,8 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
@@ -25,6 +28,9 @@ import com.haife.app.nobles.spirits.kotlin.mvp.ui.decoration.RecycleViewDivide
 import com.jess.arms.di.component.AppComponent
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.fragment_home_union_restaurant.*
+import kotlinx.android.synthetic.main.recycle_item_union_restaurant.view.*
+import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
+import me.yokeyword.fragmentation.anim.FragmentAnimator
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -80,8 +86,13 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
         rv_home_union_restaurant.addItemDecoration(RecycleViewDivide(context!!, drawableId = null, divideHeight = 20))
         rv_home_union_restaurant.hasFixedSize()
         rv_home_union_restaurant.layoutManager = layoutManager
+
+
+
         mUnionRestaurantAdapter.setOnItemClickListener { adapter, view, position ->
-            ARouter.getInstance().build(restaurantActivityRouterUrl).navigation()
+            val pair: Array<Pair<View, String>> = arrayOf(Pair<View, String>(view.iv_recycle_item_union_bg, getString(R.string.trans_merchant_union)), Pair<View, String>(view.tv_recycle_item_union_name, getString(R.string.trans_merchant_union_title)))
+            val compat: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity as Activity, *pair)
+            ARouter.getInstance().build(restaurantActivityRouterUrl).withOptionsCompat(compat).navigation(activity)
         }
 
     }
@@ -114,7 +125,6 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     override fun getFragment(): Fragment = this
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
-
     }
 
     /**
@@ -131,4 +141,10 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
         }
 
     }
+
+    override fun onCreateFragmentAnimator(): FragmentAnimator {
+        return DefaultHorizontalAnimator()
+    }
+
+
 }
