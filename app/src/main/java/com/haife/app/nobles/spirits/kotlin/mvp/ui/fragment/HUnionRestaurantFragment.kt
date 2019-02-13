@@ -19,6 +19,7 @@ import com.haife.app.nobles.spirits.kotlin.app.base.BaseSupportFragment
 import com.haife.app.nobles.spirits.kotlin.di.component.DaggerHomeComponent
 import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract
+import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.UnionRestaurantBean
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.CityIdRequest
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean
 import com.haife.app.nobles.spirits.kotlin.mvp.http.router.restaurantActivityRouterUrl
@@ -29,8 +30,6 @@ import com.jess.arms.di.component.AppComponent
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.fragment_home_union_restaurant.*
 import kotlinx.android.synthetic.main.recycle_item_union_restaurant.view.*
-import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
-import me.yokeyword.fragmentation.anim.FragmentAnimator
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -42,8 +41,8 @@ import javax.inject.Named
  * TODO: 联盟餐厅
  */
 class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
-
-
+    @Inject
+    lateinit var mUnionRestaurantList: MutableList<UnionRestaurantBean>
     @Inject
     lateinit var layoutManager: RecyclerView.LayoutManager
     @Inject
@@ -56,13 +55,11 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     @JvmField
     @field:[Named("UnionRestaurantFilterView")]
     var unionRestaurantFilterView: View? = null
-
     private val requestBody: CityIdRequest = CityIdRequest()
-    override fun post(runnable: Runnable?) {
-
-    }
 
     companion object {
+        const val EXTRA_KEY_IMAGE_URL: String = "EXTRA_KEY_IMAGE_URL"
+
         fun newInstance(): HUnionRestaurantFragment {
             return HUnionRestaurantFragment()
         }
@@ -87,13 +84,16 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
         rv_home_union_restaurant.hasFixedSize()
         rv_home_union_restaurant.layoutManager = layoutManager
 
-
-
         mUnionRestaurantAdapter.setOnItemClickListener { adapter, view, position ->
-            val pair: Array<Pair<View, String>> = arrayOf(Pair<View, String>(view.iv_recycle_item_union_bg, getString(R.string.trans_merchant_union)), Pair<View, String>(view.tv_recycle_item_union_name, getString(R.string.trans_merchant_union_title)))
+            val pair: Array<Pair<View, String>> = arrayOf(Pair<View, String>(view.iv_recycle_item_union_bg, getString(R.string.trans_merchant_union)))
             val compat: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity as Activity, *pair)
-            ARouter.getInstance().build(restaurantActivityRouterUrl).withOptionsCompat(compat).navigation(activity)
+            ARouter.getInstance().build(restaurantActivityRouterUrl).withOptionsCompat(compat).withString(EXTRA_KEY_IMAGE_URL, mUnionRestaurantList[position].string_pic_logo).navigation(this.context)
         }
+
+    }
+
+
+    override fun post(runnable: Runnable?) {
 
     }
 
@@ -104,6 +104,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     override fun launchActivity(intent: Intent) {
 
     }
+
 
     override fun refreshStatusListener(refeshSuccess: Boolean) {
     }
@@ -140,10 +141,6 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
             rv_home_union_restaurant?.visibility = GONE
         }
 
-    }
-
-    override fun onCreateFragmentAnimator(): FragmentAnimator {
-        return DefaultHorizontalAnimator()
     }
 
 

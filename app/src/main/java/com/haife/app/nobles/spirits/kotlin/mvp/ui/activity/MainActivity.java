@@ -56,9 +56,18 @@ public class MainActivity extends BaseSupportActivity<MainPresenter> implements 
     public void initData(@Nullable Bundle savedInstanceState) {
         initWidget();
         requestPermissions();
+        buildBottomMenuListener();
     }
 
-
+    private void buildBottomMenuListener() {
+        mMainBottomBnve.setOnNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.home_class_page:
+                    break;
+            }
+            return true;
+        });
+    }
 
 
     /**

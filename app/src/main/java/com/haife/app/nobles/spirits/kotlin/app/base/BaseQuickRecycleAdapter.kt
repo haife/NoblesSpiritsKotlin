@@ -20,7 +20,6 @@ import com.jess.arms.utils.ArmsUtils
  */
 open class BaseQuickRecycleAdapter<T>(layoutId: Int, data: List<T>, val context: Context) : BaseQuickAdapter<T, BaseViewHolder>(layoutId, data) {
 
-
     val typeFaceBold: Typeface = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")
     val typeFaceTint: Typeface = Typeface.createFromAsset(context.assets, "PingFangSC-Light-Face-Medium-Tint.ttf")
     private val imageLoader: ImageLoader = ArmsUtils.obtainAppComponentFromContext(context).imageLoader()

@@ -46,6 +46,7 @@ public abstract class BaseSupportActivity<P extends IPresenter> extends BaseActi
         mContext = this;
         mDelegate.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
