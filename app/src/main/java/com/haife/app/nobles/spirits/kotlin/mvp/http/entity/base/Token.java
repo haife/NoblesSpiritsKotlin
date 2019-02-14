@@ -8,20 +8,16 @@ import javax.inject.Inject;
 
 public class Token {
 
-    private TokenBean token;
-
     @Inject
     public Token() {
-        TokenBean token = new TokenBean();
-        this.token = token;
+        return;
     }
 
-    public static class TokenBean {
-        String time = String.valueOf(System.currentTimeMillis());
-        String uuid = "1";
-        String sign = MD5.encryptMD5ToString(BuildConfig.App_CODE + time + uuid);
-        String from = "android";
-        String lang = "cn";
-        String version = "2.1";
-    }
+    String time = String.valueOf(System.currentTimeMillis());
+    String uuid = "1";
+    String sign = MD5.encryptMD5ToString(BuildConfig.App_CODE + time + uuid);
+    String from = "android";
+    String lang = "cn";
+    String version = "2.1";
+
 }

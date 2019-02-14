@@ -21,7 +21,6 @@ import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.UnionRestaurantBean
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.request.CityIdRequest
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result.RestaurantUnionBean
 import com.haife.app.nobles.spirits.kotlin.mvp.http.router.restaurantActivityRouterUrl
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.HomePresenter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.adapter.HUnionRestaurantAdapter
@@ -45,8 +44,6 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     lateinit var mUnionRestaurantList: MutableList<UnionRestaurantBean>
     @Inject
     lateinit var layoutManager: RecyclerView.LayoutManager
-    @Inject
-    lateinit var mRestaurantUnionResponse: RestaurantUnionBean
     @Inject
     lateinit var mUnionRestaurantAdapter: HUnionRestaurantAdapter
 
@@ -79,6 +76,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
 
 
     override fun initData(savedInstanceState: Bundle?) {
+
         mPresenter?.getHomeUnionRestaurant(requestBody)
         rv_home_union_restaurant.addItemDecoration(RecycleViewDivide(context!!, drawableId = null, divideHeight = 20))
         rv_home_union_restaurant.hasFixedSize()

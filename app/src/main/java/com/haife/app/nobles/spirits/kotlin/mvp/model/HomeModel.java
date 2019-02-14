@@ -2,7 +2,9 @@ package com.haife.app.nobles.spirits.kotlin.mvp.model;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
+import com.haife.app.nobles.spirits.kotlin.app.constant.SPConstant;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.api.cache.CommonCache;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.api.service.AppService;
@@ -38,11 +40,13 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
     Application mApplication;
     public final String homeDynamicKey = "HomeData";
     public final String unionRestaurant = "unionRestaurant";
-    private BaseRequest<CityIdRequest> request = new BaseRequest<>();
+    private CityIdRequest cityIdRequest = new CityIdRequest();
 
     @Inject
     public HomeModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
+
+
     }
 
     /**
@@ -53,8 +57,8 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
      */
     @Override
     public Observable<RestaurantUnionBean> getUnionRestaurant(CityIdRequest bean) {
-        request.setParam(bean);
-        return Observable.just(mRepositoryManager.obtainRetrofitService(AppService.class).getHomeUnionRestaurant(getRequestBody(mGson.toJson(request))))
+        bean.setInt_city_id(Integer.parseInt(SPUtils.getInstance().getString(SPConstant.CURRENT_CITY)));
+        return Observable.just(mRepositoryManager.obtainRetrofitService(AppService.class).getHomeUnionRestaurant(getRequestBody(mGson.toJson(new BaseRequest<>(bean)))))
                 .flatMap((Function<Observable<RestaurantUnionBean>, ObservableSource<RestaurantUnionBean>>) restaurantUnionBeanObservable -> mRepositoryManager.obtainCacheService(CommonCache.class)
                         .getHomeUnionRestaurantCache(restaurantUnionBeanObservable,
                                 new DynamicKey(unionRestaurant),
@@ -71,7 +75,8 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
      */
     @Override
     public Observable<HomeRecommendData> getHomeRecommendData(Token bean, boolean isEvictCache) {
-        return Observable.just(mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommendData(getRequestBody(mGson.toJson(bean))))
+        cityIdRequest.setInt_city_id(Integer.parseInt(SPUtils.getInstance().getString(SPConstant.CURRENT_CITY)));
+        return Observable.just(mRepositoryManager.obtainRetrofitService(AppService.class).getHomeRecommendData(getRequestBody(mGson.toJson(new BaseRequest<>(cityIdRequest)))))
                 .flatMap((Function<Observable<HomeRecommendData>, ObservableSource<HomeRecommendData>>) baseResponseObservable -> mRepositoryManager.obtainCacheService(CommonCache.class)
                         .getHomeRecommendDataCache(baseResponseObservable
                                 , new DynamicKey(homeDynamicKey)

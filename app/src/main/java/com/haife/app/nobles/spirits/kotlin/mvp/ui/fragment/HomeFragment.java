@@ -12,8 +12,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.haife.app.nobles.spirits.kotlin.R;
 import com.haife.app.nobles.spirits.kotlin.app.base.BaseSupportFragment;
+import com.haife.app.nobles.spirits.kotlin.app.constant.SPConstant;
+import com.haife.app.nobles.spirits.kotlin.app.constant.StringConsKt;
 import com.haife.app.nobles.spirits.kotlin.di.component.DaggerHomeComponent;
 import com.haife.app.nobles.spirits.kotlin.di.module.HomeModule;
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.HomeContract;
@@ -49,7 +52,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.OnClick;
-import timber.log.Timber;
 
 /**
  * @author haife
@@ -88,6 +90,8 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     @Override
     public View initView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //初始化城市CityId
+        SPUtils.getInstance().put(SPConstant.CURRENT_CITY, StringConsKt.ONE);
         return LayoutInflater.from(getContext()).inflate(R.layout.fragment_home, container, false);
     }
 
@@ -105,7 +109,6 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     @Override
     public void setData(@Nullable Object data) {
-
 
     }
 
@@ -125,7 +128,7 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
                 .setOnPickListener(new OnPickListener() {
                     @Override
                     public void onPick(int position, City data) {
-                        Timber.i("选择的城市" + data.toString());
+
                     }
 
                     @Override

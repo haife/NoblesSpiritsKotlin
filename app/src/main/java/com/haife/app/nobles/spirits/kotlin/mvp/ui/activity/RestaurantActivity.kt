@@ -26,13 +26,11 @@ import kotlinx.android.synthetic.main.merchanet_content_layout.*
  */
 @Route(path = restaurantActivityRouterUrl)
 class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), RestaurantContract.View {
+
+
     @Autowired(name = "EXTRA_KEY_IMAGE_URL")
     @JvmField
     var picUrl: String? = null
-
-    override fun post(runnable: Runnable?) {
-    }
-
 
     override fun setupActivityComponent(appComponent: AppComponent) {
         DaggerRestaurantComponent
@@ -54,8 +52,7 @@ class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), Restaur
         picUrl?.let {
             banner_merchant_content_content_layout.loadImageWithBaseUrl(this, banner_merchant_content_content_layout, it)
         }
-
-        window.enterTransition = TransitionInflater.from(this).inflateTransition(R.transition.merchant_activity_fade)
+        window.enterTransition = TransitionInflater.from(this).inflateTransition(R.transition.merchant_activity_slide)
     }
 
 
@@ -80,8 +77,10 @@ class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), Restaur
     }
 
     override fun killMyself() {
-        finishAfterTransition()
+        finish()
     }
 
+    override fun post(runnable: Runnable?) {
+    }
 
 }
