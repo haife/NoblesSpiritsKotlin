@@ -12,7 +12,7 @@
         <item name="android:windowAllowReturnTransitionOverlap">false</item>
     </style>
 
-    <style name="ToolBar" parent="Base.Widget.AppCompat.Button.Borderless">
+    <style name="ToolBar">
         <item name="android:background">@android:color/white</item>
         <item name="height">@dimen/base_tool_bar_height</item>
         <item name="navigationIcon">@drawable/ic_home_ab_rich_scan</item>

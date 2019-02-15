@@ -13,9 +13,8 @@ import com.haife.app.nobles.spirits.kotlin.di.module.RestaurantModule
 import com.haife.app.nobles.spirits.kotlin.mvp.contract.RestaurantContract
 import com.haife.app.nobles.spirits.kotlin.mvp.http.router.restaurantActivityRouterUrl
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.RestaurantPresenter
-import com.haife.app.nobles.spirits.kotlin.mvp.ui.loader.loadImageWithBaseUrl
+import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HUnionRestaurantFragment
 import com.jess.arms.di.component.AppComponent
-import kotlinx.android.synthetic.main.merchanet_content_layout.*
 
 
 /**
@@ -26,11 +25,10 @@ import kotlinx.android.synthetic.main.merchanet_content_layout.*
  */
 @Route(path = restaurantActivityRouterUrl)
 class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), RestaurantContract.View {
-
-
-    @Autowired(name = "EXTRA_KEY_IMAGE_URL")
+    // 门店Id
+    @Autowired(name = HUnionRestaurantFragment.EXTRA_KEY_IMAGE_URL)
     @JvmField
-    var picUrl: String? = null
+    var merchantId: Int? = null
 
     override fun setupActivityComponent(appComponent: AppComponent) {
         DaggerRestaurantComponent
@@ -49,9 +47,6 @@ class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), Restaur
 
 
     override fun initData(savedInstanceState: Bundle?) {
-        picUrl?.let {
-            banner_merchant_content_content_layout.loadImageWithBaseUrl(this, banner_merchant_content_content_layout, it)
-        }
         window.enterTransition = TransitionInflater.from(this).inflateTransition(R.transition.merchant_activity_slide)
     }
 

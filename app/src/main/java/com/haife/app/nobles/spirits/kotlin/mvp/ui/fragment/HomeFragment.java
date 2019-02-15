@@ -235,4 +235,6 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
     public void post(Runnable runnable) {
 
     }
+
+
 }

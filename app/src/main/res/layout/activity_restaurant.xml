@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,11 +7,22 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
+    <com.youth.banner.Banner
+        android:id="@+id/banner_merchant_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_170"
+        android:background="@drawable/ic_home_banner_place_holder"
+        android:transitionName="@string/trans_merchant_union"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.restaurant.MerchantContentLayout
-        android:id="@+id/restaurant_content_container"
+        android:id="@+id/merchant_content_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_170"
         app:layout_constraintTop_toTopOf="parent"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

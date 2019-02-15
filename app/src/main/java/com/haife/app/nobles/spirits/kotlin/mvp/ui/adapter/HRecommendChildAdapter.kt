@@ -34,8 +34,7 @@ import com.makeramen.roundedimageview.RoundedImageView
  */
 class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val mViewType: Int by lazy { list.itemType }
-    private val builder: ImageConfigImpl.Builder by lazy { ImageConfigImpl.builder() }
-    private val imageLoader: ImageLoader by lazy { ArmsUtils.obtainAppComponentFromContext(context).imageLoader() }
+    private var imageLoader: ImageLoader? = ArmsUtils.obtainAppComponentFromContext(context).imageLoader()
     private val layoutInflater: LayoutInflater by lazy { LayoutInflater.from(context) }
     private val typeFaceMedium: Typeface by lazy { Typeface.createFromAsset(context?.assets, "PingFangSC-Medium-Bold.ttf") }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
@@ -157,7 +156,6 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
     }
 
 
-
     /**
      * bind每周特惠
      * @param holder HRecommendChildAdapter.WeeklySpecialViewHolder
@@ -212,11 +210,9 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
      * @param imageUrl String
      */
     private fun loadImage(intoIv: ImageView, drawableRes: Int, imageUrl: String, isRadius: Boolean = false) {
-        if (isRadius) {
-            builder.imageRadius(5)
-        }
-        imageLoader.loadImage(context, builder.url(BuildConfig.API_HOST + imageUrl)
+        imageLoader?.loadImage(context, ImageConfigImpl.builder().url(BuildConfig.API_HOST + imageUrl)
                 .cacheStrategy(DiskCacheStrategyType.All).imageView(intoIv)
+                .imageRadius(if (isRadius) 5 else 0)
                 .isCenterCrop(true)
                 .placeholder(drawableRes).build())
     }
@@ -319,5 +315,11 @@ class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: C
         val enjoyLifeRiv: RoundedImageView = itemView.findViewById(R.id.riv_recommend_enjoy_life_child)
         val enjoyLifeTv: TextView = itemView.findViewById(R.id.tv_enjoy_life_item_content)
     }
+
+
+    fun onRelease() {
+        this.imageLoader = null
+    }
+
 }
 

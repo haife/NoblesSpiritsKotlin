@@ -183,6 +183,7 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
      * 释放资源 防止内存泄露
      */
     fun onDestroy() {
+        recommendRestaurantAdapter?.onRelease()
         recommendRestaurantAdapter = null
         newRecommendRestaurantAdapter = null
         enjoyLifeAdapter = null
@@ -190,6 +191,8 @@ class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val conte
         flashSaleAdapter = null
         shareRecycledViewPool.clear()
     }
+
+
 
 
 }

@@ -197,7 +197,6 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mRecommendAdapter.onDestroy();
         this.mErrorHandler = null;
         this.mAppManager = null;
         this.mApplication = null;

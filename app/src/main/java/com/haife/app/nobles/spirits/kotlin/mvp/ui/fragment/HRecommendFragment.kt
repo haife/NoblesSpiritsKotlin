@@ -123,6 +123,7 @@ class HRecommendFragment : BaseSupportFragment<HomePresenter>(), HomeContract.Vi
 
     override fun onDestroy() {
         super.onDestroy()
+        mRecommendAdapter.onDestroy()
     }
 
 }
