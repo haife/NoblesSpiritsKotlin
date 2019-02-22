@@ -26,7 +26,7 @@ import com.youth.banner.Banner
  */
 
 class HRecommendAdapter(data: MutableList<HRecommendMultiItemEntity>?, val context: Context) : BaseMultiItemQuickAdapter<HRecommendMultiItemEntity, BaseViewHolder>(data) {
-    private val typeFaceMedium = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")!!
+    private val typeFaceMedium = Typeface.createFromAsset(context.assets, "PingFangSC-Medium-Bold.ttf")
     private val typeFaceLight = Typeface.createFromAsset(context.assets, "PingFangSC-Light-Face.ttf")
     private val bannerUrls: ArrayList<String> = arrayListOf()
     private var recommendRestaurantAdapter: HRecommendChildAdapter? = null

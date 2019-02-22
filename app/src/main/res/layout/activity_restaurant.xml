@@ -7,6 +7,8 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
+
+
     <com.youth.banner.Banner
         android:id="@+id/banner_merchant_layout"
         android:layout_width="match_parent"
@@ -20,7 +22,7 @@
     <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.restaurant.MerchantContentLayout
         android:id="@+id/merchant_content_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/dp_170"
         app:layout_constraintTop_toTopOf="parent"/>
 

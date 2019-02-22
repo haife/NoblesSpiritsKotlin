@@ -43,10 +43,8 @@ public class HomeModel extends BaseModel implements HomeContract.Model {
     private CityIdRequest cityIdRequest = new CityIdRequest();
 
     @Inject
-    public HomeModel(IRepositoryManager repositoryManager) {
+    public  HomeModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
-
-
     }
 
     /**

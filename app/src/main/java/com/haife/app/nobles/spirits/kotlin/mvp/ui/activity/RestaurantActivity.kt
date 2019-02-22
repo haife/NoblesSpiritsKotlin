@@ -15,7 +15,6 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.router.restaurantActivityRou
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.RestaurantPresenter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HUnionRestaurantFragment
 import com.jess.arms.di.component.AppComponent
-import me.yokeyword.fragmentation.anim.FragmentAnimator
 
 
 /**
@@ -27,11 +26,12 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator
 @Route(path = restaurantActivityRouterUrl)
 class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), RestaurantContract.View {
 
-
     // 门店Id
-    @Autowired(name = HUnionRestaurantFragment.EXTRA_KEY_IMAGE_URL)
+    @Autowired(name = HUnionRestaurantFragment.EXTRA_KEY_MERCHANT_ID)
     @JvmField
     var merchantId: Int? = null
+
+
 
     override fun post(runnable: Runnable?) {
     }
@@ -73,13 +73,8 @@ class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), Restaur
     }
 
     override fun killMyself() {
-        finish()
+        finishAfterTransition()
     }
-
-    override fun onCreateFragmentAnimator(): FragmentAnimator {
-        return super.onCreateFragmentAnimator()
-    }
-
 
 
 }

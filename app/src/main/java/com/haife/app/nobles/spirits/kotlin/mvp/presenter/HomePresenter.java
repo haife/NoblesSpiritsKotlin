@@ -110,6 +110,7 @@ public class HomePresenter extends BasePresenter<HomeContract.Model, HomeContrac
                     public void onNext(BaseResponse<HomeRecommendData> response) {
                         if (response.getData().isSuccess()) {
                             mHomeRecommendData = response.getData().getResult();
+
                             if (fragmentName.equals(HOME_FRAGMENT_SIMPLE_NAME)) {
                                 processHomeData();
                             } else if (fragmentName.equals(HOME_RECOMMEND_FRAGMENT_SIMPLE_NAME)) {

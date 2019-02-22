@@ -51,7 +51,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     private val requestBody: CityIdRequest = CityIdRequest()
 
     companion object {
-        const val EXTRA_KEY_IMAGE_URL: String = "EXTRA_KEY_MERCHANT_ID"
+        const val EXTRA_KEY_MERCHANT_ID: String = "EXTRA_KEY_MERCHANT_ID"
 
         fun newInstance(): HUnionRestaurantFragment {
             return HUnionRestaurantFragment()
@@ -79,7 +79,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
         rv_home_union_restaurant.layoutManager = layoutManager
 
         mUnionRestaurantAdapter.setOnItemClickListener { adapter, view, position ->
-            ARouter.getInstance().build(restaurantActivityRouterUrl).withTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom).withInt(EXTRA_KEY_IMAGE_URL, mUnionRestaurantList[position].int_shop_id).navigation(this.context)
+            ARouter.getInstance().build(restaurantActivityRouterUrl).withTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom).withInt(EXTRA_KEY_MERCHANT_ID, mUnionRestaurantList[position].int_shop_id).navigation(this.context)
         }
 
     }
