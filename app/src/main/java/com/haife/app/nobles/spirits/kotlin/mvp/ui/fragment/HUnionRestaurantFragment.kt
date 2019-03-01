@@ -78,7 +78,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
         rv_home_union_restaurant.hasFixedSize()
         rv_home_union_restaurant.layoutManager = layoutManager
 
-        mUnionRestaurantAdapter.setOnItemClickListener { adapter, view, position ->
+        mUnionRestaurantAdapter.setOnItemClickListener { _, _, position ->
             ARouter.getInstance().build(restaurantActivityRouterUrl).withTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom).withInt(EXTRA_KEY_MERCHANT_ID, mUnionRestaurantList[position].int_shop_id).navigation(this.context)
         }
 

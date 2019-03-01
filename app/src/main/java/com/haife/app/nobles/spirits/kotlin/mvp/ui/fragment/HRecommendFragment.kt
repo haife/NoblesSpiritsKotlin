@@ -90,7 +90,6 @@ class HRecommendFragment : BaseSupportFragment<HomePresenter>(), HomeContract.Vi
     /**
      *
      * @param refreshLayout RefreshLayout
-     * @param refreshStatus Boolean 刷新状态
      */
     override fun onRefresh(refreshLayout: RefreshLayout) {
         mPresenter?.getHomeRecommendData(simpleName, true)
@@ -106,6 +105,8 @@ class HRecommendFragment : BaseSupportFragment<HomePresenter>(), HomeContract.Vi
                     .sneak(R.color.flash_sale_product_original_price_color)
         }
     }
+
+
 
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {

@@ -31,8 +31,6 @@ class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), Restaur
     @JvmField
     var merchantId: Int? = null
 
-
-
     override fun post(runnable: Runnable?) {
     }
 
