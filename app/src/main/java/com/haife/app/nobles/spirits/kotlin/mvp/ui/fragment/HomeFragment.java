@@ -54,9 +54,10 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * @author haife
- * @since 2018/12/18
- * TODO: HomeFragmentUI
+ * @author Eddie Android Developer
+ * @company Q | 樽尚汇
+ * @since 2019/3/6
+ * 首页
  */
 public class HomeFragment extends BaseSupportFragment<HomePresenter> implements HomeContract.View {
     @BindView(R.id.magic_indicator_home)
@@ -119,7 +120,6 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
         hotCities.add(new HotCity("广州", "广东", "101280101"));
         hotCities.add(new HotCity("深圳", "广东", "101280601"));
         hotCities.add(new HotCity("杭州", "浙江", "101210101"));
-
 
         CityPicker.from(this)
                 .enableAnimation(true)

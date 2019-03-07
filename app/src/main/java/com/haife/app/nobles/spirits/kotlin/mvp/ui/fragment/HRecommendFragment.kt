@@ -28,7 +28,6 @@ import javax.inject.Inject
 
 class HRecommendFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
 
-
     private val simpleName = javaClass.simpleName
     @Inject
     lateinit var mRecommendAdapter: HRecommendAdapter
@@ -63,6 +62,38 @@ class HRecommendFragment : BaseSupportFragment<HomePresenter>(), HomeContract.Vi
         smart_refresh_home_recommend.setOnRefreshListener(this)
     }
 
+    /**
+     *
+     * @param refreshLayout RefreshLayout
+     */
+    override fun onRefresh(refreshLayout: RefreshLayout) {
+        mPresenter?.getHomeRecommendData(simpleName, true)
+    }
+
+
+    override fun refreshStatusListener(refreshSuccess: Boolean) {
+        smart_refresh_home_recommend?.finishRefresh(refreshSuccess)
+        if (!refreshSuccess) {
+            Sneaker.with(activity)
+                    .setMessage(ArmsUtils.getString(context, R.string.net_work_error), ContextCompat.getColor(context!!, R.color.write))
+                    .setIcon(R.drawable.ic_error, ContextCompat.getColor(context!!, R.color.write), false)
+                    .sneak(R.color.flash_sale_product_original_price_color)
+        }
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if (isVisibleToUser) {
+            rv_home_recommend?.visibility = VISIBLE
+        } else {
+            rv_home_recommend?.visibility = GONE
+        }
+
+    }
+
+    override fun post(runnable: Runnable?) {
+    }
+
     override fun showLoading() {
 
     }
@@ -85,41 +116,6 @@ class HRecommendFragment : BaseSupportFragment<HomePresenter>(), HomeContract.Vi
 
     override fun getFragment(): Fragment {
         return this
-    }
-
-    /**
-     *
-     * @param refreshLayout RefreshLayout
-     */
-    override fun onRefresh(refreshLayout: RefreshLayout) {
-        mPresenter?.getHomeRecommendData(simpleName, true)
-    }
-
-
-    override fun refreshStatusListener(refreshSuccess: Boolean) {
-        smart_refresh_home_recommend?.finishRefresh(refreshSuccess)
-        if (!refreshSuccess) {
-            Sneaker.with(activity)
-                    .setMessage(ArmsUtils.getString(context, R.string.net_work_error), ContextCompat.getColor(context!!, R.color.write))
-                    .setIcon(R.drawable.ic_error, ContextCompat.getColor(context!!, R.color.write), false)
-                    .sneak(R.color.flash_sale_product_original_price_color)
-        }
-    }
-
-
-
-
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser) {
-            rv_home_recommend?.visibility = VISIBLE
-        } else {
-            rv_home_recommend?.visibility = GONE
-        }
-
-    }
-
-    override fun post(runnable: Runnable?) {
     }
 
     override fun onDestroy() {

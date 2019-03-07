@@ -27,11 +27,6 @@ import com.makeramen.roundedimageview.RoundedImageView
  * TODO：首页列表Item布局适配器
  */
 
-/**
- * @ author haife
- * @ since 2019/1/4
- * 首页列表Item布局适配器
- */
 class HRecommendChildAdapter(val list: HRecommendMultiItemEntity, val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val mViewType: Int by lazy { list.itemType }
     private var imageLoader: ImageLoader? = ArmsUtils.obtainAppComponentFromContext(context).imageLoader()

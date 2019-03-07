@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_40"
+    android:background="@color/write"
+    android:orientation="horizontal">
+
+
+
+    <CheckBox
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="西餐"
+        android:paddingLeft="@dimen/dp_60"
+        android:paddingRight="@dimen/dp_60"
+        android:button="@null"
+        android:drawableRight="@drawable/union_selector_restaurant_filter_check"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="@dimen/base_horizontal_line_height"
+        android:layout_height="match_parent"
+        android:background="@color/common_pressed_bg_color" />
+
+    <CheckBox
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@null"
+        android:text="300-500"
+        android:paddingLeft="@dimen/dp_50"
+        android:paddingRight="@dimen/dp_50"
+        android:gravity="center"
+        android:button="@null"
+        android:drawableRight="@drawable/union_selector_restaurant_filter_check" />
+
+</LinearLayout>

@@ -74,5 +74,4 @@ class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), Restaur
         finishAfterTransition()
     }
 
-
 }

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * @author Eddie Android Developer
  * @company Q | 樽尚汇
  * @since 2019/1/18$
- * TODO:
+ * TODO: HomeFragment RecycleView Snap Custom
  */
 public class FixLinearSnapHelper extends LinearSnapHelper {
     private static final float INVALID_DISTANCE = 1f;

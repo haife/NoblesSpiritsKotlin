@@ -84,7 +84,6 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
 
     }
 
-
     override fun post(runnable: Runnable?) {
 
     }
@@ -94,9 +93,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     }
 
     override fun launchActivity(intent: Intent) {
-
     }
-
 
     override fun refreshStatusListener(refeshSuccess: Boolean) {
     }
@@ -108,16 +105,17 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     override fun killMyself() {
 
     }
-
     override fun initMagicIndicatorView(magicIndicatorContentList: MutableList<String>?) {
     }
 
     override fun showMessage(message: String) {
+
     }
 
     override fun getFragment(): Fragment = this
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
+
     }
 
     /**
