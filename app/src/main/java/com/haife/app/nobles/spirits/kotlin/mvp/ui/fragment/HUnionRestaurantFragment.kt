@@ -90,6 +90,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
 
 
     override fun showLoading() {
+
     }
 
     override fun launchActivity(intent: Intent) {

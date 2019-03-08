@@ -49,7 +49,7 @@ data class UnionRestaurantBean(
 )
 
 /**
- * 拓展函数 获取商户标签集合
+ * 拓展函数 商户标签集合
  * @receiver List<ArrCategory>
  * @return List<String>
  */

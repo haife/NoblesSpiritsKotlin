@@ -6,14 +6,13 @@
     android:orientation="horizontal">
 
 
-
     <CheckBox
+        android:id="@+id/cb_union_cook_style_filter"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="西餐"
-        android:paddingLeft="@dimen/dp_60"
-        android:paddingRight="@dimen/dp_60"
+        android:paddingHorizontal="@dimen/dp_60"
         android:button="@null"
         android:drawableRight="@drawable/union_selector_restaurant_filter_check"
         android:gravity="center" />
@@ -24,13 +23,15 @@
         android:background="@color/common_pressed_bg_color" />
 
     <CheckBox
+        android:id="@+id/cb_union_price_filter"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:paddingHorizontal="@dimen/dp_45"
         android:background="@null"
-        android:text="300-500"
-        android:paddingLeft="@dimen/dp_50"
-        android:paddingRight="@dimen/dp_50"
+        android:includeFontPadding="true"
+        android:text="3000-5000"
+        android:drawablePadding="@dimen/dp_4"
         android:gravity="center"
         android:button="@null"
         android:drawableRight="@drawable/union_selector_restaurant_filter_check" />

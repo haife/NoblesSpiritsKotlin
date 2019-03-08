@@ -3,7 +3,6 @@ package com.haife.app.nobles.spirits.kotlin.mvp.http.entity.result;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.base.Data;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.CityBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.RestaurantAverageBean;
-import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.RestaurantBrandBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.RestaurantFilterBean;
 import com.haife.app.nobles.spirits.kotlin.mvp.http.entity.bean.UnionRestaurantBean;
 
@@ -12,8 +11,9 @@ import java.util.List;
 public class RestaurantUnionBean extends Data<RestaurantUnionBean> {
 
     public List<CityBean> arr_city;
+    /*联盟餐厅口味种类筛选*/
     public List<RestaurantFilterBean> arr_shop_types;
-    public List<RestaurantBrandBean> arr_brand_data;
+    /*联盟餐厅金额数量*/
     public List<RestaurantAverageBean> arr_average_spend;
     public List<UnionRestaurantBean> arr_search_shop_data;
 
@@ -33,13 +33,6 @@ public class RestaurantUnionBean extends Data<RestaurantUnionBean> {
         this.arr_shop_types = arr_shop_types;
     }
 
-    public List<RestaurantBrandBean> getArr_brand_data() {
-        return arr_brand_data;
-    }
-
-    public void setArr_brand_data(List<RestaurantBrandBean> arr_brand_data) {
-        this.arr_brand_data = arr_brand_data;
-    }
 
     public List<RestaurantAverageBean> getArr_average_spend() {
         return arr_average_spend;

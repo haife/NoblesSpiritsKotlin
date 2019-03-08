@@ -8,17 +8,7 @@ data class RestaurantFilterBean(
         val string_title_cn: String,
         val string_title_en: String)
 
-/**
- *  联盟餐厅筛选数据:根据餐厅品牌筛选
- */
-data class RestaurantBrandBean(
 
-        val int_brand_id: Int,
-
-        val string_name: String,
-
-        val string_name_en: String
-)
 
 /**
  *  联盟餐厅筛选数据:根据餐厅品牌筛选
