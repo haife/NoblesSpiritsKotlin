@@ -81,15 +81,16 @@ class HRecommendFragment : BaseSupportFragment<HomePresenter>(), HomeContract.Vi
         }
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser) {
-            rv_home_recommend?.visibility = VISIBLE
-        } else {
-            rv_home_recommend?.visibility = GONE
-        }
-
+    override fun onSupportVisible() {
+        super.onSupportVisible()
+        rv_home_recommend?.visibility = VISIBLE
     }
+
+    override fun onSupportInvisible() {
+        super.onSupportInvisible()
+        rv_home_recommend?.visibility = GONE
+    }
+
 
     override fun post(runnable: Runnable?) {
     }

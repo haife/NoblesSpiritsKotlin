@@ -2,13 +2,11 @@ package com.haife.app.nobles.spirits.kotlin.mvp.model
 
 import android.app.Application
 import com.google.gson.Gson
+import com.haife.app.nobles.spirits.kotlin.mvp.contract.RestaurantContract
+import com.jess.arms.di.scope.ActivityScope
 import com.jess.arms.integration.IRepositoryManager
 import com.jess.arms.mvp.BaseModel
-
-import com.jess.arms.di.scope.ActivityScope
 import javax.inject.Inject
-
-import com.haife.app.nobles.spirits.kotlin.mvp.contract.RestaurantContract
 
 
 /**
@@ -35,4 +33,6 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
     override fun onDestroy() {
         super.onDestroy();
     }
+
+
 }

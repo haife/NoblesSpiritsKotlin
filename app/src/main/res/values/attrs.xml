@@ -5,4 +5,7 @@
         <!--标签行距-->
         <attr name="VerticalSpace" format="dimension" />
     </declare-styleable>
+
+    <attr name="app_primary_color" format="color"/> <!-- topbar -->
+    <attr name="app_content_bg_color" format="color"/> <!-- content-->
 </resources>

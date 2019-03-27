@@ -72,12 +72,11 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
 
 
     override fun initData(savedInstanceState: Bundle?) {
-
         mPresenter?.getHomeUnionRestaurant(requestBody)
         rv_home_union_restaurant.addItemDecoration(RecycleViewDivide(context!!, drawableId = null, divideHeight = 20))
         rv_home_union_restaurant.hasFixedSize()
         rv_home_union_restaurant.layoutManager = layoutManager
-
+        rv_home_union_restaurant.adapter = mUnionRestaurantAdapter
         mUnionRestaurantAdapter.setOnItemClickListener { _, _, position ->
             ARouter.getInstance().build(restaurantActivityRouterUrl).withTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom).withInt(EXTRA_KEY_MERCHANT_ID, mUnionRestaurantList[position].int_shop_id).navigation(this.context)
         }
@@ -106,6 +105,7 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
     override fun killMyself() {
 
     }
+
     override fun initMagicIndicatorView(magicIndicatorContentList: MutableList<String>?) {
     }
 
@@ -119,19 +119,10 @@ class HUnionRestaurantFragment : BaseSupportFragment<HomePresenter>(), HomeContr
 
     }
 
-    /**
-     * fragment 切换回调函数
-     * @param isVisibleToUser Boolean
-     */
+
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser) {
-            rv_home_union_restaurant.adapter = mUnionRestaurantAdapter
-            rv_home_union_restaurant?.visibility = VISIBLE
-        } else {
-            rv_home_union_restaurant?.visibility = GONE
-        }
-
+        rv_home_union_restaurant?.visibility = if (isVisibleToUser) VISIBLE else GONE
     }
 
 

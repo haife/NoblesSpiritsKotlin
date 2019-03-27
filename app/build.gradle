@@ -68,6 +68,7 @@ dependencies {
     implementation rootProject.ext.dependencies["sneaker"]
     implementation rootProject.ext.dependencies["readmoretextview"]
     implementation rootProject.ext.dependencies["citypicker"]
+    implementation rootProject.ext.dependencies["qmui"]
 
     //tool lib
     kapt rootProject.ext.dependencies["dagger2-compiler"]
@@ -78,8 +79,8 @@ dependencies {
     implementation rootProject.ext.dependencies["glide"]
     kapt rootProject.ext.dependencies["glide-compiler"]
     implementation rootProject.ext.dependencies["autosize"]
-    /*tool class*/
     implementation rootProject.ext.dependencies["utilcode"]
+    implementation rootProject.ext.dependencies["qmuiteam-arch"]
     /*ARouter*/
     implementation rootProject.ext.dependencies["arouter"]
     kapt rootProject.ext.dependencies["arouter-compiler"]

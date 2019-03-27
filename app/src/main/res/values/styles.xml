@@ -9,6 +9,7 @@
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowAllowEnterTransitionOverlap">false</item>
         <item name="android:windowAllowReturnTransitionOverlap">false</item>
+
     </style>
 
     <style name="ToolBar">
@@ -42,7 +43,7 @@
     </style>
 
     <!--SwipeBackTheme-->
-    <style name="SwipeBackStyle" parent="@style/AppTheme">
+    <style name="SwipeBackStyle" parent="QMUI.Compat.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
     </style>
 

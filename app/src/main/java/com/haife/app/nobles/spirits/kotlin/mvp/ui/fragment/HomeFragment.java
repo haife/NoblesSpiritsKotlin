@@ -168,7 +168,6 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
 
     @Override
     public void killMyself() {
-
     }
 
     @Override
@@ -212,7 +211,6 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
         mHomeViewPager.setAdapter(homeViewPagerAdapter);
     }
 
-
     @Override
     public void refreshStatusListener(boolean loadSuccess) {
         if (!loadSuccess) {
@@ -223,7 +221,6 @@ public class HomeFragment extends BaseSupportFragment<HomePresenter> implements 
             });
         }
     }
-
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {

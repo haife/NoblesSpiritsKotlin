@@ -15,7 +15,7 @@ import io.rx_cache2.Reply;
 /**
  * @author Eddie Android Developer
  * @company Q | 樽尚汇
- * @since 2019/1/17$
+ * @since 2019/1/17
  * TODO:展示 {@linkRxCache#using(Class)} 中需要传入的 Providers 的使用方式
  */
 public interface CommonCache {

@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.haife.app.nobles.spirits.kotlin.BuildConfig;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.utils.ArmsUtils;
+import com.qmuiteam.qmui.arch.QMUISwipeBackActivityManager;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -28,6 +29,7 @@ public class AppLifecyclesImpl implements AppLifecycles {
     @Override
     public void attachBaseContext(Context base) {
 //      MultiDex.install(base);  //这里比 onCreate 先执行,常用于 MultiDex 初始化,插件化框架的初始化
+
     }
 
     @Override
@@ -35,6 +37,8 @@ public class AppLifecyclesImpl implements AppLifecycles {
         initTimber();
         initTextFaceType(application);
         initLeakCanary(application);
+        //qmui arch 初始化
+        QMUISwipeBackActivityManager.init(application);
         //AutoSize
         AutoSizeConfig.getInstance().getUnitsManager().setSupportDP(true).setSupportSubunits(Subunits.PT);
         /*-----ARouterSDK初始化Start-----*/

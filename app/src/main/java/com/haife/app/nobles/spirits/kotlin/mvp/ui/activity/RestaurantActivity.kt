@@ -2,10 +2,10 @@ package com.haife.app.nobles.spirits.kotlin.mvp.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.transition.TransitionInflater
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.google.android.material.appbar.AppBarLayout
 import com.haife.app.nobles.spirits.kotlin.R
 import com.haife.app.nobles.spirits.kotlin.app.base.BaseSwipeBackActivity
 import com.haife.app.nobles.spirits.kotlin.di.component.DaggerRestaurantComponent
@@ -15,6 +15,8 @@ import com.haife.app.nobles.spirits.kotlin.mvp.http.router.restaurantActivityRou
 import com.haife.app.nobles.spirits.kotlin.mvp.presenter.RestaurantPresenter
 import com.haife.app.nobles.spirits.kotlin.mvp.ui.fragment.HUnionRestaurantFragment
 import com.jess.arms.di.component.AppComponent
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper
+import kotlinx.android.synthetic.main.activity_restaurant.*
 
 
 /**
@@ -45,12 +47,23 @@ class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), Restaur
 
     override fun initView(savedInstanceState: Bundle?): Int {
         ARouter.getInstance().inject(this)
+        QMUIStatusBarHelper.translucent(this)
         return R.layout.activity_restaurant
     }
 
 
     override fun initData(savedInstanceState: Bundle?) {
-        window.enterTransition = TransitionInflater.from(this).inflateTransition(R.transition.merchant_activity_slide)
+        topbar.addLeftBackImageButton().setOnClickListener { finishAfterTransition() }
+        collapsing_topbar_layout.setScrimUpdateListener{
+            animation ->
+        }
+        app_bar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            when {
+                verticalOffset == 0 -> topbar.setTitle(null)
+                Math.abs(verticalOffset) >= appBarLayout.totalScrollRange -> topbar.setTitle("商户详情")
+                else -> topbar.setTitle(null)
+            }
+        })
     }
 
 
@@ -73,5 +86,6 @@ class RestaurantActivity : BaseSwipeBackActivity<RestaurantPresenter>(), Restaur
     override fun killMyself() {
         finishAfterTransition()
     }
+
 
 }

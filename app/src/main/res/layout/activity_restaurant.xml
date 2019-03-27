@@ -3,27 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/write"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:background="@color/write">
 
-
-    <com.youth.banner.Banner
-        android:id="@+id/banner_merchant_layout"
+    <com.qmuiteam.qmui.widget.QMUIAppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_170"
-        android:background="@drawable/ic_home_banner_place_holder"
-        android:transitionName="@string/trans_merchant_union"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="256dp"
+        android:fitsSystemWindows="true">
+
+        <com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout
+            android:id="@+id/collapsing_topbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="?attr/qmui_topbar_height"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:qmui_collapsedTitleGravity="center"
+            app:qmui_contentScrim="?attr/qmui_config_color_blue"
+            app:qmui_expandedTitleGravity="center_horizontal|bottom"
+            app:qmui_expandedTitleMarginBottom="20dp"
+            app:qmui_statusBarScrim="?attr/qmui_config_color_blue">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/qd_show_img_1"
+                android:contentDescription="@string/app_name"
+                android:fitsSystemWindows="false"
+                android:scaleType="centerCrop"
+                app:qmui_layout_collapseMode="parallax"
+                app:qmui_layout_collapseParallaxMultiplier="0.7" />
+
+            <com.qmuiteam.qmui.widget.QMUITopBar
+                android:id="@+id/topbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:actionBarSize"
+                android:fitsSystemWindows="true"
+                app:qmui_layout_collapseMode="pin"
+                app:qmui_topbar_bg_color="@color/qmui_config_color_transparent"
+                app:qmui_topbar_left_back_drawable_id="@drawable/ic_arrow_back_write_24dp"
+                app:qmui_topbar_need_separator="false" />
+        </com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout>
+    </com.qmuiteam.qmui.widget.QMUIAppBarLayout>
+
 
     <com.haife.app.nobles.spirits.kotlin.mvp.ui.widget.restaurant.MerchantContentLayout
         android:id="@+id/merchant_content_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dp_170"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
