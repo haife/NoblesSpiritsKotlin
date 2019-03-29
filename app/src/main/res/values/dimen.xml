@@ -25,6 +25,8 @@
     <dimen name="dp_20">20dp</dimen>
     <dimen name="dp_30">30dp</dimen>
     <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_45">45dp</dimen>
+    <dimen name="dp_55">55dp</dimen>
     <dimen name="dp_60">60dp</dimen>
     <dimen name="dp_80">80dp</dimen>
     <dimen name="dp_90">90dp</dimen>
@@ -39,6 +41,7 @@
     <dimen name="dp_200">200dp</dimen>
     <dimen name="dp_250">250dp</dimen>
     <dimen name="dp_300">300dp</dimen>
+
     <!--common dimen end-->
 
     <!--main_screen_start-->
@@ -60,5 +63,8 @@
     <dimen name="merchant_reserve_button_height">27dp</dimen>
     <integer name="merchant_introduce_trim_length">65</integer>
     <!--merchant dimen end-->
+
+
+
 
 </resources>

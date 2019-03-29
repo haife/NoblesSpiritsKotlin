@@ -40,7 +40,7 @@
                 android:fitsSystemWindows="true"
                 app:qmui_layout_collapseMode="pin"
                 app:qmui_topbar_bg_color="@color/qmui_config_color_transparent"
-                app:qmui_topbar_left_back_drawable_id="@drawable/ic_arrow_back_write_24dp"
+                app:qmui_topbar_left_back_drawable_id="@drawable/ic_arrow_back_black_24dp"
                 app:qmui_topbar_need_separator="false" />
         </com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout>
     </com.qmuiteam.qmui.widget.QMUIAppBarLayout>
